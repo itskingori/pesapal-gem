@@ -1,6 +1,8 @@
 Pesapal RubyGem
 ===============
 
+[![Gem Version](https://badge.fury.io/rb/pesapal.png)](http://badge.fury.io/rb/pesapal)
+
 Make authenticated Pesapal API calls without the fuss! Handles all the [oAuth
 stuff][1] abstracting any direct interaction with the API endpoints so that you
 can focus on what matters. _Building awesome_.
@@ -108,6 +110,14 @@ References
 * [Pesapal API Reference (Official)][4]
 * [Pesapal PHP API Reference (Unofficial)][5]
 
+
+License
+-------
+
+[King'ori J. Maina][10] © 2013. The [MIT License bundled therein][11] is a
+permissive license that is short and to the point. It lets people do anything
+they want as long as they provide attribution and waive liability.
+
 [1]: http://oauth.net/core/1.0/
 [2]: https://github.com/radar/guides/blob/master/gem-development.md
 [3]: http://guides.rubygems.org/make-your-own-gem/
@@ -117,3 +127,5 @@ References
 [7]: http://rubygems.org/gems/pesapal
 [8]: https://github.com/itsmrwave/pesapal-rubygem/fork
 [9]: https://github.com/itsmrwave/pesapal-rubygem#contributing
+[10]: http://kingori.co/
+[11]: https://github.com/itsmrwave/pesapal-rubygem/blob/master/LICENSE.txt
