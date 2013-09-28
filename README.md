@@ -1,14 +1,14 @@
 Pesapal RubyGem
 ===============
 
-Make authenticated Pesapal API calls without the fuss! Handles all the oAuth
-stuff abstracting any direct interaction with the API endpoints so that you can
-focus on what matters. _Building awesome_.
+Make authenticated Pesapal API calls without the fuss! Handles all the [oAuth
+stuff][1] abstracting any direct interaction with the API endpoints so that you
+can focus on what matters. _Building awesome_.
 
-This gem is work in progress. At the moment, the only functionality built in is
-posting an order i.e. fetching the URL for necessary to generate the iframe.
-Everything else should be easy to do as the groundwork has already been laid. If
-you are [feeling generous and want to contribute, feel free][9].
+This gem is work in progress. At the moment, the only functionality built-in is
+posting an order i.e. fetching the URL that is required to display the post-
+order iframe. Everything else should be easy to do as the groundwork has already
+been laid. If you are [feeling generous and want to contribute, feel free][9].
 
 Submit [issues and requests here][6]. The gem should be [up on RubyGems.org][7].
 
