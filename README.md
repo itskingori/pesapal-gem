@@ -5,9 +5,12 @@ Make authenticated Pesapal API calls without the fuss! Handles all the oAuth
 stuff abstracting any direct interaction with the API endpoints so that you can
 focus on what matters. _Building awesome_.
 
-The gem is [up on RubyGems.org][7]
+This gem is work in progress. At the moment, the only functionality built in is
+posting an order i.e. fetching the URL for necessary to generate the iframe.
+Everything else should be easy to do as the groundwork has already been laid. If
+you are [feeling generous and want to contribute, feel free][9].
 
-Submit [issues and requests here][6].
+Submit [issues and requests here][6]. The gem should be [up on RubyGems.org][7].
 
 _Ps: No 3rd party oAuth library dependencies, it handles all the oAuth flows on
 it's own so it's light on your app._
@@ -32,7 +35,7 @@ Or install it yourself as:
 Usage
 -----
 
-## Setup ##
+### Setup ###
 
 Initialize Pesapal object and choose the mode, there are two modes;
 `:development` and `:production`. They determine if you the code will interact
@@ -54,7 +57,7 @@ pesapal.credentials = { :consumer_key => '<YOUR_CONSUMER_KEY>',
                     }
 ```
 
-## Post Order
+### Post Order ###
 
 Once you've set up the credentials, set up the order details in a hash as shown
 in the example below ... all keys **MUST** be present. If there's one that you
@@ -87,7 +90,7 @@ order_url = pesapal.generate_order_url
 Contributing
 ------------
 
-1. Fork it
+1. [Fork it][8]
 2. Create your feature branch (`git checkout -b wip-my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature with awesome'`)
 4. Push to the branch (`git push origin wip-my-new-feature`)
@@ -112,3 +115,5 @@ References
 [5]: https://github.com/itsmrwave/pesapal-php#pesapal-php-api-reference-unofficial
 [6]: https://github.com/itsmrwave/pesapal-rubygem/issues
 [7]: http://rubygems.org/gems/pesapal
+[8]: https://github.com/itsmrwave/pesapal-rubygem/fork
+[9]: https://github.com/itsmrwave/pesapal-rubygem#contributing
