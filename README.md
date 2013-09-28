@@ -1,7 +1,7 @@
 Pesapal RubyGem
 ===============
 
-[![Gem Version](https://badge.fury.io/rb/pesapal.png)](http://badge.fury.io/rb/pesapal)
+[![Gem Version](https://badge.fury.io/rb/pesapal@2x.png)](http://badge.fury.io/rb/pesapal)
 
 Make authenticated Pesapal API calls without the fuss! Handles all the [oAuth
 stuff][1] abstracting any direct interaction with the API endpoints so that you
