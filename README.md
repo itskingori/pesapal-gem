@@ -61,6 +61,12 @@ pesapal.credentials = { :consumer_key => '<YOUR_CONSUMER_KEY>',
                     }
 ```
 
+By default the callback is set to `http://0.0.0.0:3000/pesapal/callback` on instantiation but you can easily set it to whatever works for you as shown below.
+
+```ruby
+pesapal.callback_url = 'WHATEVER_URL_YOU_WANT'
+```
+
 ### Post Order ###
 
 Once you've set up the credentials, set up the order details in a hash as shown
