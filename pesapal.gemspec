@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
     spec.email         = ["j@kingori.co"]
     spec.description   = "Make authenticated Pesapal API calls without the fuss!"
     spec.summary       = "Make authenticated Pesapal API calls without the fuss! Handles all the oAuth stuff abstracting any direct interaction with the API endpoints so that you can focus on what matters. Building awesome."
-    spec.homepage      = "http://rubygems.org/gems/pesapal"
+    spec.homepage      = "https://github.com/itsmrwave/pesapal-rubygem"
     spec.license       = "MIT"
 
     spec.files         = `git ls-files`.split($/)
