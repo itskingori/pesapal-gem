@@ -14,7 +14,7 @@ been laid. If you are [feeling generous and want to contribute, feel free][9].
 
 Submit [issues and requests here][6] and [find all the releases here][12].
 
-The gem should be [up on RubyGems.org][7].
+The gem should be [up on RubyGems.org][7] and it's [accompanying RubyDoc reference][13] here.
 
 _Ps: No 3rd party oAuth library dependencies, it handles all the oAuth flows on
 it's own so it's light on your app._
@@ -138,3 +138,4 @@ they want as long as they provide attribution and waive liability.
 [10]: http://kingori.co/
 [11]: https://github.com/itsmrwave/pesapal-rubygem/blob/master/LICENSE.txt
 [12]: https://github.com/itsmrwave/pesapal-rubygem/releases/
+[13]: http://rubydoc.info/gems/pesapal/
