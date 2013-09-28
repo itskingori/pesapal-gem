@@ -12,7 +12,9 @@ posting an order i.e. fetching the URL that is required to display the post-
 order iframe. Everything else should be easy to do as the groundwork has already
 been laid. If you are [feeling generous and want to contribute, feel free][9].
 
-Submit [issues and requests here][6]. The gem should be [up on RubyGems.org][7].
+Submit [issues and requests here][6] and [find all the releases here][12].
+
+The gem should be [up on RubyGems.org][7].
 
 _Ps: No 3rd party oAuth library dependencies, it handles all the oAuth flows on
 it's own so it's light on your app._
@@ -129,3 +131,4 @@ they want as long as they provide attribution and waive liability.
 [9]: https://github.com/itsmrwave/pesapal-rubygem#contributing
 [10]: http://kingori.co/
 [11]: https://github.com/itsmrwave/pesapal-rubygem/blob/master/LICENSE.txt
+[12]: https://github.com/itsmrwave/pesapal-rubygem/releases/
