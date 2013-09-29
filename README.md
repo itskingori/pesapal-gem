@@ -61,12 +61,6 @@ pesapal.credentials = { :consumer_key => '<YOUR_CONSUMER_KEY>',
                     }
 ```
 
-By default the callback is set to `http://0.0.0.0:3000/pesapal/callback` on instantiation but you can easily set it to whatever works for you as shown below.
-
-```ruby
-pesapal.callback_url = 'WHATEVER_URL_YOU_WANT'
-```
-
 ### Post Order ###
 
 Once you've set up the credentials, set up the order details in a hash as shown
@@ -87,9 +81,22 @@ pesapal.order_details = { :amount => 1000,
                         }
 ```
 
+By default the callback is set to `http://0.0.0.0:3000/pesapal/callback` on
+instantiation but you can easily set it to whatever works for you as shown
+below. After the user does all that payment stuff (on the iframe which you will
+generate in the next step), the response will be sent to this url, so it's
+important that you set the correct callback url in your app before generating
+the order url.
+
+```ruby
+pesapal.callback_url = 'WHATEVER_URL_YOU_WANT'
+```
+
 Then generate the transaction url as below. In the example, the value is
 assigned to the variable `order_url` which you can pass on to the templating
-system of your to generate an iframe.
+system of your choice to generate an iframe. Please note that this method
+utilizes all that information set in the previous steps in generating the url so
+it's important that it's the last step in the post order process.
 
 ```ruby
 # generate transaction url
