@@ -14,7 +14,7 @@ been laid. If you are [feeling generous and want to contribute, feel free][9].
 
 Submit [issues and requests here][6] and [find all the releases here][12].
 
-The gem should be [up on RubyGems.org][7] and it's [accompanying RubyDoc reference][13] here.
+The gem should be [up on RubyGems.org][7] and it's [accompanying RubyDoc reference here][13].
 
 _Ps: No 3rd party oAuth library dependencies, it handles all the oAuth flows on
 it's own so it's light on your app._
