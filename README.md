@@ -39,6 +39,7 @@ Or install it yourself as:
 Usage
 -----
 
+
 ### Setup ###
 
 Initialize Pesapal object and choose the mode, there are two modes;
@@ -60,6 +61,7 @@ pesapal.credentials = { :consumer_key => '<YOUR_CONSUMER_KEY>',
                         :consumer_secret => '<YOUR_CONSUMER_SECRET>' 
                     }
 ```
+
 
 ### Post Order ###
 
@@ -110,13 +112,13 @@ order_url = pesapal.generate_order_url
 Contributing
 ------------
 
-1. [Fork it][8]
-2. Create your feature branch (`git checkout -b wip-my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature with awesome'`)
-4. Push to the branch (`git push origin wip-my-new-feature`)
-5. Create new pull request
-
-_Ps: Please prefix branch name with 'wip-' ... means 'work in progress'._
+1. Make sure you've read the [M.O. ★][14] ([blog article here][16])
+2. Especially [the part about my conventions when writing and merging new features][15]
+2. [Fork it][8]
+2. Create your feature branch (`git checkout -b BRANCH_NAME`)
+3. Commit your changes (`git commit -am 'AWESOME COMMIT MESSAGE'`)
+4. Push to the branch (`git push origin BRANCH_NAME`)
+5. Create new pull request and we can [have the conversations here][17]
 
 
 References
@@ -149,3 +151,7 @@ they want as long as they provide attribution and waive liability.
 [11]: https://github.com/itsmrwave/pesapal-rubygem/blob/master/LICENSE.txt
 [12]: https://github.com/itsmrwave/pesapal-rubygem/releases/
 [13]: http://rubydoc.info/gems/pesapal/
+[14]: https://github.com/itsmrwave/mo
+[15]: https://github.com/itsmrwave/mo/tree/master/convention#-convention
+[16]: http://kingori.co/articles/2013/09/modus-operandi/
+[17]: https://github.com/itsmrwave/pesapal-rubygem/pulls
