@@ -17,7 +17,7 @@ Submit [issues and requests here][6] and [find all the releases here][12].
 The gem should be [up on RubyGems.org][7] and it's [accompanying RubyDoc reference here][13].
 
 _Ps: No 3rd party oAuth library dependencies, it handles all the oAuth flows on
-it's own so it's light on your app._
+it's own so your app is one dependency less._
 
 
 Installation
@@ -43,8 +43,8 @@ Usage
 ### Setup ###
 
 Initialize Pesapal object and choose the mode, there are two modes;
-`:development` and `:production`. They determine if you the code will interact
-with Pesapal for testing or for a live deployment.
+`:development` and `:production`. They determine if the code will interact
+with the testing or live Pesapal API.
 
 ```ruby
 # initiate pesapal object set to development mode
