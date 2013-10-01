@@ -22,7 +22,7 @@ it's own so your app is one dependency less._
 _Ps 2: We are still at pre-release stage ... target is version 1.0.0 for a
 public release (suitable for production deployment with the basic functionality
 in place). As a result always check the documentation carefully on upgrades to
-mitigate breaking changes.
+mitigate breaking changes._
 
 
 Installation
@@ -64,10 +64,10 @@ The second parameter is optional and has a default value of
 ```ruby
 # initiate pesapal object set to development mode and use the YAML file found at
 # the specified location
-pesapal = Pesapal::Merchant.new(:development, <PATH_TO_YAML_FILE>)
+pesapal = Pesapal::Merchant.new(:development, "<PATH_TO_YAML_FILE>")
 ```
 
-And the YAML file would look something like this. Feel free to change to the
+And the YAML file should look something like this. Feel free to change to the
 appropriate values.
 
 ```yaml
@@ -77,7 +77,7 @@ development:
     consumer_secret: '<YOUR_CONSUMER_SECRET>'
 
 production:
-    callback_url: 'http://0.0.0.0:3000/pesapal/callback'
+    callback_url: 'http://1.2.3.4:3000/pesapal/callback'
     consumer_key: '<YOUR_CONSUMER_KEY>'
     consumer_secret: '<YOUR_CONSUMER_SECRET>'
 ```
@@ -97,9 +97,9 @@ pesapal.config = {  :callback_url => 'http://0.0.0.0:3000/pesapal/callback'
 ```
 
 _Ps: Make sure this hash has the appropriate values before running any methods
-that interact with the API as the methods pick these values. This means that you
-can also override them at runtime for a truly dynamic app that might have
-different values for different scenarios._
+that interact with the API as the methods pick from these values. This means
+that you can also override them at runtime for a truly dynamic/complex app that
+might have different values for different scenarios._
 
 
 ### Post Order ###
@@ -122,17 +122,6 @@ pesapal.order_details = { :amount => 1000,
                         }
 ```
 
-By default the callback is set to `http://0.0.0.0:3000/pesapal/callback` on
-instantiation but you can easily set it to whatever works for you as shown
-below. After the user does all that payment stuff (on the iframe which you will
-generate in the next step), the response will be sent to this url, so it's
-important that you set the correct callback url in your app before generating
-the order url.
-
-```ruby
-pesapal.callback_url = 'WHATEVER_URL_YOU_WANT'
-```
-
 Then generate the transaction url as below. In the example, the value is
 assigned to the variable `order_url` which you can pass on to the templating
 system of your choice to generate an iframe. Please note that this method
@@ -146,6 +135,11 @@ order_url = pesapal.generate_order_url
 # order_url will a string with the url example;
 # http://demo.pesapal.com/API/PostPesapalDirectOrderV4?oauth_callback=http%3A%2F%2F1.2.3.4%3A3000%2Fpesapal%2Fcallback&oauth_consumer_key=A9MXocJiHK1P4w0M%2F%2FYzxgIVMX557Jt4&oauth_nonce=13804335543pDXs4q3djsy&oauth_signature=BMmLR0AVInfoBI9D4C38YDA9eSM%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1380433554&oauth_version=1.0&pesapal_request_data=%26lt%3B%3Fxml%20version%3D%26quot%3B1.0%26quot%3B%20encoding%3D%26quot%3Butf-8%26quot%3B%3F%26gt%3B%26lt%3BPesapalDirectOrderInfo%20xmlns%3Axsi%3D%26quot%3Bhttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema-instance%26quot%3B%20xmlns%3Axsd%3D%26quot%3Bhttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%26quot%3B%20Amount%3D%26quot%3B1000%26quot%3B%20Description%3D%26quot%3Bthis%20is%20the%20transaction%20description%26quot%3B%20Type%3D%26quot%3BMERCHANT%26quot%3B%20Reference%3D%26quot%3B808%26quot%3B%20FirstName%3D%26quot%3BSwaleh%26quot%3B%20LastName%3D%26quot%3BMdoe%26quot%3B%20Email%3D%26quot%3Bj%40kingori.co%26quot%3B%20PhoneNumber%3D%26quot%3B%2B254722222222%26quot%3B%20xmlns%3D%26quot%3Bhttp%3A%2F%2Fwww.pesapal.com%26quot%3B%20%2F%26gt%3B
 ```
+
+_Ps: Please note the `:callback_url` value in the `pesapal.config` hash ...
+after the user successfully posts the order, the response will be sent to this
+url. Refer to [official Pesapal Step-By-Step integration guide][18] for more
+details._
 
 
 Contributing
@@ -167,6 +161,7 @@ References
 * [Developing a RubyGem using Bundler][2]
 * [Make your own gem][3]
 * [Pesapal API Reference (Official)][4]
+* [Pesapal Step-By-Step Reference (Official)][18]
 * [Pesapal PHP API Reference (Unofficial)][5]
 
 
@@ -194,3 +189,4 @@ they want as long as they provide attribution and waive liability.
 [15]: https://github.com/itsmrwave/mo/tree/master/convention#-convention
 [16]: http://kingori.co/articles/2013/09/modus-operandi/
 [17]: https://github.com/itsmrwave/pesapal-rubygem/pulls
+[18]: http://developer.pesapal.com/how-to-integrate/step-by-step
