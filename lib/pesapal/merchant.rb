@@ -27,6 +27,10 @@ module Pesapal
 
         private
 
+            def mode
+                @mode
+            end
+
             def params
                 @params
             end
@@ -42,32 +46,24 @@ module Pesapal
         public
 
             # constructor
-            def initialize(mode = :development)
-
-                # convert symbol to string and downcase
-                mode.to_s.downcase!
+            def initialize(mode = :development, path_to_file = "#{Rails.root}/config/pesapal.yml")
 
                 # initialize
                 @params = nil
                 @post_xml = nil
                 @token_secret = nil
 
-                # set the credentials from the config (if initializers/pesapal.rb
-                # exists they should have set these values)
-                @credentials = nil
+                # convert symbol to string and downcase
+                @mode = "#{mode.to_s.downcase}"
+
+                # set the credentials
+                set_credentials_from_yaml path_to_file
 
                 # set the callback url that the iframe will respond to
                 @callback_url = 'http://0.0.0.0:3000/pesapal/callback'
 
                 # set api endpoints depending on the mode
-                @api_endpoints = {}
-                if mode == 'development'
-                    set_endpoints_development
-                elseif mode == 'production'
-                    set_endpoints_production
-                else
-                    set_endpoints_development
-                end
+                set_endpoints
             end
 
             # generate pesapal order url (often iframed)
@@ -91,24 +87,54 @@ module Pesapal
 
         private
 
-            # set all endpoint for use in development mode
-            def set_endpoints_development
-                @api_domain = 'http://demo.pesapal.com'
-                set_endpoints @api_domain
-            end
-
-            # set all enpoints for use in production mode
-            def set_endpoints_production
-                @api_domain = "https://www.pesapal.com"
-                set_endpoints @api_domain
-            end
-
             # set endpoints
-            def set_endpoints(domain_string)
-                @api_endpoints[:postpesapaldirectorderv4] = "#{domain_string}/API/PostPesapalDirectOrderV4"
-                @api_endpoints[:querypaymentstatus] = "#{domain_string}/API/QueryPaymentStatus"
-                @api_endpoints[:querypaymentstatusbymerchantref] = "#{domain_string}/API/QueryPaymentStatus"
-                @api_endpoints[:querypaymentdetails] = "#{domain_string}/API/QueryPaymentDetails"
+            def set_endpoints
+
+                if @mode == 'production'
+                    @api_domain = 'https://www.pesapal.com'
+                else
+                    @api_domain = 'http://demo.pesapal.com'
+                end
+
+                @api_endpoints = {}
+                @api_endpoints[:postpesapaldirectorderv4] = "#{@api_domain}/API/PostPesapalDirectOrderV4"
+                @api_endpoints[:querypaymentstatus] = "#{@api_domain}/API/QueryPaymentStatus"
+                @api_endpoints[:querypaymentstatusbymerchantref] = "#{@api_domain}/API/QueryPaymentStatus"
+                @api_endpoints[:querypaymentdetails] = "#{@api_domain}/API/QueryPaymentDetails"
+            end
+
+            # set credentialts through hash, uses default if nothing is input
+            def set_credentials(consumer_details = {})
+
+                # set the credentials
+                @credentials = { :consumer_key => '<YOUR_CONSUMER_KEY>',
+                                 :consumer_secret => '<YOUR_CONSUMER_SECRET>' 
+                            }
+
+                valid_config_keys = @credentials.keys
+
+                consumer_details.each { |k,v| @credentials[k.to_sym] = v if valid_config_keys.include? k.to_sym }
+            end
+
+            # set credentials through yaml file
+            def set_credentials_from_yaml(path_to_file)
+
+                if File.exist?(path_to_file)
+
+                    # load file, read it and parse the YAML
+                    begin
+                        loaded_config = YAML::load(IO.read(path_to_file))
+                    rescue Errno::ENOENT
+                        logger.info("YAML configuration file couldn't be found. Using defaults."); return
+                    rescue Psych::SyntaxError
+                        logger.info("YAML configuration file contains invalid syntax. Using defaults."); return
+                    end
+
+                    # pick the correct settings depending on the the mode and
+                    # set it appropriately. this file is expected to have the
+                    # settings for development and production
+                    set_credentials loaded_config[@mode]
+                end 
             end
     end
 end
