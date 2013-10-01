@@ -2,7 +2,7 @@ module Pesapal
     
     class Merchant
 
-        attr_accessor :callback_url, :credentials, :order_details
+        attr_accessor :config, :order_details
         attr_reader :api_domain, :api_endpoints
 
         def api_domain
@@ -13,12 +13,8 @@ module Pesapal
             @api_endpoints
         end
 
-        def callback_url
-            @callback_url
-        end
-
-        def credentials
-            @credentials
+        def config
+            @config
         end
 
         def order_details
@@ -57,10 +53,7 @@ module Pesapal
                 @mode = "#{mode.to_s.downcase}"
 
                 # set the credentials
-                set_credentials_from_yaml path_to_file
-
-                # set the callback url that the iframe will respond to
-                @callback_url = 'http://0.0.0.0:3000/pesapal/callback'
+                set_configuration_from_yaml path_to_file
 
                 # set api endpoints depending on the mode
                 set_endpoints
@@ -74,7 +67,7 @@ module Pesapal
                 @post_xml = Pesapal::Post::generate_post_xml @order_details
 
                 # initialize setting of @params (oauth_signature left empty) ... this gene
-                @params = Pesapal::Post::set_parameters(@callback_url, @credentials[:consumer_key], @post_xml)
+                @params = Pesapal::Post::set_parameters(@credentials[:callback_url], @credentials[:consumer_key], @post_xml)
 
                 # generate oauth signature and add signature to the request parameters
                 @params[:oauth_signature] = Pesapal::Oauth::generate_oauth_signature("GET", @api_endpoints[:postpesapaldirectorderv4], @params, @credentials[:consumer_secret], @token_secret)
@@ -104,20 +97,21 @@ module Pesapal
             end
 
             # set credentialts through hash, uses default if nothing is input
-            def set_credentials(consumer_details = {})
+            def set_configuration(consumer_details = {})
 
-                # set the credentials
-                @credentials = { :consumer_key => '<YOUR_CONSUMER_KEY>',
-                                 :consumer_secret => '<YOUR_CONSUMER_SECRET>' 
-                            }
+                # set the configuration
+                @config = { :callback_url => 'http://0.0.0.0:3000/pesapal/callback'
+                            :consumer_key => '<YOUR_CONSUMER_KEY>',
+                            :consumer_secret => '<YOUR_CONSUMER_SECRET>' 
+                        }
 
-                valid_config_keys = @credentials.keys
+                valid_config_keys = @config.keys
 
-                consumer_details.each { |k,v| @credentials[k.to_sym] = v if valid_config_keys.include? k.to_sym }
+                consumer_details.each { |k,v| @config[k.to_sym] = v if valid_config_keys.include? k.to_sym }
             end
 
-            # set credentials through yaml file
-            def set_credentials_from_yaml(path_to_file)
+            # set configuration through yaml file
+            def set_configuration_from_yaml(path_to_file)
 
                 if File.exist?(path_to_file)
 
@@ -133,12 +127,12 @@ module Pesapal
                     # pick the correct settings depending on the the mode and
                     # set it appropriately. this file is expected to have the
                     # settings for development and production
-                    set_credentials loaded_config[@mode]
+                    set_configuration loaded_config[@mode]
 
                 else
 
                     # in this case default values will be set
-                    set_credentials
+                    set_configuration
                 end 
             end
     end

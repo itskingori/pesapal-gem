@@ -19,6 +19,11 @@ The gem should be [up on RubyGems.org][7] and it's [accompanying RubyDoc referen
 _Ps: No 3rd party oAuth library dependencies, it handles all the oAuth flows on
 it's own so your app is one dependency less._
 
+_Ps 2: We are still at pre-release stage ... target is version 1.0.0 for a
+public release (suitable for production deployment with the basic functionality
+in place). As a result always check the documentation carefully on upgrades to
+mitigate breaking changes.
+
 
 Installation
 ------------
@@ -44,30 +49,64 @@ Usage
 
 Initialize Pesapal object and choose the mode, there are two modes;
 `:development` and `:production`. They determine if the code will interact
-with the testing or live Pesapal API.
+with the testing or the live Pesapal API.
 
 ```ruby
 # initiate pesapal object set to development mode
 pesapal = Pesapal::Merchant.new(:development)
 ```
 
-Now set the Pesapal credentials. This assumes that you've chosen the appropriate
-credentials as they differ based on the mode chosen above (Pesapal provide the
-keys). Replace the placeholders below with your own credentials.
+You can set the configuration details from a YAML file at the location of
+your choice upon initialization as shown in the example below for a Rails app.
+The second parameter is optional and has a default value of
+`"#{Rails.root}/config/pesapal.yml"` if left out as in the example above.
 
 ```ruby
-# set pesapal api credentials
-pesapal.credentials = { :consumer_key => '<YOUR_CONSUMER_KEY>',
-                        :consumer_secret => '<YOUR_CONSUMER_SECRET>' 
-                    }
+# initiate pesapal object set to development mode and use the YAML file found at
+# the specified location
+pesapal = Pesapal::Merchant.new(:development, <PATH_TO_YAML_FILE>)
 ```
+
+And the YAML file would look something like this. Feel free to change to the
+appropriate values.
+
+```yaml
+development:
+    callback_url: 'http://0.0.0.0:3000/pesapal/callback'
+    consumer_key: '<YOUR_CONSUMER_KEY>'
+    consumer_secret: '<YOUR_CONSUMER_SECRET>'
+
+production:
+    callback_url: 'http://0.0.0.0:3000/pesapal/callback'
+    consumer_key: '<YOUR_CONSUMER_KEY>'
+    consumer_secret: '<YOUR_CONSUMER_SECRET>'
+```
+
+If the YAML file does not exist, then the object is set up with some bogus
+credentials which would not work anyway and therefore, the next logical step is
+that you set them yourself. Which, you can do using a hash as shown below
+(please note that Pesapal provides different keys for different modes and since
+this is like an override, there's the assumption that you chose the right one).
+
+```ruby
+# set pesapal api configuration manually (override YAML & bogus credentials)
+pesapal.config = {  :callback_url => 'http://0.0.0.0:3000/pesapal/callback'
+                    :consumer_key => '<YOUR_CONSUMER_KEY>',
+                    :consumer_secret => '<YOUR_CONSUMER_SECRET>'
+                  }
+```
+
+_Ps: Make sure this hash has the appropriate values before running any methods
+that interact with the API as the methods pick these values. This means that you
+can also override them at runtime for a truly dynamic app that might have
+different values for different scenarios._
 
 
 ### Post Order ###
 
-Once you've set up the credentials, set up the order details in a hash as shown
-in the example below ... all keys **MUST** be present. If there's one that you
-wish to ignore just leave it with a blank string but make sure it's included
+Once you've finalized the configuration, set up the order details in a hash as
+shown in the example below ... all keys **MUST** be present. If there's one that
+you wish to ignore just leave it with a blank string but make sure it's included
 e.g. the phonenumber.
 
 ```ruby
