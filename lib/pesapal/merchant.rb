@@ -134,6 +134,11 @@ module Pesapal
                     # set it appropriately. this file is expected to have the
                     # settings for development and production
                     set_credentials loaded_config[@mode]
+
+                else
+
+                    # in this case default values will be set
+                    set_credentials
                 end 
             end
     end
