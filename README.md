@@ -40,7 +40,7 @@ Or install it yourself as:
 
     $ gem install pesapal
 
-    After you install Pesapal and add it to your Gemfile, you need to run the generator:
+After you install Pesapal and add it to your Gemfile, you need to run the generator:
 
     rails generate pesapal:install
 
