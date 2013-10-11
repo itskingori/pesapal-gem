@@ -1,28 +1,5 @@
 Usage
 -----
-
-### Setup ###
-
-Initialize Pesapal object and choose the mode, there are two modes;
-`:development` and `:production`. They determine if the code will interact
-with the testing or the live Pesapal API.
-
-```ruby
-# initiate pesapal object set to development mode
-pesapal = Pesapal::Merchant.new(:development)
-```
-
-You can set the configuration details from a YAML file at the location of
-your choice upon initialization as shown in the example below for a Rails app.
-The second parameter is optional and has a default value of
-`"#{Rails.root}/config/pesapal.yml"` if left out as in the example above.
-
-```ruby
-# initiate pesapal object set to development mode and use the YAML file found at
-# the specified location
-pesapal = Pesapal::Merchant.new(:development, "<PATH_TO_YAML_FILE>")
-```
-
 And the YAML file should look something like this. Change file with the appropriate values.
 
 ```yaml
