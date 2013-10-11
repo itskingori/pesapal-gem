@@ -1,3 +1,4 @@
+require "rails"
 require "htmlentities"
 require "pesapal/merchant"
 require "pesapal/merchant/post"
