@@ -67,10 +67,10 @@ module Pesapal
                 @post_xml = Pesapal::Post::generate_post_xml @order_details
 
                 # initialize setting of @params (oauth_signature left empty) ... this gene
-                @params = Pesapal::Post::set_parameters(@credentials[:callback_url], @credentials[:consumer_key], @post_xml)
+                @params = Pesapal::Post::set_parameters(@config[:callback_url], @config[:consumer_key], @post_xml)
 
                 # generate oauth signature and add signature to the request parameters
-                @params[:oauth_signature] = Pesapal::Oauth::generate_oauth_signature("GET", @api_endpoints[:postpesapaldirectorderv4], @params, @credentials[:consumer_secret], @token_secret)
+                @params[:oauth_signature] = Pesapal::Oauth::generate_oauth_signature("GET", @api_endpoints[:postpesapaldirectorderv4], @params, @config[:consumer_secret], @token_secret)
 
                 # change params (with signature) to a query string
                 query_string = Pesapal::Oauth::generate_encoded_params_query_string @params
@@ -100,7 +100,7 @@ module Pesapal
             def set_configuration(consumer_details = {})
 
                 # set the configuration
-                @config = { :callback_url => 'http://0.0.0.0:3000/pesapal/callback'
+                @config = { :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
                             :consumer_key => '<YOUR_CONSUMER_KEY>',
                             :consumer_secret => '<YOUR_CONSUMER_SECRET>' 
                         }
