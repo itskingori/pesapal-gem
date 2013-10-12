@@ -1,5 +1,5 @@
 module Pesapal
-    
+
     class Merchant
 
         attr_accessor :config, :order_details
@@ -102,7 +102,7 @@ module Pesapal
                 # set the configuration
                 @config = { :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
                             :consumer_key => '<YOUR_CONSUMER_KEY>',
-                            :consumer_secret => '<YOUR_CONSUMER_SECRET>' 
+                            :consumer_secret => '<YOUR_CONSUMER_SECRET>'
                         }
 
                 valid_config_keys = @config.keys
@@ -133,7 +133,7 @@ module Pesapal
 
                     # in this case default values will be set
                     set_configuration
-                end 
+                end
             end
     end
 end
