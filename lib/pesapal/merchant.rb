@@ -42,7 +42,7 @@ module Pesapal
         public
 
             # constructor
-            def initialize(mode = :development, path_to_file = "#{Rails.root}/config/pesapal.yml")
+            def initialize(mode = :development, path_to_file = nil)
 
                 # initialize
                 @params = nil
@@ -52,8 +52,14 @@ module Pesapal
                 # convert symbol to string and downcase
                 @mode = "#{mode.to_s.downcase}"
 
-                # set the credentials
-                set_configuration_from_yaml path_to_file
+                # set the credentials if we have not set a custom path for the YAML config file
+                if path_to_file.nil?
+                    # no path to file so no YAML override so we load from initializer
+                    set_configuration PesapalRails::Application.config.yaml[@mode]
+                else
+                    # we have custom path so we load from file
+                    set_configuration_from_yaml path_to_file
+                end
 
                 # set api endpoints depending on the mode
                 set_endpoints

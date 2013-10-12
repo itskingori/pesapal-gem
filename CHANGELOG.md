@@ -6,6 +6,7 @@ v0.2.0
 
 * Fix syntax error, and incorrect config hash name
 * Add pesapal config file generator
+* Move loading YAML config to initializer instead of each time the object is initialized
 
 v0.1.0
 ------

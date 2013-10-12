@@ -1,4 +1,3 @@
-# Pesapal Account Config
 development:
     callback_url: 'http://0.0.0.0:3000/pesapal/callback'
     consumer_key: '<YOUR_CONSUMER_KEY>'

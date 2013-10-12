@@ -1,8 +1,11 @@
-Usage
------
-And the YAML file should look something like this. Change file with the appropriate values.
 
-```yaml
+How To Use Config File
+----------------------
+
+The Pesapal config file is in YAML format and looks something like this. Change
+the values appropriately.
+
+```
 development:
     callback_url: 'http://0.0.0.0:3000/pesapal/callback'
     consumer_key: '<YOUR_CONSUMER_KEY>'
@@ -14,4 +17,5 @@ production:
     consumer_secret: '<YOUR_CONSUMER_SECRET>'
 ```
 
-Change default values in ```app/config/pesapal.yml```
+The config file can be found at `#{Rails.root}/config/pesapal.yml`.
+

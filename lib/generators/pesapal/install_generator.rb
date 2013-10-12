@@ -5,8 +5,12 @@ module Pesapal
 
       desc "Creates a Pesapal config file to your application."
 
-      def copy_initializer
+      def copy_config
         copy_file "pesapal.yml", "config/pesapal.yml"
+      end
+
+      def copy_initializer
+        copy_file "pesapal.rb", "config/initializers/pesapal.rb"
       end
 
       def show_readme
