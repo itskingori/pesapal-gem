@@ -40,7 +40,7 @@ Or install it yourself as:
 
     $ gem install pesapal
 
-After you install Pesapal and add it to your Gemfile, you need to run the generator:
+For Rails, you need to run the generator to set up some necessary stuff:
 
     rails generate pesapal:install
 
@@ -60,19 +60,22 @@ with the testing or the live Pesapal API.
 pesapal = Pesapal::Merchant.new(:development)
 ```
 
-You can set the configuration details from a YAML file at the location of
-your choice upon initialization as shown in the example below for a Rails app.
-The second parameter is optional and has a default value of
-`"#{Rails.root}/config/pesapal.yml"` if left out as in the example above.
+You can set the configuration details from a YAML file at the location of your
+choice upon initialization as shown in the example below for a Rails app. The
+second parameter is optional and has a default value of
+`"#{Rails.root}/config/pesapal.yml"` if left out as in the example above. In
+this case, please note that this YAML file is only loaded when your application
+starts and not everytime an object is initialized.
 
 ```ruby
 # initiate pesapal object set to development mode and use the YAML file found at
-# the specified location
+# the specified location ... this overrides and loads the YAML file afresh
 pesapal = Pesapal::Merchant.new(:development, "<PATH_TO_YAML_FILE>")
 ```
 
-And the YAML file should look something like this. Feel free to change to the
-appropriate values.
+The YAML file should look something like this. If you ran the generator you
+should have it already in place with some default values. Feel free to change
+them appropriately.
 
 ```yaml
 development:
@@ -157,12 +160,15 @@ Contributing
 4. Push to the branch (`git push origin BRANCH_NAME`)
 5. Create new pull request and we can [have the conversations here][17]
 
+_Ps: See [current contributors][19]._
+
 
 References
 ----------
 
 * [oAuth 1.0 Spec][1]
 * [Developing a RubyGem using Bundler][2]
+* [RailsGuides][20]
 * [Make your own gem][3]
 * [Pesapal API Reference (Official)][4]
 * [Pesapal Step-By-Step Reference (Official)][18]
@@ -194,3 +200,5 @@ they want as long as they provide attribution and waive liability.
 [16]: http://kingori.co/articles/2013/09/modus-operandi/
 [17]: https://github.com/itsmrwave/pesapal-rubygem/pulls
 [18]: http://developer.pesapal.com/how-to-integrate/step-by-step
+[19]: https://github.com/itsmrwave/pesapal-rubygem/graphs/contributors
+[20]: http://guides.rubyonrails.org/
