@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v0.2.1
+------
+
+* Fix screwed up rubygem date
+
 v0.2.0
 ------
 
