@@ -5,6 +5,7 @@ v0.2.2
 ------
 
 * Automate release date to reduce chances of forgetting to update it
+* Add new functionality: Query Payment Status
 
 v0.2.1
 ------
