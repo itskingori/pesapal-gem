@@ -84,6 +84,29 @@ module Pesapal
                 "#{@api_endpoints[:postpesapaldirectorderv4]}?#{query_string}"
             end
 
+            # query the details of the transaction
+            def query_payment_details(merchant_reference, transaction_tracking_id)
+
+                # initialize setting of @params (oauth_signature left empty)
+                @params = Pesapal::Details::set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
+
+                # generate oauth signature and add signature to the request parameters
+                @params[:oauth_signature] = Pesapal::Oauth::generate_oauth_signature("GET", @api_endpoints[:querypaymentdetails], @params, @config[:consumer_secret], @token_secret)
+
+                # change params (with signature) to a query string
+                query_string = Pesapal::Oauth::generate_encoded_params_query_string @params
+
+                # get status response
+                response = Net::HTTP.get(URI("#{@api_endpoints[:querypaymentdetails]}?#{query_string}"))
+                response = CGI::parse(response)
+                response = response["pesapal_response_data"][0].split(',')
+
+                details = { :method => response[1],
+                            :status => response[2],
+                            :merchant_reference => response[3],
+                            :transaction_tracking_id => response[0] }
+            end
+
             # query the status of the transaction
             def query_payment_status(merchant_reference, transaction_tracking_id = nil)
                 

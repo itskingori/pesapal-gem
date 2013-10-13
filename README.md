@@ -184,6 +184,28 @@ payment_status = pesapal.query_payment_status("<MERCHANT_REFERENCE>","<TRANSACTI
 ```
 
 
+### Querying Payment Details ###
+
+Same as querying payment status above, but the return value contains more
+information (and is a hash as opposed to a string).
+
+```ruby
+# pass in merchant reference and transaction id
+payment_details = pesapal.query_payment_details("<MERCHANT_REFERENCE>","<TRANSACTION_ID>")
+```
+
+The result is a hash that looks something like this ...
+
+```
+{ 
+  :method=>"MPESA",
+  :status=>"COMPLETED",
+  :merchant_reference=>"<MERCHANT_REFERENCE>",
+  :transaction_tracking_id=>"<TRANSACTION_ID>"
+}
+```
+
+
 Contributing
 ------------
 

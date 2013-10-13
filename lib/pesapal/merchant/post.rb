@@ -28,7 +28,7 @@ module Pesapal
             "#{post_xml}"
         end
         
-        # set parameters required by the PostPesapalDirectOrderV4 
+        # set parameters required by the PostPesapalDirectOrderV4 call
         def Post.set_parameters(callback_url, consumer_key, post_xml)
 
             # parameters required by the PostPesapalDirectOrderV4 call (excludes
