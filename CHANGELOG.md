@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v0.2.2
+------
+
+* Automate release date to reduce chances of forgetting to update it
+
 v0.2.1
 ------
 
