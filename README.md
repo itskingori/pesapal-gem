@@ -49,7 +49,13 @@ Usage
 -----
 
 
-### Setup ###
+### Initialization ###
+
+There are 3 ways to initialize the Pesapal object:
+
+1. YAML config at `/config/pesapal.yml` (default & recommended)
+2. YAML config at custom location
+3. Config hash
 
 Initialize Pesapal object and choose the mode, there are two modes;
 `:development` and `:production`. They determine if the code will interact
@@ -60,18 +66,44 @@ with the testing or the live Pesapal API.
 pesapal = Pesapal::Merchant.new(:development)
 ```
 
-You can set the configuration details from a YAML file at the location of your
-choice upon initialization as shown in the example below for a Rails app. The
-second parameter is optional and has a default value of
-`"#{Rails.root}/config/pesapal.yml"` if left out as in the example above. In
-this case, please note that this YAML file is only loaded when your application
-starts and not everytime an object is initialized.
+####Option 1####
+
+In the case, the configuration has already been loaded (at application start by
+initializer) from a YAML file located at `"#{Rails.root}/config/pesapal.yml"` by
+default. This is the recommended method.
+
+####Option 2####
+
+It's also possible to set the configuration details from a YAML file at the
+location of your choice upon initialization as shown in the example below. This
+option overrides the default YAML config (explained above) and will be loaded
+everytime during initialization (which is not a good idea for production).
 
 ```ruby
 # initiate pesapal object set to development mode and use the YAML file found at
 # the specified location ... this overrides and loads the YAML file afresh
 pesapal = Pesapal::Merchant.new(:development, "<PATH_TO_YAML_FILE>")
 ```
+
+####Option 3####
+
+If you wish not to use the YAML config method or the YAML file for some reason
+does not exist, then the object is set up with some bogus credentials which
+would not work anyway and therefore, the other option is that you set them
+yourself. Which, you can do using a hash as shown below (please note that
+Pesapal provides different keys for different modes and since this is like an
+override, there's the assumption that you chose the right one).
+
+```ruby
+# set pesapal api configuration manually (override YAML & bogus credentials)
+pesapal.config = {  :callback_url => 'http://0.0.0.0:3000/pesapal/callback'
+                    :consumer_key => '<YOUR_CONSUMER_KEY>',
+                    :consumer_secret => '<YOUR_CONSUMER_SECRET>'
+                  }
+```
+
+
+###YAML Configuration###
 
 The YAML file should look something like this. If you ran the generator you
 should have it already in place with some default values. Feel free to change
@@ -88,25 +120,6 @@ production:
     consumer_key: '<YOUR_CONSUMER_KEY>'
     consumer_secret: '<YOUR_CONSUMER_SECRET>'
 ```
-
-If the YAML file does not exist, then the object is set up with some bogus
-credentials which would not work anyway and therefore, the next logical step is
-that you set them yourself. Which, you can do using a hash as shown below
-(please note that Pesapal provides different keys for different modes and since
-this is like an override, there's the assumption that you chose the right one).
-
-```ruby
-# set pesapal api configuration manually (override YAML & bogus credentials)
-pesapal.config = {  :callback_url => 'http://0.0.0.0:3000/pesapal/callback'
-                    :consumer_key => '<YOUR_CONSUMER_KEY>',
-                    :consumer_secret => '<YOUR_CONSUMER_SECRET>'
-                  }
-```
-
-_Ps: Make sure this hash has the appropriate values before running any methods
-that interact with the API as the methods pick from these values. This means
-that you can also override them at runtime for a truly dynamic/complex app that
-might have different values for different scenarios._
 
 
 ### Post Order ###
