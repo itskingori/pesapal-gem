@@ -7,10 +7,10 @@ Make authenticated Pesapal API calls without the fuss! Handles all the [oAuth
 stuff][1] abstracting any direct interaction with the API endpoints so that you
 can focus on what matters. _Building awesome_.
 
-This gem is work in progress. At the moment, the only functionality built-in is
-posting an order i.e. fetching the URL that is required to display the post-
-order iframe. Everything else should be easy to do as the groundwork has already
-been laid. If you are [feeling generous and want to contribute, feel free][9].
+This gem, in a nutshell, allows you to easily post an order, query payment
+status and fetch payment details.
+
+If you are [feeling generous and want to contribute, feel free][9].
 
 Submit [issues and requests here][6] and [find all the releases here][12].
 
@@ -18,11 +18,6 @@ The gem should be [up on RubyGems.org][7] and it's [accompanying RubyDoc referen
 
 _Ps: No 3rd party oAuth library dependencies, it handles all the oAuth flows on
 it's own so your app is one dependency less._
-
-_Ps 2: We are still at pre-release stage ... target is version 1.0.0 for a
-public release (suitable for production deployment with the basic functionality
-in place). As a result always check the documentation carefully on upgrades to
-mitigate breaking changes._
 
 
 Installation
@@ -101,6 +96,9 @@ pesapal.config = {  :callback_url => 'http://0.0.0.0:3000/pesapal/callback'
                     :consumer_secret => '<YOUR_CONSUMER_SECRET>'
                   }
 ```
+
+_Ps: You can change the mode using `pesapal.set_mode(:development)` (example) if
+for some reason you want to override what was set in the constructor._
 
 
 ###YAML Configuration###

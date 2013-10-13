@@ -1,12 +1,14 @@
 Changelog
 =========
 
-v0.2.2
+v1.0.0
 ------
 
 * Automate release date to reduce chances of forgetting to update it
 * Add new functionality: Query Payment Status
 * Add new functionality: Query Payment Details
+* Add `set_mode()` method to enable changing mode at runtime
+* `api_domain` & `api_endpoints` are now private, use `set_mode` to alter them
 
 v0.2.1
 ------

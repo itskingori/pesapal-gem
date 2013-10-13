@@ -3,15 +3,6 @@ module Pesapal
     class Merchant
 
         attr_accessor :config, :order_details
-        attr_reader :api_domain, :api_endpoints
-
-        def api_domain
-            @api_domain
-        end
-
-        def api_endpoints
-            @api_endpoints
-        end
 
         def config
             @config
@@ -22,6 +13,14 @@ module Pesapal
         end
 
         private
+
+            def api_domain
+                @api_domain
+            end
+
+            def api_endpoints
+                @api_endpoints
+            end
 
             def mode
                 @mode
@@ -49,8 +48,7 @@ module Pesapal
                 @post_xml = nil
                 @token_secret = nil
 
-                # convert symbol to string and downcase
-                @mode = "#{mode.to_s.downcase}"
+                set_mode mode
 
                 # set the credentials if we have not set a custom path for the YAML config file
                 if path_to_file.nil?
@@ -61,8 +59,6 @@ module Pesapal
                     set_configuration_from_yaml path_to_file
                 end
 
-                # set api endpoints depending on the mode
-                set_endpoints
             end
 
             # generate pesapal order url (often iframed)
@@ -125,6 +121,16 @@ module Pesapal
 
                 # return the string result of what we want
                 response["pesapal_response_data"][0]
+            end
+
+            # set mode when called
+            def set_mode(mode = :development)
+                
+                # convert symbol to string and downcase
+                @mode = "#{mode.to_s.downcase}"
+
+                # set api endpoints depending on the mode
+                set_endpoints
             end
 
         private
