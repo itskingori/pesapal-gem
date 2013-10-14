@@ -197,12 +197,34 @@ The result is a hash that looks something like this ...
 
 ```
 { 
-  :method=>"MPESA",
-  :status=>"COMPLETED",
-  :merchant_reference=>"<MERCHANT_REFERENCE>",
-  :transaction_tracking_id=>"<TRANSACTION_ID>"
+  :method => "<PAYMENT_METHOD>",
+  :status => "<PAYMENT_STATUS>",
+  :merchant_reference => "<MERCHANT_REFERENCE>",
+  :transaction_tracking_id => "<TRANSACTION_ID>"
 }
 ```
+
+
+### IPN Listening ###
+
+Use the `ipn_listener` method to listen to Pesapal IPN calls to easily create an
+appropriate response, like so ...
+
+```ruby
+# pass in the notification type, merchant reference and transaction id
+response_to_ipn = pesapal.ipn_listener("<NOTIFICATION_TYPE>", "<MERCHANT_REFERENCE>","<TRANSACTION_ID>")
+```
+
+The variable, `response_to_ipn`, now holds a response as the one shown below.
+Using the status you can customise any actions (e.g. database inserts and
+updates) and finally, it's upto you to send the `:response` back to pesapal. The
+hard part is done for you.
+
+```
+{ 
+  :status => "<PAYMENT_STATUS>",
+  :response => "<IPN_RESPONSE>"
+}
 
 
 Contributing

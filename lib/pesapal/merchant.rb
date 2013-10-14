@@ -133,6 +133,24 @@ module Pesapal
                 set_endpoints
             end
 
+            # listen to ipn response
+            def ipn_listener(notification_type, merchant_reference, transaction_tracking_id)
+                
+                status = query_payment_status(merchant_reference, transaction_tracking_id)
+
+                output = { :status => status }
+
+                if status == "COMPLETED"
+                    output[:response] = "pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=#{transaction_tracking_id}&pesapal_merchant_reference=#{merchant_reference}"
+                elsif status == "FAILED"
+                    output[:response] = "pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=#{transaction_tracking_id}&pesapal_merchant_reference=#{merchant_reference}"
+                else
+                    output[:response] = ""
+                end
+
+                output
+            end
+
         private
 
             # set endpoints
