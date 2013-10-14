@@ -208,7 +208,7 @@ The result is a hash that looks something like this ...
 ### IPN Listening ###
 
 Use the `ipn_listener` method to listen to Pesapal IPN calls to easily create an
-appropriate response, like so ...
+appropriate response, example below.
 
 ```ruby
 # pass in the notification type, merchant reference and transaction id
@@ -225,6 +225,10 @@ hard part is done for you.
   :status => "<PAYMENT_STATUS>",
   :response => "<IPN_RESPONSE>"
 }
+```
+
+_Ps: Refer to Pesapal official documentation to make sure you understand what
+data Pesapal sends to IPN and what result they expect back._
 
 
 Contributing
