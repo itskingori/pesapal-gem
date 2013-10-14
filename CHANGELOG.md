@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v1.1.0
+------
+
+* Add IPN listener
+
 v1.0.0
 ------
 
