@@ -35,7 +35,8 @@ Or install it yourself as:
 
     $ gem install pesapal
 
-For Rails, you need to run the generator to set up some necessary stuff:
+For Rails, you need to run the generator to set up some necessary stuff (create
+initializer and config.yml file):
 
     rails generate pesapal:install
 
@@ -91,7 +92,7 @@ override, there's the assumption that you chose the right one).
 
 ```ruby
 # set pesapal api configuration manually (override YAML & bogus credentials)
-pesapal.config = {  :callback_url => 'http://0.0.0.0:3000/pesapal/callback'
+pesapal.config = {  :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
                     :consumer_key => '<YOUR_CONSUMER_KEY>',
                     :consumer_secret => '<YOUR_CONSUMER_SECRET>'
                   }
