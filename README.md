@@ -10,11 +10,15 @@ can focus on what matters. _Building awesome_.
 This gem, in a nutshell, allows you to easily post an order, query payment
 status and fetch payment details.
 
+In case you are having any issues using this gem please **_do not_** email me
+directly, I'd rather you submit [issues (and even requests) here][6]. This way,
+other people get to share in the conversation that would have been private and
+out of their reach.
+
+The gem should be [up on RubyGems.org][7], it's [accompanying RubyDoc reference
+here][13] and [all the releases here][12].
+
 If you are [feeling generous and want to contribute, feel free][9].
-
-Submit [issues and requests here][6] and [find all the releases here][12].
-
-The gem should be [up on RubyGems.org][7] and it's [accompanying RubyDoc reference here][13].
 
 _Ps: No 3rd party oAuth library dependencies, it handles all the oAuth flows on
 it's own so your app is one dependency less._
