@@ -16,7 +16,7 @@ other people get to share in the conversation that would have been private and
 out of their reach.
 
 The gem should be [up on RubyGems.org][7], it's [accompanying RubyDoc reference
-here][13] and [all the releases here][12].
+here][13], the [CHANGELOG here][21] and [all the releases here][12].
 
 If you are [feeling generous and want to contribute, feel free][9].
 
@@ -289,3 +289,4 @@ they want as long as they provide attribution and waive liability.
 [18]: http://developer.pesapal.com/how-to-integrate/step-by-step
 [19]: https://github.com/itsmrwave/pesapal-rubygem/graphs/contributors
 [20]: http://guides.rubyonrails.org/
+[21]: https://github.com/itsmrwave/pesapal-rubygem/blob/master/CHANGELOG.md#changelog
