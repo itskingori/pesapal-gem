@@ -20,6 +20,7 @@ module Pesapal
             post_xml.concat "LastName=\"#{details[:last_name]}\" "
             post_xml.concat "Email=\"#{details[:email]}\" "
             post_xml.concat "PhoneNumber=\"#{details[:phonenumber]}\" "
+            post_xml.concat "Currency=\"#{details[:currency]}\" "
             post_xml.concat 'xmlns="http://www.pesapal.com" />'
 
             encoder = HTMLEntities.new(:xhtml1)

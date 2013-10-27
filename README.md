@@ -141,7 +141,8 @@ pesapal.order_details = { :amount => 1000,
                           :first_name => 'Swaleh',
                           :last_name => 'Mdoe',
                           :email => 'user@example.com',
-                          :phonenumber => '+254722222222'
+                          :phonenumber => '+254722222222',
+                          :currency => 'KES'
                         }
 ```
 
