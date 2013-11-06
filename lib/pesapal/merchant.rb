@@ -105,7 +105,7 @@ module Pesapal
 
             # query the status of the transaction
             def query_payment_status(merchant_reference, transaction_tracking_id = nil)
-                
+
                 # initialize setting of @params (oauth_signature left empty)
                 @params = Pesapal::Status::set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
 
@@ -125,7 +125,7 @@ module Pesapal
 
             # set mode when called
             def set_mode(mode = :development)
-                
+
                 # convert symbol to string and downcase
                 @mode = "#{mode.to_s.downcase}"
 
@@ -135,7 +135,7 @@ module Pesapal
 
             # listen to ipn response
             def ipn_listener(notification_type, merchant_reference, transaction_tracking_id)
-                
+
                 status = query_payment_status(merchant_reference, transaction_tracking_id)
 
                 output = { :status => status }

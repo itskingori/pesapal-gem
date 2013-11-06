@@ -133,7 +133,7 @@ you wish to ignore just leave it with a blank string but make sure it's included
 e.g. the phonenumber.
 
 ```ruby
-#set order details 
+#set order details
 pesapal.order_details = { :amount => 1000,
                           :description => 'this is the transaction description',
                           :type => 'MERCHANT',
@@ -201,7 +201,7 @@ payment_details = pesapal.query_payment_details("<MERCHANT_REFERENCE>","<TRANSAC
 The result is a hash that looks something like this ...
 
 ```
-{ 
+{
   :method => "<PAYMENT_METHOD>",
   :status => "<PAYMENT_STATUS>",
   :merchant_reference => "<MERCHANT_REFERENCE>",
@@ -226,7 +226,7 @@ updates) and finally, it's upto you to send the `:response` back to pesapal. The
 hard part is done for you.
 
 ```
-{ 
+{
   :status => "<PAYMENT_STATUS>",
   :response => "<IPN_RESPONSE>"
 }

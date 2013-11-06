@@ -25,7 +25,7 @@ module Pesapal
             # parameters are sorted by name, using lexicographical byte value
             # ordering
             queries.sort!
-            
+
             queries.join('&')
         end
 
@@ -57,7 +57,7 @@ module Pesapal
             # for pesapal flow we don't have a token secret to we will set as
             # nil and the appropriate action will be taken as per the oauth
             # spec. see notes in the method that creates signing keys
-            
+
             # prepare the values we need
             digest = OpenSSL::Digest::Digest.new('sha1')
             signature_base_string = self.generate_signature_base_string(http_method, absolute_url, params)
@@ -144,7 +144,7 @@ module Pesapal
             # unless specified, url scheme and authority must be lowercase and
             # include the port number; http default port 80 and https default
             # port 443 must be excluded.
-          
+
             u = URI.parse(absolute_url)
 
             scheme = u.scheme.downcase

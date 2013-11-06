@@ -4,7 +4,7 @@ module Pesapal
 
         # build html encoded xml string for PostPesapalDirectOrderV4
         def Post.generate_post_xml(details)
-            
+
             # build xml with input data, the format is standard so no editing is
             # required
             post_xml = ''
@@ -28,14 +28,14 @@ module Pesapal
 
             "#{post_xml}"
         end
-        
+
         # set parameters required by the PostPesapalDirectOrderV4 call
         def Post.set_parameters(callback_url, consumer_key, post_xml)
 
             # parameters required by the PostPesapalDirectOrderV4 call (excludes
             # oauth_signature parameter as per the instructions here
             # http://developer.pesapal.com/how-to-integrate/api-reference#PostPesapalDirectOrderV4)
-            
+
             timestamp = Time.now.to_i.to_s
 
             params = { :oauth_callback => callback_url,
