@@ -29,20 +29,20 @@ Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'pesapal'
+  gem 'pesapal'
 
 And then execute:
 
-    $ bundle
+  $ bundle
 
 Or install it yourself as:
 
-    $ gem install pesapal
+  $ gem install pesapal
 
 For Rails, you need to run the generator to set up some necessary stuff (create
 initializer and config.yml file):
 
-    rails generate pesapal:install
+  rails generate pesapal:install
 
 
 Usage
@@ -116,14 +116,14 @@ them appropriately.
 
 ```yaml
 development:
-    callback_url: 'http://0.0.0.0:3000/pesapal/callback'
-    consumer_key: '<YOUR_CONSUMER_KEY>'
-    consumer_secret: '<YOUR_CONSUMER_SECRET>'
+  callback_url: 'http://0.0.0.0:3000/pesapal/callback'
+  consumer_key: '<YOUR_CONSUMER_KEY>'
+  consumer_secret: '<YOUR_CONSUMER_SECRET>'
 
 production:
-    callback_url: 'http://1.2.3.4:3000/pesapal/callback'
-    consumer_key: '<YOUR_CONSUMER_KEY>'
-    consumer_secret: '<YOUR_CONSUMER_SECRET>'
+  callback_url: 'http://1.2.3.4:3000/pesapal/callback'
+  consumer_key: '<YOUR_CONSUMER_KEY>'
+  consumer_secret: '<YOUR_CONSUMER_SECRET>'
 ```
 
 _Ps: Immediately after initializing the Pesapal object, some people might find
