@@ -29,20 +29,20 @@ Installation
 
 Add this line to your application's Gemfile:
 
-  gem 'pesapal'
+    gem 'pesapal'
 
 And then execute:
 
-  $ bundle
+    $ bundle
 
 Or install it yourself as:
 
-  $ gem install pesapal
+    $ gem install pesapal
 
 For Rails, you need to run the generator to set up some necessary stuff (create
 initializer and config.yml file):
 
-  rails generate pesapal:install
+    rails generate pesapal:install
 
 
 Usage
