@@ -1,6 +1,13 @@
 Changelog
 =========
 
+v1.2.1
+------
+
+* Fix severe bug caused by buggy initializer
+
+Ps: Run the install generator again, overwrite the initializer only!
+
 v1.2.0
 ------
 

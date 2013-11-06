@@ -1,7 +1,2 @@
-# Load Pesapal config file when applicatin is loaded ... the config can then be
-# accessed from PesapalRails::Application.config.yaml
-module PesapalRails
-    class Application < Rails::Application
-        config.yaml = YAML::load(IO.read("#{Rails.root}/config/pesapal.yml"))
-    end
-end
+# Load Pesapal config file from YAML file when applicatin is loaded
+Pesapal.config = YAML::load(IO.read("#{Rails.root}/config/pesapal.yml"))

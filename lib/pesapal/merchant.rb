@@ -5,11 +5,11 @@ module Pesapal
         attr_accessor :config, :order_details
 
         def config
-            @config
+            @config ||= {}
         end
 
         def order_details
-            @order_details
+            @order_details ||= {}
         end
 
         private
@@ -50,12 +50,9 @@ module Pesapal
 
                 set_mode mode
 
-                # set the credentials if we have not set a custom path for the YAML config file
-                if path_to_file.nil?
-                    # no path to file so no YAML override so we load from initializer
-                    set_configuration PesapalRails::Application.config.yaml[@mode]
-                else
-                    # we have custom path so we load from file
+                # set the credentials if we have specified a path from which we
+                # will access a YAML file with the configurations
+                unless path_to_file.nil?
                     set_configuration_from_yaml path_to_file
                 end
 
@@ -63,6 +60,11 @@ module Pesapal
 
             # generate pesapal order url (often iframed)
             def generate_order_url
+
+                # check if the config is empty, if yes, we try load what was set by the initializer into Pesapal.config
+                if config.empty?
+                    set_configuration Pesapal.config[@mode]
+                end
 
                 # build xml with input data, the format is standard so no editing is
                 # required
@@ -82,6 +84,11 @@ module Pesapal
 
             # query the details of the transaction
             def query_payment_details(merchant_reference, transaction_tracking_id)
+
+                # check if the config is empty, if yes, we try load what was set by the initializer into Pesapal.config
+                if config.empty?
+                    set_configuration Pesapal.config[@mode]
+                end
 
                 # initialize setting of @params (oauth_signature left empty)
                 @params = Pesapal::Details::set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
@@ -105,6 +112,11 @@ module Pesapal
 
             # query the status of the transaction
             def query_payment_status(merchant_reference, transaction_tracking_id = nil)
+
+                # check if the config is empty, if yes, we try load what was set by the initializer into Pesapal.config
+                if config.empty?
+                    set_configuration Pesapal.config[@mode]
+                end
 
                 # initialize setting of @params (oauth_signature left empty)
                 @params = Pesapal::Status::set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)

@@ -1,5 +1,6 @@
 require "rails"
 require "htmlentities"
+require "pesapal/configuration"
 require "pesapal/merchant"
 require "pesapal/merchant/details"
 require "pesapal/merchant/post"
