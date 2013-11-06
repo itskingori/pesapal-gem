@@ -68,9 +68,9 @@ pesapal = Pesapal::Merchant.new(:development)
 
 ####Option 1####
 
-In the case, the configuration has already been loaded (at application start by
-initializer) from a YAML file located at `"#{Rails.root}/config/pesapal.yml"` by
-default.
+In the above case, the configuration has already been loaded (at application
+start by initializer) from a YAML file located at
+`"#{Rails.root}/config/pesapal.yml"` by default.
 
 This is the recommended method.
 
@@ -126,9 +126,11 @@ production:
     consumer_secret: '<YOUR_CONSUMER_SECRET>'
 ```
 
-_Ps: Immediately after initializing the a Pesapal object the `pesapal.config` is
-an empty hash. If you have set up the `pesapal.yml` correctly, any attempt to
-run any of the methods will populate this hash._
+_Ps: Immediately after initializing the Pesapal object, some people might find
+it peculiar that the `pesapal.config` is an empty hash i.e. `{}`. Don't worry.
+If you have set up the `pesapal.yml` correctly, any attempt to run any of the
+methods will eventually populate this hash with the values that were loaded by
+the initializer (see option #1 above, stated as the default)._
 
 
 ### Posting An Order ###
