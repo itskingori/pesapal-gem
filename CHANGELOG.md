@@ -4,9 +4,15 @@ Changelog
 v1.2.1
 ------
 
-* Fix severe bug caused by buggy initializer
+* Fix severe bug caused by buggy (& poorly designed) initializer, which caused
+problem for some [as evidenced here on SO][1]
 
-Ps: Run the install generator again, overwrite the initializer only!
+_Ps: Run the install generator (as explained in the docs), if there are any
+conflicts, overwrite the initializer only! Or you could just delete the
+`config/initializer/pesapal.rb` file and run the generator. Whichever way suits
+you._
+
+[1]: http://stackoverflow.com/questions/19642460/rails-you-cannot-have-more-than-one-railsapplication-runtimeerror
 
 v1.2.0
 ------
