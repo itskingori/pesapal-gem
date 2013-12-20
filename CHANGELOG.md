@@ -1,6 +1,12 @@
 Changelog
 =========
 
+v1.2.2
+------
+
+* Fix `can't modify frozen String` error. Apparently we can't force_encoding on
+  a frozen string since that would modify it.
+
 v1.2.1
 ------
 
