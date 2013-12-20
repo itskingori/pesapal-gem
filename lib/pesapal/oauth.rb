@@ -170,7 +170,9 @@ module Pesapal
       # reserved character regexp, per section 5.1
       reserved_characters = /[^a-zA-Z0-9\-\.\_\~]/
 
-      URI::escape(string.to_s.force_encoding(Encoding::UTF_8), reserved_characters)
+      # Apparently we can't force_encoding on a frozen string since that would modify it.
+      # What we can do is work with a copy
+      URI::escape(string.dup.to_s.force_encoding(Encoding::UTF_8), reserved_characters)
     end
   end
 end
