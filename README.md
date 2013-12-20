@@ -145,7 +145,7 @@ e.g. the phonenumber.
 pesapal.order_details = { :amount => 1000,
                           :description => 'this is the transaction description',
                           :type => 'MERCHANT',
-                          :reference => 808-707-606,
+                          :reference => '808-707-606',
                           :first_name => 'Swaleh',
                           :last_name => 'Mdoe',
                           :email => 'user@example.com',
