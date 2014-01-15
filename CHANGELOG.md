@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v1.3.0
+------
+
+* Make mode setting should be a bit more intuitive, default more to Rails.env
+
 v1.2.2
 ------
 

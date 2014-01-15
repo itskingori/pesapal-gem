@@ -41,7 +41,7 @@ module Pesapal
     public
 
       # constructor
-      def initialize(mode = :development, path_to_file = nil)
+      def initialize(mode = Rails.env, path_to_file = nil)
 
         # initialize
         @params = nil
@@ -139,7 +139,7 @@ module Pesapal
       end
 
       # set mode when called
-      def set_mode(mode = :development)
+      def set_mode(mode = Rails.env)
 
         # convert symbol to string and downcase
         @mode = mode.to_s.downcase
