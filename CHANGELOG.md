@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v1.4.0
+------
+
+* Makes more sense if mode,@mode variables were env,@env
+
 v1.3.0
 ------
 

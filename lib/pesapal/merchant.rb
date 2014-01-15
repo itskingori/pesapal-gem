@@ -22,8 +22,8 @@ module Pesapal
         @api_endpoints
       end
 
-      def mode
-        @mode
+      def env
+        @env
       end
 
       def params
@@ -41,14 +41,14 @@ module Pesapal
     public
 
       # constructor
-      def initialize(mode = Rails.env, path_to_file = nil)
+      def initialize(env = Rails.env, path_to_file = nil)
 
         # initialize
         @params = nil
         @post_xml = nil
         @token_secret = nil
 
-        set_mode mode
+        set_env env
 
         # set the credentials if we have specified a path from which we
         # will access a YAML file with the configurations
@@ -64,7 +64,7 @@ module Pesapal
         # check if the config is empty, if yes, we try load what was set by the
         # initializer into Pesapal.config
         if config.empty?
-          set_configuration Pesapal.config[@mode]
+          set_configuration Pesapal.config[@env]
         end
 
         # build xml with input data, the format is standard so no editing is
@@ -89,7 +89,7 @@ module Pesapal
         # check if the config is empty, if yes, we try load what was set by the
         # initializer into Pesapal.config
         if config.empty?
-          set_configuration Pesapal.config[@mode]
+          set_configuration Pesapal.config[@env]
         end
 
         # initialize setting of @params (oauth_signature left empty)
@@ -118,7 +118,7 @@ module Pesapal
         # check if the config is empty, if yes, we try load what was set by the
         # initializer into Pesapal.config
         if config.empty?
-          set_configuration Pesapal.config[@mode]
+          set_configuration Pesapal.config[@env]
         end
 
         # initialize setting of @params (oauth_signature left empty)
@@ -138,13 +138,13 @@ module Pesapal
         response["pesapal_response_data"][0]
       end
 
-      # set mode when called
-      def set_mode(mode = Rails.env)
+      # set env when called
+      def set_env(env = Rails.env)
 
         # convert symbol to string and downcase
-        @mode = mode.to_s.downcase
+        @env = env.to_s.downcase
 
-        # set api endpoints depending on the mode
+        # set api endpoints depending on the env
         set_endpoints
       end
 
@@ -171,7 +171,7 @@ module Pesapal
       # set endpoints
       def set_endpoints
 
-        if @mode == 'production'
+        if @env == 'production'
           @api_domain = 'https://www.pesapal.com'
         else
           @api_domain = 'http://demo.pesapal.com'
@@ -211,10 +211,10 @@ module Pesapal
             logger.info("YAML configuration file contains invalid syntax. Using defaults."); return
           end
 
-          # pick the correct settings depending on the the mode and set it
+          # pick the correct settings depending on the the env and set it
           # appropriately. this file is expected to have the settings for
           # development and production
-          set_configuration loaded_config[@mode]
+          set_configuration loaded_config[@env]
 
         else
 

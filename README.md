@@ -57,12 +57,12 @@ There are 3 ways to initialize the Pesapal object:
 2. YAML config at custom location
 3. Config hash
 
-Initialize Pesapal object and choose the mode, there are two modes;
+Initialize Pesapal object and choose the environment, there are two environments;
 `:development` and `:production`. They determine if the code will interact
 with the testing or the live Pesapal API.
 
 ```ruby
-# initiate pesapal object set to development mode
+# initiate pesapal object set to development environment
 pesapal = Pesapal::Merchant.new(:development)
 ```
 
@@ -82,7 +82,7 @@ option overrides the default YAML config (explained above) and will be loaded
 everytime during initialization (which is not a good idea for production).
 
 ```ruby
-# initiate pesapal object set to development mode and use the YAML file found at
+# initiate pesapal object set to development environment and use the YAML file found at
 # the specified location ... this overrides and loads the YAML file afresh
 pesapal = Pesapal::Merchant.new(:development, "<PATH_TO_YAML_FILE>")
 ```
@@ -93,7 +93,7 @@ If you wish not to use the YAML config method or the YAML file for some reason
 does not exist, then the object is set up with some bogus credentials which
 would not work anyway and therefore, the other option is that you set them
 yourself. Which, you can do using a hash as shown below (please note that
-Pesapal provides different keys for different modes and since this is like an
+Pesapal provides different keys for different environments and since this is like an
 override, there's the assumption that you chose the right one).
 
 ```ruby
@@ -104,7 +104,7 @@ pesapal.config = {  :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
                   }
 ```
 
-_Ps: You can change the mode using `pesapal.set_mode(:development)` (example) if
+_Ps: You can change the environment using `pesapal.set_env(:development)` (example) if
 for some reason you want to override what was set in the constructor._
 
 
