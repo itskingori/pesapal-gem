@@ -142,7 +142,7 @@ module Pesapal
       def set_mode(mode = :development)
 
         # convert symbol to string and downcase
-        @mode = "#{mode.to_s.downcase}"
+        @mode = mode.to_s.downcase
 
         # set api endpoints depending on the mode
         set_endpoints
