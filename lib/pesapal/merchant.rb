@@ -27,45 +27,31 @@ module Pesapal
       end
 
       def params
-        @params
+        @params ||= nil
       end
 
       def post_xml
-        @post_xml
+        @post_xml ||= nil
       end
 
       def token_secret
-        @token_secret
+        @token_secret ||= nil
       end
 
     public
 
       # constructor
-      def initialize(env = Rails.env, path_to_file = nil)
-
-        # initialize
-        @params = nil
-        @post_xml = nil
-        @token_secret = nil
-
+      def initialize(env = :auto)
         set_env env
-
-        # set the credentials if we have specified a path from which we
-        # will access a YAML file with the configurations
-        unless path_to_file.nil?
-          set_configuration_from_yaml path_to_file
+        if defined?(Rails)
+          set_configuration Rails.application.config.pesapal_credentials
+        else
+          set_configuration
         end
-
       end
 
       # generate pesapal order url (often iframed)
       def generate_order_url
-
-        # check if the config is empty, if yes, we try load what was set by the
-        # initializer into Pesapal.config
-        if config.empty?
-          set_configuration Pesapal.config[@env]
-        end
 
         # build xml with input data, the format is standard so no editing is
         # required
@@ -85,12 +71,6 @@ module Pesapal
 
       # query the details of the transaction
       def query_payment_details(merchant_reference, transaction_tracking_id)
-
-        # check if the config is empty, if yes, we try load what was set by the
-        # initializer into Pesapal.config
-        if config.empty?
-          set_configuration Pesapal.config[@env]
-        end
 
         # initialize setting of @params (oauth_signature left empty)
         @params = Pesapal::Details::set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
@@ -115,12 +95,6 @@ module Pesapal
       # query the status of the transaction
       def query_payment_status(merchant_reference, transaction_tracking_id = nil)
 
-        # check if the config is empty, if yes, we try load what was set by the
-        # initializer into Pesapal.config
-        if config.empty?
-          set_configuration Pesapal.config[@env]
-        end
-
         # initialize setting of @params (oauth_signature left empty)
         @params = Pesapal::Status::set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
 
@@ -139,12 +113,16 @@ module Pesapal
       end
 
       # set env when called
-      def set_env(env = Rails.env)
-
-        # convert symbol to string and downcase
-        @env = env.to_s.downcase
-
-        # set api endpoints depending on the env
+      def set_env(env = :auto)
+        env = env.to_s.downcase
+        if env == 'development'
+          @env = 'development'
+        elsif env == 'production'
+          @env = 'production'
+        else
+          @env = 'development'
+          @env = Rails.env if defined?(Rails)
+        end
         set_endpoints
       end
 
@@ -190,37 +168,11 @@ module Pesapal
         @config = { :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
                     :consumer_key => '<YOUR_CONSUMER_KEY>',
                     :consumer_secret => '<YOUR_CONSUMER_SECRET>'
-                }
+                  }
 
         valid_config_keys = @config.keys
 
         consumer_details.each { |k,v| @config[k.to_sym] = v if valid_config_keys.include? k.to_sym }
-      end
-
-      # set configuration through yaml file
-      def set_configuration_from_yaml(path_to_file)
-
-        if File.exist?(path_to_file)
-
-          # load file, read it and parse the YAML
-          begin
-            loaded_config = YAML::load(IO.read(path_to_file))
-          rescue Errno::ENOENT
-            logger.info("YAML configuration file couldn't be found. Using defaults."); return
-          rescue Psych::SyntaxError
-            logger.info("YAML configuration file contains invalid syntax. Using defaults."); return
-          end
-
-          # pick the correct settings depending on the the env and set it
-          # appropriately. this file is expected to have the settings for
-          # development and production
-          set_configuration loaded_config[@env]
-
-        else
-
-          # in this case default values will be set
-          set_configuration
-        end
       end
   end
 end
