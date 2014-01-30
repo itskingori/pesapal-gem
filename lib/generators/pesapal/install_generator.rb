@@ -9,10 +9,6 @@ module Pesapal
         copy_file "pesapal.yml", "config/pesapal.yml"
       end
 
-      def copy_initializer
-        copy_file "pesapal.rb", "config/initializers/pesapal.rb"
-      end
-
       def show_readme
         readme "README.md" if behavior == :invoke
       end
