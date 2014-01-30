@@ -63,8 +63,7 @@ Initialize Pesapal object and choose the environment, there are two environments
 with the testing or the live Pesapal API.
 
 ```ruby
-# initiate pesapal object, below shows different methods
-# defaults to :production
+# defaults to :auto
 pesapal = Pesapal::Merchant.new
 
 # Set to :development
