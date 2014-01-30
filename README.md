@@ -2,6 +2,7 @@ Pesapal RubyGem
 ===============
 
 <a href="http://badge.fury.io/rb/pesapal"><img src="https://badge.fury.io/rb/pesapal@2x.png" alt="Gem Version" height="18"></a>
+[![Build Status](https://travis-ci.org/itsmrwave/pesapal-rubygem.png?branch=master)](https://travis-ci.org/itsmrwave/pesapal-rubygem)
 [![Dependency Status](https://gemnasium.com/itsmrwave/pesapal-rubygem.png)](https://gemnasium.com/itsmrwave/pesapal-rubygem)
 
 
