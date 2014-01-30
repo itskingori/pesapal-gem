@@ -2,6 +2,8 @@ Pesapal RubyGem
 ===============
 
 <a href="http://badge.fury.io/rb/pesapal"><img src="https://badge.fury.io/rb/pesapal@2x.png" alt="Gem Version" height="18"></a>
+[![Dependency Status](https://gemnasium.com/itsmrwave/pesapal-rubygem.png)](https://gemnasium.com/itsmrwave/pesapal-rubygem)
+
 
 Make authenticated Pesapal API calls without the fuss! Handles all the [oAuth
 stuff][1] abstracting any direct interaction with the API endpoints so that you
