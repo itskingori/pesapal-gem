@@ -41,7 +41,7 @@ module Pesapal
     public
 
       # constructor
-      def initialize(env = :auto)
+      def initialize(env = false)
         set_env env
         if defined?(Rails)
           set_configuration Rails.application.config.pesapal_credentials
@@ -113,11 +113,9 @@ module Pesapal
       end
 
       # set env when called
-      def set_env(env = :auto)
+      def set_env(env = false)
         env = env.to_s.downcase
-        if env == 'development'
-          @env = 'development'
-        elsif env == 'production'
+        if env == 'production'
           @env = 'production'
         else
           @env = 'development'
