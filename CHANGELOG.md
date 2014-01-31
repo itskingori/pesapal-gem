@@ -1,6 +1,12 @@
 Changelog
 =========
 
+v1.5.1
+------
+
+* Fix bugs, unable to proceed without YAML file
+* Require htmlentities
+
 v1.5.0
 ------
 
