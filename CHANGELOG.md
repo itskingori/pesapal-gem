@@ -1,6 +1,28 @@
 Changelog
 =========
 
+v1.5.2
+------
+
+* Update Gemfile.lock
+
+v1.5.1
+------
+
+* Fix bugs, unable to proceed without YAML file
+* Require htmlentities
+
+v1.5.0
+------
+
+* Remove `path_to_file` second constructor parameter, make constructor simpler
+* Remove Rails specific code to Railtie, create fallbacks if using in a non-Rails environment
+* Change and improve how credentials are loaded
+* Require `net/http`, used by `Net::HTTP` (bug fix)
+* Added to travis-ci for continuous integrations
+* Added to gemnasium for dependency checking
+* Write basic tests
+
 v1.4.0
 ------
 

@@ -3,7 +3,7 @@ module Pesapal
   module Status
 
     # set parameters required by the QueryPaymentStatus & QueryPaymentStatusByMerchantRef calls
-    def Status.set_parameters(consumer_key, merchant_reference, transaction_tracking_id = nil)
+    def self.set_parameters(consumer_key, merchant_reference, transaction_tracking_id = nil)
 
       # parameters required by the QueryPaymentStatus call (excludes
       # oauth_signature parameter as per the instructions here

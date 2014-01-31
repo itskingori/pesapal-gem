@@ -2,6 +2,9 @@ Pesapal RubyGem
 ===============
 
 <a href="http://badge.fury.io/rb/pesapal"><img src="https://badge.fury.io/rb/pesapal@2x.png" alt="Gem Version" height="18"></a>
+[![Build Status](https://travis-ci.org/itsmrwave/pesapal-rubygem.png?branch=master)](https://travis-ci.org/itsmrwave/pesapal-rubygem)
+[![Dependency Status](https://gemnasium.com/itsmrwave/pesapal-rubygem.png)](https://gemnasium.com/itsmrwave/pesapal-rubygem)
+
 
 Make authenticated Pesapal API calls without the fuss! Handles all the [oAuth
 stuff][1] abstracting any direct interaction with the API endpoints so that you
@@ -39,8 +42,7 @@ Or install it yourself as:
 
     $ gem install pesapal
 
-For Rails, you need to run the generator to set up some necessary stuff (create
-initializer and config.yml file):
+For Rails, you need to run the generator to create sample pesapal.yml file:
 
     rails generate pesapal:install
 
@@ -51,50 +53,51 @@ Usage
 
 ### Initialization ###
 
-There are 3 ways to initialize the Pesapal object:
+There are 2 ways to initialize the Pesapal object:
 
-1. YAML config at `/config/pesapal.yml` (default & recommended)
-2. YAML config at custom location
-3. Config hash
+1. YAML config at `/config/pesapal.yml`
+2. Config hash
 
 Initialize Pesapal object and choose the environment, there are two environments;
 `:development` and `:production`. They determine if the code will interact
 with the testing or the live Pesapal API.
 
 ```ruby
-# initiate pesapal object set to development environment
+# defaults to :auto
+pesapal = Pesapal::Merchant.new
+
+# Set to :development
 pesapal = Pesapal::Merchant.new(:development)
+
+# Set to :production
+pesapal = Pesapal::Merchant.new(:production)
+
+# Set to Rails environment in use
+pesapal = Pesapal::Merchant.new(Rails.env)
+
+# Set to intelligently to 'Rails.env' (if Rails) or :development (if non-Rails)
+pesapal = Pesapal::Merchant.new(:auto)
 ```
 
 ####Option 1####
 
 In the above case, the configuration has already been loaded (at application
-start by initializer) from a YAML file located at
-`"#{Rails.root}/config/pesapal.yml"` by default.
+start by initializer) from a YAML file located at `"/config/pesapal.yml"`. The
+appropriate credentials are picked depending on set environment.
 
-This is the recommended method.
+This is the recommended method if using Rails.
+
 
 ####Option 2####
 
-It's also possible to set the configuration details from a YAML file at the
-location of your choice upon initialization as shown in the example below. This
-option overrides the default YAML config (explained above) and will be loaded
-everytime during initialization (which is not a good idea for production).
+If you do not wish to use the YAML config method then the object is set up with
+some bogus credentials which would not work anyway and therefore, the other
+option is that you set them yourself. Which, you can do using a hash as shown
+below (please note that Pesapal provides different keys for different
+environments and since this is like an override, there's the assumption that you
+chose the right one).
 
-```ruby
-# initiate pesapal object set to development environment and use the YAML file found at
-# the specified location ... this overrides and loads the YAML file afresh
-pesapal = Pesapal::Merchant.new(:development, "<PATH_TO_YAML_FILE>")
-```
-
-####Option 3####
-
-If you wish not to use the YAML config method or the YAML file for some reason
-does not exist, then the object is set up with some bogus credentials which
-would not work anyway and therefore, the other option is that you set them
-yourself. Which, you can do using a hash as shown below (please note that
-Pesapal provides different keys for different environments and since this is like an
-override, there's the assumption that you chose the right one).
+Recommended if not using Rails.
 
 ```ruby
 # set pesapal api configuration manually (override YAML & bogus credentials)
@@ -104,8 +107,9 @@ pesapal.config = {  :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
                   }
 ```
 
-_Ps: You can change the environment using `pesapal.set_env(:development)` (example) if
-for some reason you want to override what was set in the constructor._
+_Ps: You can change the environment using `pesapal.set_env(:development)`
+(example) if for some reason you want to override what was set in the
+constructor. This method also changes the API endpoints appropriately._
 
 
 ###YAML Configuration###
@@ -117,20 +121,14 @@ them appropriately.
 ```yaml
 development:
   callback_url: 'http://0.0.0.0:3000/pesapal/callback'
-  consumer_key: '<YOUR_CONSUMER_KEY>'
-  consumer_secret: '<YOUR_CONSUMER_SECRET>'
+  consumer_key: '<YOUR_DEV_CONSUMER_KEY>'
+  consumer_secret: '<YOUR_DEV_CONSUMER_SECRET>'
 
 production:
   callback_url: 'http://1.2.3.4:3000/pesapal/callback'
-  consumer_key: '<YOUR_CONSUMER_KEY>'
-  consumer_secret: '<YOUR_CONSUMER_SECRET>'
+  consumer_key: '<YOUR_PROD_CONSUMER_KEY>'
+  consumer_secret: '<YOUR_PROD_CONSUMER_SECRET>'
 ```
-
-_Ps: Immediately after initializing the Pesapal object, some people might find
-it peculiar that the `pesapal.config` is an empty hash i.e. `{}`. Don't worry.
-If you have set up the `pesapal.yml` correctly, any attempt to run any of the
-methods will eventually populate this hash with the values that were loaded by
-the initializer (see option #1 above, stated as the default)._
 
 
 ### Posting An Order ###
