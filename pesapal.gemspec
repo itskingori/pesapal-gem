@@ -5,7 +5,7 @@ require 'pesapal/version'
 Gem::Specification.new do |spec|
   spec.name          = 'pesapal'
   spec.version       = Pesapal::VERSION
-  spec.date          = Time.new.getlocal('+03:00').strftime('%Y-%m-%d')
+  spec.date          = Time.new.getutc.strftime('%Y-%m-%d')
   spec.authors       = ['Job King\'ori Maina']
   spec.email         = ['j@kingori.co']
   spec.description   = 'Make authenticated Pesapal API calls without the fuss!'
