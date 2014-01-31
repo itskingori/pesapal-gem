@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pesapal (1.5.1)
+    pesapal (1.5.2)
       htmlentities
 
 GEM
