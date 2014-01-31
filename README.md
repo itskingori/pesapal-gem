@@ -63,13 +63,13 @@ Initialize Pesapal object and choose the environment, there are two environments
 with the testing or the live Pesapal API.
 
 ```ruby
-# # Set to intelligently to 'Rails.env' (if Rails) or :development (if non-Rails)
+# # Sets environment intelligently to 'Rails.env' (if Rails) or :development (if non-Rails)
 pesapal = Pesapal::Merchant.new
 
-# Set to :development
+# Sets environment to :development
 pesapal = Pesapal::Merchant.new(:development)
 
-# Set to :production
+# Sets environment to :production
 pesapal = Pesapal::Merchant.new(:production)
 ```
 
