@@ -1,3 +1,4 @@
+require 'htmlentities'
 require 'net/http'
 
 require 'pesapal/merchant'
