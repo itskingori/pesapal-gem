@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v1.5.2
+------
+
+* Update Gemfile.lock
+
 v1.5.1
 ------
 
