@@ -16,8 +16,8 @@ describe Pesapal::Merchant do
     # Checks if the initialized object is properly set with default credentials
     it 'checks if config is set with the default credentials' do
       @pesapal.config.should == { :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
-                                  :consumer_key => 'SgACAbtJ0FNSV1H3jAbvMcRA1YYtpxgG',
-                                  :consumer_secret => 'UxbUK/afIyllFaNUZrFimNbMZKY='
+                                  :consumer_key => '<YOUR_CONSUMER_KEY>',
+                                  :consumer_secret => '<YOUR_CONSUMER_SECRET>'
                                 }
     end
 
