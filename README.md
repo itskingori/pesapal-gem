@@ -21,7 +21,8 @@ out of their reach.
 The gem should be [up on RubyGems.org][7], it's [accompanying RubyDoc reference
 here][13], the [CHANGELOG here][21] and [all the releases here][12].
 
-If you are [feeling generous and want to contribute, feel free][9].
+If you are [feeling generous and want to contribute, feel free][9]. See [current
+contributors][19].
 
 _Ps: No 3rd party oAuth library dependencies, it handles all the oAuth flows on
 it's own so your app is one dependency less._
@@ -63,7 +64,7 @@ Initialize Pesapal object and choose the environment, there are two environments
 with the testing or the live Pesapal API.
 
 ```ruby
-# # Sets environment intelligently to 'Rails.env' (if Rails) or :development (if non-Rails)
+# Sets environment intelligently to 'Rails.env' (if Rails) or :development (if non-Rails)
 pesapal = Pesapal::Merchant.new
 
 # Sets environment to :development
@@ -236,18 +237,19 @@ _Ps: Refer to Pesapal official documentation to make sure you understand what
 data Pesapal sends to IPN and what result they expect back._
 
 
-Contributing
-------------
+Contributing & Testing
+----------------------
 
 1. Make sure you've read the [M.O. ★][14] ([blog article here][16])
 2. Especially [the part about my conventions when writing and merging new features][15]
-2. [Fork it][8]
-2. Create your feature branch (`git checkout -b BRANCH_NAME`)
-3. Commit your changes (`git commit -am 'AWESOME COMMIT MESSAGE'`)
-4. Push to the branch (`git push origin BRANCH_NAME`)
-5. Create new pull request and we can [have the conversations here][17]
+3. [Fork it][8]
+4. Create your feature branch (`git checkout -b BRANCH_NAME`)
+5. Make your changes, write tests for them if necessary & run `bundle exec rspec spec`
+6. Commit your changes (`git commit -am 'AWESOME COMMIT MESSAGE'`)
+7. Push to the branch (`git push origin BRANCH_NAME`)
+8. Create new pull request and we can [have the conversations here][17]
 
-_Ps: See [current contributors][19]._
+_Ps: By the time we have a conversation your [pull request tests should pass on Travis-CI][22] or if they aren't at least you know why._
 
 
 References
