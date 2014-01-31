@@ -4,9 +4,26 @@ describe Pesapal::Merchant do
 
   before :each do
     @pesapal = Pesapal::Merchant.new
+    @pesapal_dev = Pesapal::Merchant.new(:development)
+    @pesapal_prod = Pesapal::Merchant.new(:production)
   end
 
   describe '#new' do
+
+    it 'sets default environment variable' do
+      @pesapal.send(:env).should == 'development'
+      @pesapal.send(:env).should_not == 'production'
+    end
+
+    it 'sets development environment variable' do
+      @pesapal_dev.send(:env).should == 'development'
+      @pesapal_dev.send(:env).should_not == 'production'
+    end
+
+    it 'sets production environment variable' do
+      @pesapal_prod.send(:env).should == 'production'
+      @pesapal_prod.send(:env).should_not == 'development'
+    end
 
     # Check if the initializer successfully sets a Pesapal::Merchant object
     it 'returns a new instance of a pesapal object' do
