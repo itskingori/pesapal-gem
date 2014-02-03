@@ -1,6 +1,12 @@
 Changelog
 =========
 
+v1.5.3
+------
+
+* Fix HTTPS calls throwing Timeout::Error (on production)
+* Simplified environment settings (kill :auto)
+
 v1.5.2
 ------
 
