@@ -82,9 +82,15 @@ module Pesapal
         query_string = Pesapal::Oauth::generate_encoded_params_query_string @params
 
         # get status response
-        response = Net::HTTP.get(URI("#{@api_endpoints[:querypaymentdetails]}?#{query_string}"))
-        response = CGI::parse(response)
-        response = response["pesapal_response_data"][0].split(',')
+        uri = URI.parse "#{@api_endpoints[:querypaymentstatus]}?#{query_string}"
+        http = Net::HTTP.new(uri.host, uri.port)
+        if @env == 'production'
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        end
+        response = http.request(Net::HTTP::Get.new(uri.request_uri))
+        response = CGI::parse response.body
+        response = response['pesapal_response_data'][0].split(',')
 
         details = { :method => response[1],
                     :status => response[2],
@@ -105,11 +111,15 @@ module Pesapal
         query_string = Pesapal::Oauth::generate_encoded_params_query_string @params
 
         # get status response
-        response = Net::HTTP.get(URI("#{@api_endpoints[:querypaymentstatus]}?#{query_string}"))
-        response = CGI::parse(response)
-
-        # return the string result of what we want
-        response["pesapal_response_data"][0]
+        uri = URI.parse "#{@api_endpoints[:querypaymentstatus]}?#{query_string}"
+        http = Net::HTTP.new(uri.host, uri.port)
+        if @env == 'production'
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        end
+        response = http.request(Net::HTTP::Get.new(uri.request_uri))
+        response = CGI::parse response.body
+        response['pesapal_response_data'][0]
       end
 
       # set env when called
@@ -128,15 +138,11 @@ module Pesapal
       def ipn_listener(notification_type, merchant_reference, transaction_tracking_id)
 
         status = query_payment_status(merchant_reference, transaction_tracking_id)
+        output = { :status => status, :response => nil }
 
-        output = { :status => status }
-
-        if status == "COMPLETED"
-          output[:response] = "pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=#{transaction_tracking_id}&pesapal_merchant_reference=#{merchant_reference}"
-        elsif status == "FAILED"
-          output[:response] = "pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=#{transaction_tracking_id}&pesapal_merchant_reference=#{merchant_reference}"
-        else
-          output[:response] = ""
+        case status
+          when 'COMPLETED' then output[:response] = "pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=#{transaction_tracking_id}&pesapal_merchant_reference=#{merchant_reference}"
+          when 'FAILED'    then output[:response] = "pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=#{transaction_tracking_id}&pesapal_merchant_reference=#{merchant_reference}"
         end
 
         output
