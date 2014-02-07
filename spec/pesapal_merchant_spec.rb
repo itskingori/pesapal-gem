@@ -10,23 +10,23 @@ describe Pesapal::Merchant do
         @pesapal = Pesapal::Merchant.new
       end
 
-      it 'valid new object' do
-        @pesapal.should be_an_instance_of Pesapal::Merchant
+      it 'valid object' do
+        expect(@pesapal).to be_an_instance_of(Pesapal::Merchant)
       end
 
       it 'sets default environment variable' do
-        @pesapal.send(:env).should == 'development'
+        expect(@pesapal.send(:env)).to eq 'development'
       end
 
-      it 'config set with the default credentials' do
-        @pesapal.config.should == { :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
-                                    :consumer_key => '<YOUR_CONSUMER_KEY>',
-                                    :consumer_secret => '<YOUR_CONSUMER_SECRET>'
-                                  }
+      it 'default credentials' do
+        expect(@pesapal.config).to eq({ :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
+                                        :consumer_key => '<YOUR_CONSUMER_KEY>',
+                                        :consumer_secret => '<YOUR_CONSUMER_SECRET>'
+                                      })
       end
 
-      it 'empty default order details' do
-        @pesapal.order_details.should == {}
+      it 'default order details' do
+        expect(@pesapal.order_details).to eq({})
       end
     end
 
@@ -36,23 +36,23 @@ describe Pesapal::Merchant do
         @pesapal_dev = Pesapal::Merchant.new(:development)
       end
 
-      it 'valid new object' do
-        @pesapal_dev.should be_an_instance_of Pesapal::Merchant
+      it 'valid object' do
+        expect(@pesapal_dev).to be_an_instance_of(Pesapal::Merchant)
       end
 
       it 'sets default environment variable' do
-        @pesapal_dev.send(:env).should == 'development'
+        expect(@pesapal_dev.send(:env)).to eq 'development'
       end
 
-      it 'config set with the default credentials' do
-        @pesapal_dev.config.should == { :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
-                                        :consumer_key => '<YOUR_CONSUMER_KEY>',
-                                        :consumer_secret => '<YOUR_CONSUMER_SECRET>'
-                                      }
+      it 'default credentials' do
+        expect(@pesapal_dev.config).to eq({ :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
+                                            :consumer_key => '<YOUR_CONSUMER_KEY>',
+                                            :consumer_secret => '<YOUR_CONSUMER_SECRET>'
+                                          })
       end
 
-      it 'empty default order details' do
-        @pesapal_dev.order_details.should == {}
+      it 'default order details' do
+        expect(@pesapal_dev.order_details).to eq({})
       end
     end
 
@@ -62,23 +62,23 @@ describe Pesapal::Merchant do
         @pesapal_prod = Pesapal::Merchant.new(:production)
       end
 
-      it 'valid new object' do
-        @pesapal_prod.should be_an_instance_of Pesapal::Merchant
+      it 'valid object' do
+        expect(@pesapal_prod).to be_an_instance_of(Pesapal::Merchant)
       end
 
       it 'sets default environment variable' do
-        @pesapal_prod.send(:env).should == 'production'
+        expect(@pesapal_prod.send(:env)).to eq 'production'
       end
 
-      it 'config set with the default credentials' do
-        @pesapal_prod.config.should == { :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
-                                         :consumer_key => '<YOUR_CONSUMER_KEY>',
-                                         :consumer_secret => '<YOUR_CONSUMER_SECRET>'
-                                        }
+      it 'default credentials' do
+        expect(@pesapal_prod.config).to eq({ :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
+                                             :consumer_key => '<YOUR_CONSUMER_KEY>',
+                                             :consumer_secret => '<YOUR_CONSUMER_SECRET>'
+                                            })
       end
 
-      it 'empty default order details' do
-        @pesapal_prod.order_details.should == {}
+      it 'default order details' do
+        expect(@pesapal_prod.order_details).to eq({})
       end
     end
   end
