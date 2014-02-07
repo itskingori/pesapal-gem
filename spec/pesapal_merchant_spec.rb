@@ -2,45 +2,84 @@ require 'spec_helper'
 
 describe Pesapal::Merchant do
 
-  before :each do
-    @pesapal = Pesapal::Merchant.new
-    @pesapal_dev = Pesapal::Merchant.new(:development)
-    @pesapal_prod = Pesapal::Merchant.new(:production)
-  end
-
   describe '#new' do
 
-    it 'sets default environment variable' do
-      @pesapal.send(:env).should == 'development'
-      @pesapal.send(:env).should_not == 'production'
+    context 'when mode not specified' do
+
+      before :each do
+        @pesapal = Pesapal::Merchant.new
+      end
+
+      it 'valid new object' do
+        @pesapal.should be_an_instance_of Pesapal::Merchant
+      end
+
+      it 'sets default environment variable' do
+        @pesapal.send(:env).should == 'development'
+      end
+
+      it 'config set with the default credentials' do
+        @pesapal.config.should == { :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
+                                    :consumer_key => '<YOUR_CONSUMER_KEY>',
+                                    :consumer_secret => '<YOUR_CONSUMER_SECRET>'
+                                  }
+      end
+
+      it 'empty default order details' do
+        @pesapal.order_details.should == {}
+      end
     end
 
-    it 'sets development environment variable' do
-      @pesapal_dev.send(:env).should == 'development'
-      @pesapal_dev.send(:env).should_not == 'production'
+    context 'when mode specified as development' do
+
+      before :each do
+        @pesapal_dev = Pesapal::Merchant.new(:development)
+      end
+
+      it 'valid new object' do
+        @pesapal_dev.should be_an_instance_of Pesapal::Merchant
+      end
+
+      it 'sets default environment variable' do
+        @pesapal_dev.send(:env).should == 'development'
+      end
+
+      it 'config set with the default credentials' do
+        @pesapal_dev.config.should == { :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
+                                        :consumer_key => '<YOUR_CONSUMER_KEY>',
+                                        :consumer_secret => '<YOUR_CONSUMER_SECRET>'
+                                      }
+      end
+
+      it 'empty default order details' do
+        @pesapal_dev.order_details.should == {}
+      end
     end
 
-    it 'sets production environment variable' do
-      @pesapal_prod.send(:env).should == 'production'
-      @pesapal_prod.send(:env).should_not == 'development'
-    end
+    context 'when mode specified as production' do
 
-    # Check if the initializer successfully sets a Pesapal::Merchant object
-    it 'returns a new instance of a pesapal object' do
-      @pesapal.should be_an_instance_of Pesapal::Merchant
-    end
+      before :each do
+        @pesapal_prod = Pesapal::Merchant.new(:production)
+      end
 
-    # Checks if the initialized object is properly set with default credentials
-    it 'checks if config is set with the default credentials' do
-      @pesapal.config.should == { :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
-                                  :consumer_key => '<YOUR_CONSUMER_KEY>',
-                                  :consumer_secret => '<YOUR_CONSUMER_SECRET>'
-                                }
-    end
+      it 'valid new object' do
+        @pesapal_prod.should be_an_instance_of Pesapal::Merchant
+      end
 
-    # Checks if the initialized object is properly set with empty order details
-    it 'checks if config is set with the default credentials' do
-      @pesapal.order_details.should == {}
+      it 'sets default environment variable' do
+        @pesapal_prod.send(:env).should == 'production'
+      end
+
+      it 'config set with the default credentials' do
+        @pesapal_prod.config.should == { :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
+                                         :consumer_key => '<YOUR_CONSUMER_KEY>',
+                                         :consumer_secret => '<YOUR_CONSUMER_SECRET>'
+                                        }
+      end
+
+      it 'empty default order details' do
+        @pesapal_prod.order_details.should == {}
+      end
     end
   end
 end
