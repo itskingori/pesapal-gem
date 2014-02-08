@@ -2,8 +2,7 @@ Pesapal RubyGem
 ===============
 
 <a href="http://badge.fury.io/rb/pesapal"><img src="https://badge.fury.io/rb/pesapal@2x.png" alt="Gem Version" height="18"></a>
-[![Build Status](https://travis-ci.org/itsmrwave/pesapal-rubygem.png?branch=master)](https://travis-ci.org/itsmrwave/pesapal-rubygem)
-[![Dependency Status](https://gemnasium.com/itsmrwave/pesapal-rubygem.png)](https://gemnasium.com/itsmrwave/pesapal-rubygem)
+[![Dependency Status](https://gemnasium.com/itsmrwave/pesapal-gem.png)](https://gemnasium.com/itsmrwave/pesapal-gem)
 
 
 Make authenticated Pesapal API calls without the fuss! Handles all the [oAuth
@@ -276,19 +275,19 @@ they want as long as they provide attribution and waive liability.
 [3]: http://guides.rubygems.org/make-your-own-gem/
 [4]: http://developer.pesapal.com/how-to-integrate/api-reference
 [5]: https://github.com/itsmrwave/pesapal-php#pesapal-php-api-reference-unofficial
-[6]: https://github.com/itsmrwave/pesapal-rubygem/issues
+[6]: https://github.com/itsmrwave/pesapal-gem/issues
 [7]: http://rubygems.org/gems/pesapal
-[8]: https://github.com/itsmrwave/pesapal-rubygem/fork
-[9]: https://github.com/itsmrwave/pesapal-rubygem#contributing
+[8]: https://github.com/itsmrwave/pesapal-gem/fork
+[9]: https://github.com/itsmrwave/pesapal-gem#contributing
 [10]: http://kingori.co/
-[11]: https://github.com/itsmrwave/pesapal-rubygem/blob/master/LICENSE.txt
-[12]: https://github.com/itsmrwave/pesapal-rubygem/releases/
+[11]: https://github.com/itsmrwave/pesapal-gem/blob/master/LICENSE.txt
+[12]: https://github.com/itsmrwave/pesapal-gem/releases/
 [13]: http://rubydoc.info/gems/pesapal/
 [14]: https://github.com/itsmrwave/mo
 [15]: https://github.com/itsmrwave/mo/tree/master/convention#-convention
 [16]: http://kingori.co/articles/2013/09/modus-operandi/
-[17]: https://github.com/itsmrwave/pesapal-rubygem/pulls
+[17]: https://github.com/itsmrwave/pesapal-gem/pulls
 [18]: http://developer.pesapal.com/how-to-integrate/step-by-step
-[19]: https://github.com/itsmrwave/pesapal-rubygem/graphs/contributors
+[19]: https://github.com/itsmrwave/pesapal-gem/graphs/contributors
 [20]: http://guides.rubyonrails.org/
-[21]: https://github.com/itsmrwave/pesapal-rubygem/blob/master/CHANGELOG.md#changelog
+[21]: https://github.com/itsmrwave/pesapal-gem/blob/master/CHANGELOG.md#changelog
