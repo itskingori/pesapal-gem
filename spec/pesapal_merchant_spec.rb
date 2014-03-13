@@ -2,15 +2,15 @@ require 'spec_helper'
 
 describe Pesapal::Merchant do
 
-  describe '#new' do
+  context 'when mode not specified' do
 
-    context 'when mode not specified' do
+    before :each do
+      @pesapal = Pesapal::Merchant.new
+    end
 
-      before :each do
-        @pesapal = Pesapal::Merchant.new
-      end
+    describe '#new' do
 
-      it 'valid object' do
+      it 'is valid object' do
         expect(@pesapal).to be_an_instance_of(Pesapal::Merchant)
       end
 
@@ -18,67 +18,118 @@ describe Pesapal::Merchant do
         expect(@pesapal.send(:env)).to eq 'development'
       end
 
-      it 'default credentials' do
+      it 'sets default credentials' do
         expect(@pesapal.config).to eq({ :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
                                         :consumer_key => '<YOUR_CONSUMER_KEY>',
                                         :consumer_secret => '<YOUR_CONSUMER_SECRET>'
                                       })
       end
 
-      it 'default order details' do
+      it 'sets default order details' do
         expect(@pesapal.order_details).to eq({})
       end
     end
 
-    context 'when mode specified as development' do
-
-      before :each do
-        @pesapal_dev = Pesapal::Merchant.new(:development)
-      end
-
-      it 'valid object' do
-        expect(@pesapal_dev).to be_an_instance_of(Pesapal::Merchant)
-      end
+    describe '#set_env' do
 
       it 'sets default environment variable' do
-        expect(@pesapal_dev.send(:env)).to eq 'development'
+        @pesapal.set_env
+        expect(@pesapal.send(:env)).to eq 'development'
       end
 
-      it 'default credentials' do
-        expect(@pesapal_dev.config).to eq({ :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
+      it 'sets endpoints for default environment' do
+        expect(@pesapal.set_env).to eq({:postpesapaldirectorderv4 => 'http://demo.pesapal.com/API/PostPesapalDirectOrderV4',
+                                        :querypaymentstatus=>'http://demo.pesapal.com/API/QueryPaymentStatus',
+                                        :querypaymentdetails=>'http://demo.pesapal.com/API/QueryPaymentDetails'
+                                      })
+      end
+    end
+  end
+
+  context 'when mode is specified as development' do
+
+    before :each do
+      @pesapal = Pesapal::Merchant.new(:development)
+    end
+
+    describe '#new(:development)' do
+
+      it 'is valid object' do
+        expect(@pesapal).to be_an_instance_of(Pesapal::Merchant)
+      end
+
+      it 'sets environment variable' do
+        expect(@pesapal.send(:env)).to eq 'development'
+      end
+
+      it 'sets credentials' do
+        expect(@pesapal.config).to eq({ :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
                                             :consumer_key => '<YOUR_CONSUMER_KEY>',
                                             :consumer_secret => '<YOUR_CONSUMER_SECRET>'
                                           })
       end
 
-      it 'default order details' do
-        expect(@pesapal_dev.order_details).to eq({})
+      it 'sets order details' do
+        expect(@pesapal.order_details).to eq({})
       end
     end
 
-    context 'when mode specified as production' do
+    describe '#set_env(:development)' do
 
-      before :each do
-        @pesapal_prod = Pesapal::Merchant.new(:production)
+      it 'sets environment variable' do
+        @pesapal.set_env :development
+        expect(@pesapal.send(:env)).to eq 'development'
       end
 
-      it 'valid object' do
-        expect(@pesapal_prod).to be_an_instance_of(Pesapal::Merchant)
+      it 'sets endpoints for environment' do
+        expect(@pesapal.set_env :development).to eq({:postpesapaldirectorderv4 => 'http://demo.pesapal.com/API/PostPesapalDirectOrderV4',
+                                                     :querypaymentstatus=>'http://demo.pesapal.com/API/QueryPaymentStatus',
+                                                     :querypaymentdetails=>'http://demo.pesapal.com/API/QueryPaymentDetails'
+                                                    })
+      end
+    end
+  end
+
+  context 'when mode is specified as production' do
+
+    before :each do
+      @pesapal = Pesapal::Merchant.new(:production)
+    end
+
+    describe '#new(:production)' do
+
+      it 'is valid object' do
+        expect(@pesapal).to be_an_instance_of(Pesapal::Merchant)
       end
 
-      it 'sets default environment variable' do
-        expect(@pesapal_prod.send(:env)).to eq 'production'
+      it 'sets environment variable' do
+        expect(@pesapal.send(:env)).to eq 'production'
       end
 
-      it 'default credentials' do
-        expect(@pesapal_prod.config).to eq({ :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
+      it 'sets credentials' do
+        expect(@pesapal.config).to eq({ :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
                                              :consumer_key => '<YOUR_CONSUMER_KEY>',
                                              :consumer_secret => '<YOUR_CONSUMER_SECRET>'
                                             })
       end
 
-      it 'default order details' do
-        expect(@pesapal_prod.order_details).to eq({})
+      it 'sets order details' do
+        expect(@pesapal.order_details).to eq({})
+      end
+    end
+
+    describe '#set_env(:production)' do
+
+      it 'sets environment variable' do
+        @pesapal.set_env :production
+        expect(@pesapal.send(:env)).to eq 'production'
+      end
+
+      it 'sets endpoints for environment' do
+        expect(@pesapal.set_env :production).to eq({:postpesapaldirectorderv4 => 'https://www.pesapal.com/API/PostPesapalDirectOrderV4',
+                                                    :querypaymentstatus=>'https://www.pesapal.com/API/QueryPaymentStatus',
+                                                    :querypaymentdetails=>'https://www.pesapal.com/API/QueryPaymentDetails'
+                                                  })
       end
     end
   end

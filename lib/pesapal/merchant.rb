@@ -163,6 +163,8 @@ module Pesapal
         @api_endpoints[:postpesapaldirectorderv4] = "#{@api_domain}/API/PostPesapalDirectOrderV4"
         @api_endpoints[:querypaymentstatus] = "#{@api_domain}/API/QueryPaymentStatus"
         @api_endpoints[:querypaymentdetails] = "#{@api_domain}/API/QueryPaymentDetails"
+
+        return @api_endpoints
       end
 
       # set credentialts through hash, uses default if nothing is input
