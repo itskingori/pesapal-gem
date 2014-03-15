@@ -1,6 +1,12 @@
 Changelog
 =========
 
+v1.5.4
+------
+
+* Renamed repo from `pesapal-rubygem` to `pesapal-gem` (breaks badge links in old READMEs)
+* Write tests
+
 v1.5.3
 ------
 
