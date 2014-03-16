@@ -9,4 +9,5 @@
 /tmp/*
 
 # Other Files #
+Gemfile.lock
 *.gem
