@@ -15,9 +15,10 @@ This gem, in a nutshell, allows you to easily post an order, query payment
 status and fetch payment details.
 
 In case you are having any issues using this gem please **_do not_** email me
-directly, I'd rather you submit [issues (and even requests) here][6]. This way,
-other people get to share in the conversation that would have been private and
-out of their reach.
+directly, I'd rather you [submit new issues (and even requests) here][23] ...
+obviously after [checking if the issue has already been raised and closed][6].
+This way, other people get to share in the conversation that would have been
+private and out of their reach.
 
 The gem should be [up on RubyGems.org][7], it's [accompanying RubyDoc reference
 here][13], the [CHANGELOG here][21] and [all the releases here][12].
@@ -241,16 +242,17 @@ data Pesapal sends to IPN and what result they expect back._
 Contributing & Testing
 ----------------------
 
-1. Make sure you've read the [M.O. ★][14] ([blog article here][16])
-2. Especially [the part about my conventions when writing and merging new features][15]
-3. [Fork it][8]
-4. Create your feature branch (`git checkout -b BRANCH_NAME`)
-5. Make your changes, write tests for them if necessary & run `bundle exec rspec spec`
-6. Commit your changes (`git commit -am 'AWESOME COMMIT MESSAGE'`)
-7. Push to the branch (`git push origin BRANCH_NAME`)
-8. Create new pull request and we can [have the conversations here][17]
+1. Make sure you've read the [M.O. ★][14] ([blog article here][16]) especially
+   [the part about my conventions when writing and merging new features][15].
+2. [Fork it][8]
+3. Create your feature branch (`git checkout -b BRANCH_NAME`)
+4. Make your changes, write tests for them if necessary & run `bundle exec rspec spec`
+5. Commit your changes (`git commit -am 'AWESOME COMMIT MESSAGE'`)
+6. Push to the branch (`git push origin BRANCH_NAME`)
+7. Create new pull request and we can [have the conversations here][17]
 
-_Ps: By the time we have a conversation your [pull request tests should pass on Travis-CI][22] or if they aren't at least you know why._
+_Ps: By the time we have a conversation your [pull request tests should pass on
+Travis-CI][22] or if they aren't at least you know why._
 
 
 References
@@ -277,12 +279,12 @@ they want as long as they provide attribution and waive liability.
 [3]: http://guides.rubygems.org/make-your-own-gem/
 [4]: http://developer.pesapal.com/how-to-integrate/api-reference
 [5]: https://github.com/itsmrwave/pesapal-php#pesapal-php-api-reference-unofficial
-[6]: https://github.com/itsmrwave/pesapal-gem/issues
+[6]: https://github.com/itsmrwave/pesapal-gem/issues?state=closed
 [7]: http://rubygems.org/gems/pesapal
 [8]: https://github.com/itsmrwave/pesapal-gem/fork
-[9]: https://github.com/itsmrwave/pesapal-gem#contributing
+[9]: https://github.com/itsmrwave/pesapal-gem#contributing--testing
 [10]: http://kingori.co/
-[11]: https://github.com/itsmrwave/pesapal-gem/blob/master/LICENSE.txt
+[11]: https://raw.githubusercontent.com/itsmrwave/pesapal-gem/master/LICENSE.txt
 [12]: https://github.com/itsmrwave/pesapal-gem/releases/
 [13]: http://rubydoc.info/gems/pesapal/
 [14]: https://github.com/itsmrwave/mo
@@ -292,4 +294,6 @@ they want as long as they provide attribution and waive liability.
 [18]: http://developer.pesapal.com/how-to-integrate/step-by-step
 [19]: https://github.com/itsmrwave/pesapal-gem/graphs/contributors
 [20]: http://guides.rubyonrails.org/
-[21]: https://github.com/itsmrwave/pesapal-gem/blob/master/CHANGELOG.md#changelog
+[21]: https://raw.githubusercontent.com/itsmrwave/pesapal-gem/master/CHANGELOG.md
+[22]: https://travis-ci.org/itsmrwave/pesapal-gem/pull_requests
+[23]: https://github.com/itsmrwave/pesapal-gem/issues/new
