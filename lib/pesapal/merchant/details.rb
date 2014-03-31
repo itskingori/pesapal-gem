@@ -1,7 +1,5 @@
 module Pesapal
-
   module Details
-
     # set parameters required by the QueryPaymentDetails call
     def self.set_parameters(consumer_key, merchant_reference, transaction_tracking_id)
 
@@ -11,14 +9,14 @@ module Pesapal
 
       timestamp = Time.now.to_i.to_s
 
-      params = { :oauth_consumer_key => consumer_key,
-                 :oauth_nonce => "#{timestamp}" + Pesapal::Oauth.generate_nonce(12),
-                 :oauth_signature_method => 'HMAC-SHA1',
-                 :oauth_timestamp => "#{timestamp}",
-                 :oauth_version => '1.0',
-                 :pesapal_merchant_reference => merchant_reference,
-                 :pesapal_transaction_tracking_id => transaction_tracking_id
-              }
+      { :oauth_consumer_key => consumer_key,
+        :oauth_nonce => "#{timestamp}" + Pesapal::Oauth.generate_nonce(12),
+        :oauth_signature_method => 'HMAC-SHA1',
+        :oauth_timestamp => "#{timestamp}",
+        :oauth_version => '1.0',
+        :pesapal_merchant_reference => merchant_reference,
+        :pesapal_transaction_tracking_id => transaction_tracking_id
+      }
     end
   end
 end
