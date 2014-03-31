@@ -18,7 +18,7 @@ module Pesapal
       #  value
 
       queries = []
-      params.each { |k, v| queries.push "#{self.parameter_encode(k.to_s)}=#{self.parameter_encode(v.to_s)}" }
+      params.each { |k, v| queries.push "#{parameter_encode(k.to_s)}=#{parameter_encode(v.to_s)}" }
 
       # parameters are sorted by name, using lexicographical byte value
       # ordering
@@ -58,8 +58,8 @@ module Pesapal
 
       # prepare the values we need
       digest = OpenSSL::Digest::Digest.new('sha1')
-      signature_base_string = self.generate_signature_base_string(http_method, absolute_url, params)
-      signing_key = self.generate_signing_key(consumer_secret, token_secret)
+      signature_base_string = generate_signature_base_string(http_method, absolute_url, params)
+      signing_key = generate_signing_key(consumer_secret, token_secret)
 
       hmac = OpenSSL::HMAC.digest(digest, signing_key, signature_base_string)
       Base64.encode64(hmac).chomp
@@ -72,7 +72,7 @@ module Pesapal
       # initialized by calling set_parameters
       params.delete(:oauth_signature)
 
-      self.generate_encoded_params_query_string params
+      generate_encoded_params_query_string params
     end
 
     # generate the oauth signature
@@ -86,10 +86,10 @@ module Pesapal
       http_method = http_method.upcase
 
       # step 2: percent encode the url
-      url_encoded = self.parameter_encode(self.normalized_request_uri(absolute_url))
+      url_encoded = parameter_encode(normalized_request_uri(absolute_url))
 
       # step 3: percent encode the parameter string
-      parameter_string_encoded = self.parameter_encode(self.generate_signable_encoded_params_query_string params)
+      parameter_string_encoded = parameter_encode(generate_signable_encoded_params_query_string params)
 
       # the signature base string should contain exactly 2 ampersand '&'
       # characters. The percent '%' characters in the parameter string should be
@@ -111,11 +111,11 @@ module Pesapal
       # ampersand character '&'
 
       # "#{@credentials[:consumer_secret]}"
-      consumer_secret_encoded = self.parameter_encode(consumer_secret)
+      consumer_secret_encoded = parameter_encode(consumer_secret)
 
       token_secret_encoded = ""
       unless token_secret.nil?
-        token_secret_encoded = self.parameter_encode(token_secret)
+        token_secret_encoded = parameter_encode(token_secret)
       end
 
       "#{consumer_secret_encoded}&#{token_secret_encoded}"
