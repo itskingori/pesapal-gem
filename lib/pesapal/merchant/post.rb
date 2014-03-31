@@ -42,6 +42,6 @@ module Pesapal
         :oauth_version => '1.0',
         :pesapal_request_data => post_xml
       }
-    en
+    end
   end
 end
