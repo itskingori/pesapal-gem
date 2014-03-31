@@ -125,7 +125,6 @@ module Pesapal
 
     # listen to ipn response
     def ipn_listener(notification_type, merchant_reference, transaction_tracking_id)
-
       status = query_payment_status(merchant_reference, transaction_tracking_id)
       output = { :status => status, :response => nil }
 
