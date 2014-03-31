@@ -80,10 +80,11 @@ module Pesapal
       response = CGI.parse response.body
       response = response['pesapal_response_data'][0].split(',')
 
-      details = { :method => response[1],
-                  :status => response[2],
-                  :merchant_reference => response[3],
-                  :transaction_tracking_id => response[0] }
+      { :method => response[1],
+        :status => response[2],
+        :merchant_reference => response[3],
+        :transaction_tracking_id => response[0]
+      }
     end
 
     # query the status of the transaction
