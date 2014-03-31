@@ -2,7 +2,6 @@ module Pesapal
   module Oauth
     # generate query string from parameters hash
     def self.generate_encoded_params_query_string(params = {})
-
       # 1) percent encode every key and value that will be signed
       # 2) sort the list of parameters alphabetically by encoded key
       # 3) for each key/value pair
@@ -46,7 +45,6 @@ module Pesapal
 
     # generate the oauth signature using hmac-sha1 algorithm
     def self.generate_oauth_signature(http_method, absolute_url, params, consumer_secret, token_secret = nil)
-
       # the signature is calculated by passing the signature base string and
       # signing key to the hmac-sha1 hashing algorithm. the output of the hmac
       # signing function is a binary string. this needs to be base64 encoded to
@@ -67,7 +65,6 @@ module Pesapal
 
     # generate query string from signable parameters hash
     def self.generate_signable_encoded_params_query_string(params = {})
-
       # oauth_signature parameter MUST be excluded, assumes it was already
       # initialized by calling set_parameters
       params.delete(:oauth_signature)
@@ -77,7 +74,6 @@ module Pesapal
 
     # generate the oauth signature
     def self.generate_signature_base_string(http_method, absolute_url, params)
-
       #  three values collected so far must be joined to make a single string,
       #  from which the signature will be generated. This is called the
       #  signature base string by the OAuth specification
@@ -100,7 +96,6 @@ module Pesapal
 
     # generate signing key
     def self.generate_signing_key(consumer_secret, token_secret = nil)
-
       # the signing key is simply the percent encoded consumer secret, followed
       # by an ampersand character '&', followed by the percent encoded token
       # secret
@@ -123,7 +118,6 @@ module Pesapal
 
     # normalize request absolute URL
     def self.normalized_request_uri(absolute_url)
-
       # the signature base string includes the request absolute url, tying the
       # signature to a specific endpoint. the url used in the signature base
       # string must include the scheme, authority, and path, and must exclude
@@ -157,7 +151,6 @@ module Pesapal
 
     # percentage encode value as per the oauth spec
     def self.parameter_encode(string)
-
       # all parameter names and values are escaped using the [rfc3986] percent-
       # encoding (%xx) mechanism. characters not in the unreserved character set
       # ([rfc3986] section 2.3) must be encoded. characters in the unreserved
