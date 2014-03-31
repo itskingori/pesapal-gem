@@ -40,7 +40,6 @@ module Pesapal
 
     # generate pesapal order url (often iframed)
     def generate_order_url
-
       # build xml with input data, the format is standard so no editing is
       # required
       @post_xml = Pesapal::Post.generate_post_xml @order_details
@@ -59,7 +58,6 @@ module Pesapal
 
     # query the details of the transaction
     def query_payment_details(merchant_reference, transaction_tracking_id)
-
       # initialize setting of @params (oauth_signature left empty)
       @params = Pesapal::Details.set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
 
@@ -89,7 +87,6 @@ module Pesapal
 
     # query the status of the transaction
     def query_payment_status(merchant_reference, transaction_tracking_id = nil)
-
       # initialize setting of @params (oauth_signature left empty)
       @params = Pesapal::Status.set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
 
