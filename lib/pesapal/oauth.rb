@@ -170,7 +170,7 @@ module Pesapal
 
       # Apparently we can't force_encoding on a frozen string since that would modify it.
       # What we can do is work with a copy
-      URI::escape(string.dup.to_s.force_encoding(Encoding::UTF_8), reserved_characters)
+      URI.escape(string.dup.to_s.force_encoding(Encoding::UTF_8), reserved_characters)
     end
   end
 end
