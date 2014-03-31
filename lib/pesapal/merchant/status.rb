@@ -1,7 +1,5 @@
 module Pesapal
-
   module Status
-
     # set parameters required by the QueryPaymentStatus & QueryPaymentStatusByMerchantRef calls
     def self.set_parameters(consumer_key, merchant_reference, transaction_tracking_id = nil)
 

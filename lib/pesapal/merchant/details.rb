@@ -1,7 +1,5 @@
 module Pesapal
-
   module Details
-
     # set parameters required by the QueryPaymentDetails call
     def self.set_parameters(consumer_key, merchant_reference, transaction_tracking_id)
 

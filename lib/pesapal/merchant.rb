@@ -1,7 +1,5 @@
 module Pesapal
-
   class Merchant
-
     attr_accessor :config, :order_details
 
     def config

@@ -1,7 +1,5 @@
 module Pesapal
-
   module Post
-
     # build html encoded xml string for PostPesapalDirectOrderV4
     def self.generate_post_xml(details)
 

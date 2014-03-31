@@ -1,9 +1,7 @@
 module Pesapal
-
   class Railtie < Rails::Railtie
 
     initializer 'pesapal.load_credentials' do
-
       path_to_yaml = "#{Rails.root}/config/pesapal.yml"
       if File.exist?(path_to_yaml)
         begin

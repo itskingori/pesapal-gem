@@ -1,7 +1,5 @@
 module Pesapal
-
   module Oauth
-
     # generate query string from parameters hash
     def Oauth.generate_encoded_params_query_string(params = {})
 
