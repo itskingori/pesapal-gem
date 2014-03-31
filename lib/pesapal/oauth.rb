@@ -1,7 +1,7 @@
 module Pesapal
   module Oauth
     # generate query string from parameters hash
-    def Oauth.generate_encoded_params_query_string(params = {})
+    def self.generate_encoded_params_query_string(params = {})
 
       # 1) percent encode every key and value that will be signed
       # 2) sort the list of parameters alphabetically by encoded key
@@ -28,7 +28,7 @@ module Pesapal
     end
 
     # generate oauth nonce
-    def Oauth.generate_nonce(length)
+    def self.generate_nonce(length)
 
       # the consumer shall then generate a nonce value that is unique for all
       # requests with that timestamp. a nonce is a random string, uniquely
@@ -45,7 +45,7 @@ module Pesapal
     end
 
     # generate the oauth signature using hmac-sha1 algorithm
-    def Oauth.generate_oauth_signature(http_method, absolute_url, params, consumer_secret, token_secret = nil)
+    def self.generate_oauth_signature(http_method, absolute_url, params, consumer_secret, token_secret = nil)
 
       # the signature is calculated by passing the signature base string and
       # signing key to the hmac-sha1 hashing algorithm. the output of the hmac
@@ -66,7 +66,7 @@ module Pesapal
     end
 
     # generate query string from signable parameters hash
-    def Oauth.generate_signable_encoded_params_query_string(params = {})
+    def self.generate_signable_encoded_params_query_string(params = {})
 
       # oauth_signature parameter MUST be excluded, assumes it was already
       # initialized by calling set_parameters
@@ -76,7 +76,7 @@ module Pesapal
     end
 
     # generate the oauth signature
-    def Oauth.generate_signature_base_string(http_method, absolute_url, params)
+    def self.generate_signature_base_string(http_method, absolute_url, params)
 
       #  three values collected so far must be joined to make a single string,
       #  from which the signature will be generated. This is called the
@@ -99,7 +99,7 @@ module Pesapal
     end
 
     # generate signing key
-    def Oauth.generate_signing_key(consumer_secret, token_secret = nil)
+    def self.generate_signing_key(consumer_secret, token_secret = nil)
 
       # the signing key is simply the percent encoded consumer secret, followed
       # by an ampersand character '&', followed by the percent encoded token
@@ -122,7 +122,7 @@ module Pesapal
     end
 
     # normalize request absolute URL
-    def Oauth.normalized_request_uri(absolute_url)
+    def self.normalized_request_uri(absolute_url)
 
       # the signature base string includes the request absolute url, tying the
       # signature to a specific endpoint. the url used in the signature base
@@ -156,7 +156,7 @@ module Pesapal
     end
 
     # percentage encode value as per the oauth spec
-    def Oauth.parameter_encode(string)
+    def self.parameter_encode(string)
 
       # all parameter names and values are escaped using the [rfc3986] percent-
       # encoding (%xx) mechanism. characters not in the unreserved character set
