@@ -12,17 +12,7 @@ module Pesapal
 
     private
 
-    def api_domain
-      @api_domain
-    end
-
-    def api_endpoints
-      @api_endpoints
-    end
-
-    def env
-      @env
-    end
+    attr_reader :api_domain, :api_endpoints, :env
 
     def params
       @params ||= nil
