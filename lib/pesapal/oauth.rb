@@ -18,7 +18,7 @@ module Pesapal
       #  value
 
       queries = []
-      params.each do |k,v| queries.push "#{self.parameter_encode(k.to_s)}=#{self.parameter_encode(v.to_s)}" end
+      params.each { |k,v| queries.push "#{self.parameter_encode(k.to_s)}=#{self.parameter_encode(v.to_s)}" }
 
       # parameters are sorted by name, using lexicographical byte value
       # ordering
