@@ -1,6 +1,6 @@
 module Pesapal
   # Pesapal helper modules.
-    module Helper
+  module Helper
     # Contains helper methods relating to any queries for transaction payment
     # status. See {Pesapal::Merchant#query_payment_status} source.
     module Status

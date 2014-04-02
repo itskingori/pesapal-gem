@@ -1,5 +1,4 @@
 module Pesapal
-
   # Pesapal Merchant object responsible for posting and handling transaction
   # queries.
   class Merchant
