@@ -163,7 +163,7 @@ module Pesapal
     # as a query parameter – this can be used subsequently to track the payment
     # status on Pesapal for the transaction later on.
     #
-    # Generating the URL is a 2-step process:
+    # Generating the URL is a 3-step process:
     #
     # 1. Initialize {Pesapal::Merchant}, making sure credentials are set. See {#initialize} for details.
     # 2. Set the order details. See {#order_details} for details.
