@@ -185,10 +185,10 @@ module Pesapal
     def generate_order_url
       # build xml with input data, the format is standard so no editing is
       # required
-      @post_xml = Pesapal::Post.generate_post_xml @order_details
+      @post_xml = Pesapal::Helper::Post.generate_post_xml @order_details
 
       # initialize setting of @params (oauth_signature left empty)
-      @params = Pesapal::Post.set_parameters(@config[:callback_url], @config[:consumer_key], @post_xml)
+      @params = Pesapal::Helper::Post.set_parameters(@config[:callback_url], @config[:consumer_key], @post_xml)
 
       # generate oauth signature and add signature to the request parameters
       @params[:oauth_signature] = Pesapal::Oauth::generate_oauth_signature("GET", @api_endpoints[:postpesapaldirectorderv4], @params, @config[:consumer_secret], @token_secret)
@@ -237,7 +237,7 @@ module Pesapal
     # @return [Hash] transaction payment details
     def query_payment_details(merchant_reference, transaction_tracking_id)
       # initialize setting of @params (oauth_signature left empty)
-      @params = Pesapal::Details.set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
+      @params = Pesapal::Helper::Details.set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
 
       # generate oauth signature and add signature to the request parameters
       @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature("GET", @api_endpoints[:querypaymentdetails], @params, @config[:consumer_secret], @token_secret)
@@ -292,7 +292,7 @@ module Pesapal
     #   PENDING | COMPLETED | FAILED | INVALID
     def query_payment_status(merchant_reference, transaction_tracking_id = nil)
       # initialize setting of @params (oauth_signature left empty)
-      @params = Pesapal::Status.set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
+      @params = Pesapal::Helper::Status.set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
 
       # generate oauth signature and add signature to the request parameters
       @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature("GET", @api_endpoints[:querypaymentstatus], @params, @config[:consumer_secret], @token_secret)
