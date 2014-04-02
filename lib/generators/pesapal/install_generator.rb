@@ -1,4 +1,7 @@
 module Pesapal
+  # Since generators are not specific to this project, it's preferable you refer
+  # to the official documentation on the Rails site here;
+  # http://guides.rubyonrails.org/generators.html
   module Generators
     class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path("../../templates", __FILE__)

@@ -1,6 +1,8 @@
 module Pesapal
+  # Hooks Pesapal to extend Rails and/or modify the initialization process.
   class Railtie < Rails::Railtie
-
+    # Loads pesapal credentials from initializer file depending on environment
+    # and fallback to default values if anything goes wrong.
     initializer 'pesapal.load_credentials' do
       path_to_yaml = "#{Rails.root}/config/pesapal.yml"
       if File.exist?(path_to_yaml)
