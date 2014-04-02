@@ -1,9 +1,10 @@
 module Pesapal
-  # Contains helper methods relating to any queries for payment details.
+  # Contains helper methods relating to any queries for payment details. See
+  # {Pesapal::Merchant#query_payment_details} source.
   module Details
     # Prepares parameters to be used during the QueryPaymentDetails oAuth 1.0 call.
     #
-    # A typical oAuth 1.0 call requires the following parameters;
+    # The QueryPaymentDetails oAuth 1.0 call requires the following parameters;
     #
     # 1. `oauth_consumer_key` - your Pesapal consumer key sent to you via email or obtained from the dashboard
     # 2. `oauth_nonce` - a random string, uniquely generated for each request. See [section 8 of the oAuth 1.0 spec][3]
@@ -12,11 +13,12 @@ module Pesapal
     # 5. `oauth_timestamp` - number of seconds since January 1, 1970 00:00:00 GMT, also known as Unix Time. See [section 8 of the oAuth 1.0 spec][3]
     # 6. `oauth_version` - `1.0` (do not change)
     # 7. `pesapal_merchant_reference` - the transaction merchant reference (same as `merchant_reference` defined below)
+    # 8. `pesapal_transaction_tracking_id` - the transaction tracking id (same as `transaction_tracking_id` defined below)
     #
     # This method generates all the above **except** the `oauth_signature` which
-    # is generated later by {Pesapal::Oauth.generate_oauth_signature}.
-    # Generation of this `oauth_signature` requires these parameters as inputs.
-    # See [section 9.2.1 of the oAuth 1.0 spec][1] for more details.
+    # is generated later by {Pesapal::Oauth.generate_oauth_signature} since
+    # generation of this `oauth_signature` requires these parameters as inputs
+    # anyway. See [section 9.2.1 of the oAuth 1.0 spec][1] for more details.
     #
     # [1]: http://oauth.net/core/1.0/#anchor16
     # [2]: http://oauth.net/core/1.0/#signing_process
@@ -32,7 +34,7 @@ module Pesapal
     # @param transaction_tracking_id [String] the unique id assigned by Pesapal
     #   to the transaction after it's posted
     #
-    # @return [Hash] oAuth 1.0 call parameters
+    # @return [Hash] parameters to be used in generating the oAuth 1.0 URL query parameters and the `oauth_signature` itself.
     def self.set_parameters(consumer_key, merchant_reference, transaction_tracking_id)
       timestamp = Time.now.to_i.to_s
       { :oauth_consumer_key => consumer_key,

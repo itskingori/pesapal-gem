@@ -52,11 +52,11 @@ module Pesapal
     # }
     # ```
     #
-    # @note the `:amount` should be a number, no commas or else Pesapal will
-    #   convert the comma to a period (.) which will result in the incorrect
-    #   amount for the transaction. Also all keys **MUST** be present. If there's
-    #   one that you wish to ignore just leave it with a blank string but make
-    #   sure it's included e.g. the phonenumber.
+    # @note Make sure **ALL** expected hash attributes are present, the method
+    #   assumes they are and no checks are done to certify that this has been
+    #   done nor are any fallbacks built in. Also the `:amount` should be a
+    #   number, no commas, or else Pesapal will convert the comma to a period (.)
+    #   which will result in the incorrect amount for the transaction.
     #
     # @return [Hash] the order details
     def order_details
