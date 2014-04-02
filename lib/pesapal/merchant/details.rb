@@ -34,13 +34,7 @@ module Pesapal
     #
     # @return [Hash] oAuth 1.0 call parameters
     def self.set_parameters(consumer_key, merchant_reference, transaction_tracking_id)
-
-      # parameters required by the QueryPaymentDetails call (excludes
-      # oauth_signature parameter as per the instructions here
-      # http://developer.pesapal.com/how-to-integrate/api-reference#QueryPaymentDetails)
-
       timestamp = Time.now.to_i.to_s
-
       { :oauth_consumer_key => consumer_key,
         :oauth_nonce => "#{timestamp}" + Pesapal::Oauth.generate_nonce(12),
         :oauth_signature_method => 'HMAC-SHA1',
