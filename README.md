@@ -225,7 +225,7 @@ response_to_ipn = pesapal.ipn_listener("<NOTIFICATION_TYPE>", "<MERCHANT_REFEREN
 
 The variable, `response_to_ipn`, now holds a response as the one shown below.
 Using the status you can customise any actions (e.g. database inserts and
-updates) and finally, it's upto you to send the `:response` back to pesapal. The
+updates) and finally, it's up to you to send the `:response` back to pesapal. The
 hard part is done for you.
 
 ```

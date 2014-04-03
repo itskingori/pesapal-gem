@@ -14,7 +14,7 @@ module Pesapal
     # 4. If there are more key/value pairs remaining, append a '&' character
     #    to the output string
     #
-    # The oauth spec says to sort lexigraphically, which is the default
+    # The oauth spec says to sort lexicographically, which is the default
     # alphabetical sort for many libraries. In case of two parameters with the
     # same encoded key, the oauth spec says to continue sorting based on value.
     #
