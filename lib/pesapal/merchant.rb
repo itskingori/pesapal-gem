@@ -123,13 +123,13 @@ module Pesapal
     # The appropriate credentials are picked and set to {#config} instance
     # attribute depending on set environment. The setting of environment is
     # explained above. It's worth nothing that if for some reason the YAML file
-    # coule not be read, then it fallbacks to setting {#config} instance
+    # could not be read, then it fallbacks to setting {#config} instance
     # attribute with default values. The exact definition of default values is
     # shown below.
     #
     # ### Case 2: Non-Rails app
     #
-    # Since (and if) no pre-defined configuration files are available, the
+    # Since (and if) no predefined configuration files are available, the
     # constructor sets the {#config} instance attribute up with default values
     # as shown below:
     #
@@ -174,11 +174,11 @@ module Pesapal
     # # generate transaction url after step #1 & #2
     # order_url = pesapal.generate_order_url
     #
-    # # order_url now contains a string with the order url;
+    # # order_url now contains a string with the order url.
     # # http://demo.pesapal.com/API/PostPesapalDirectOrderV4?oauth_callback=http%3A%2F%2F1.2.3.4%3A3000%2Fpesapal%2Fcallback&oauth_consumer_key=A9MXocJiHK1P4w0M%2F%2FYzxgIVMX557Jt4&oauth_nonce=13804335543pDXs4q3djsy&oauth_signature=BMmLR0AVInfoBI9D4C38YDA9eSM%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1380433554&oauth_version=1.0&pesapal_request_data=%26lt%3B%3Fxml%20version%3D%26quot%3B1.0%26quot%3B%20encoding%3D%26quot%3Butf-8%26quot%3B%3F%26gt%3B%26lt%3BPesapalDirectOrderInfo%20xmlns%3Axsi%3D%26quot%3Bhttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema-instance%26quot%3B%20xmlns%3Axsd%3D%26quot%3Bhttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%26quot%3B%20Amount%3D%26quot%3B1000%26quot%3B%20Description%3D%26quot%3Bthis%20is%20the%20transaction%20description%26quot%3B%20Type%3D%26quot%3BMERCHANT%26quot%3B%20Reference%3D%26quot%3B808%26quot%3B%20FirstName%3D%26quot%3BSwaleh%26quot%3B%20LastName%3D%26quot%3BMdoe%26quot%3B%20Email%3D%26quot%3Bj%40kingori.co%26quot%3B%20PhoneNumber%3D%26quot%3B%2B254722222222%26quot%3B%20xmlns%3D%26quot%3Bhttp%3A%2F%2Fwww.pesapal.com%26quot%3B%20%2F%26gt%3B
     # ```
     #
-    # @note You **MUST** set up your order details befor you call this method on the object.
+    # @note You **MUST** set up your order details before you call this method on the object.
     #
     # @return [String] URL of the Pesapal post order form
     def generate_order_url
@@ -378,7 +378,7 @@ module Pesapal
     # received from PesaPal if successful, which the method generates for you
     # and should be in `:response`._
     #
-    # @note It's upto you to send the response back to Pesapal by providing the
+    # @note It's up to you to send the response back to Pesapal by providing the
     #   `:response` back to the IPN. The hard part is done.
     #
     # @param notification_type [String] the IPN notification type, should be set
