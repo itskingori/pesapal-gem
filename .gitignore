@@ -14,3 +14,6 @@ Gemfile.lock
 
 # Yard #
 .yardoc/*
+
+# Jekyll Stuff #
+_site
