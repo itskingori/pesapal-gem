@@ -4,6 +4,7 @@
 <a href="http://badge.fury.io/rb/pesapal"><img src="https://badge.fury.io/rb/pesapal@2x.png" alt="Gem Version" height="18"></a>
 [![Build Status](https://travis-ci.org/itsmrwave/pesapal-gem.png?branch=master)](https://travis-ci.org/itsmrwave/pesapal-gem)
 [![Code Climate](https://codeclimate.com/github/itsmrwave/pesapal-gem.png)](https://codeclimate.com/github/itsmrwave/pesapal-gem)
+[![Coverage Status](https://coveralls.io/repos/itsmrwave/pesapal-gem/badge.png)](https://coveralls.io/r/itsmrwave/pesapal-gem)
 [![Dependency Status](https://gemnasium.com/itsmrwave/pesapal-gem.png)](https://gemnasium.com/itsmrwave/pesapal-gem)
 
 
