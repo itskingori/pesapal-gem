@@ -46,7 +46,7 @@ For Rails, you need to run the generator to create sample pesapal.yml file:
 License
 -------
 
-[King'ori J. Maina][7] © 2013. The [MIT License bundled therein][8] is a
+[King'ori J. Maina][7] © 2013-2014. The [MIT License bundled therein][8] is a
 permissive license that is short and to the point. It lets people do anything
 they want as long as they provide attribution and waive liability.
 
