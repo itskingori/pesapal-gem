@@ -51,7 +51,7 @@ permissive license that is short and to the point. It lets people do anything
 they want as long as they provide attribution and waive liability.
 
 [1]: https://www.pesapal.com/
-[2]: http://kingori.co/pesapal-gem/
+[2]: http://itsmrwave.github.io/pesapal-gem
 [3]: http://oauth.net/core/1.0/
 [4]: http://rubygems.org/gems/pesapal
 [5]: https://raw.githubusercontent.com/itsmrwave/pesapal-gem/master/CHANGELOG.md
