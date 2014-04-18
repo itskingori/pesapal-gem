@@ -44,6 +44,23 @@ describe Pesapal::Merchant do
                                       })
       end
     end
+
+    describe '#generate_order_url' do
+
+      it 'generates iframe url string' do
+        @pesapal.order_details = { :amount => 1000,
+                                   :description => 'This is the description for the test transaction.',
+                                   :type => 'MERCHANT',
+                                   :reference => '111-222-333',
+                                   :first_name => 'Swaleh',
+                                   :last_name => 'Mdoe',
+                                   :email => 'test@example.com',
+                                   :phonenumber => '+254711000333',
+                                   :currency => 'KES'
+                                }
+        expect(@pesapal.generate_order_url).to include('http://demo.pesapal.com/API/PostPesapalDirectOrderV4')
+      end
+    end
   end
 
   context 'when mode is specified as development' do
@@ -64,9 +81,9 @@ describe Pesapal::Merchant do
 
       it 'sets credentials' do
         expect(@pesapal.config).to eq({ :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
-                                            :consumer_key => '<YOUR_CONSUMER_KEY>',
-                                            :consumer_secret => '<YOUR_CONSUMER_SECRET>'
-                                          })
+                                        :consumer_key => '<YOUR_CONSUMER_KEY>',
+                                        :consumer_secret => '<YOUR_CONSUMER_SECRET>'
+                                      })
       end
 
       it 'sets order details' do
@@ -86,6 +103,23 @@ describe Pesapal::Merchant do
                                                      :querypaymentstatus=>'http://demo.pesapal.com/API/QueryPaymentStatus',
                                                      :querypaymentdetails=>'http://demo.pesapal.com/API/QueryPaymentDetails'
                                                     })
+      end
+    end
+
+    describe '#generate_order_url' do
+
+      it 'generates iframe url string' do
+        @pesapal.order_details = { :amount => 1000,
+                                   :description => 'This is the description for the test transaction.',
+                                   :type => 'MERCHANT',
+                                   :reference => '111-222-333',
+                                   :first_name => 'Swaleh',
+                                   :last_name => 'Mdoe',
+                                   :email => 'test@example.com',
+                                   :phonenumber => '+254711000333',
+                                   :currency => 'KES'
+                                }
+        expect(@pesapal.generate_order_url).to include('http://demo.pesapal.com/API/PostPesapalDirectOrderV4')
       end
     end
   end
@@ -108,9 +142,9 @@ describe Pesapal::Merchant do
 
       it 'sets credentials' do
         expect(@pesapal.config).to eq({ :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
-                                             :consumer_key => '<YOUR_CONSUMER_KEY>',
-                                             :consumer_secret => '<YOUR_CONSUMER_SECRET>'
-                                            })
+                                        :consumer_key => '<YOUR_CONSUMER_KEY>',
+                                        :consumer_secret => '<YOUR_CONSUMER_SECRET>'
+                                      })
       end
 
       it 'sets order details' do
@@ -130,6 +164,23 @@ describe Pesapal::Merchant do
                                                     :querypaymentstatus=>'https://www.pesapal.com/API/QueryPaymentStatus',
                                                     :querypaymentdetails=>'https://www.pesapal.com/API/QueryPaymentDetails'
                                                   })
+      end
+    end
+
+    describe '#generate_order_url' do
+
+      it 'generates iframe url string' do
+        @pesapal.order_details = { :amount => 1000,
+                                   :description => 'This is the description for the test transaction.',
+                                   :type => 'MERCHANT',
+                                   :reference => '111-222-333',
+                                   :first_name => 'Swaleh',
+                                   :last_name => 'Mdoe',
+                                   :email => 'test@example.com',
+                                   :phonenumber => '+254711000333',
+                                   :currency => 'KES'
+                                }
+        expect(@pesapal.generate_order_url).to include('https://www.pesapal.com/API/PostPesapalDirectOrderV4')
       end
     end
   end
