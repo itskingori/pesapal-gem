@@ -2,6 +2,9 @@
 /.bundle
 /vendor/bundle
 
+# Coveralls #
+/coverage/
+
 # Jekyll #
 _site
 
