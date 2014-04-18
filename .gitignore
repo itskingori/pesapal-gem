@@ -1,19 +1,15 @@
-# Ignore bundler config #
+# Bundler #
 /.bundle
-
-# Ignore bundled gems #
 /vendor/bundle
 
-# Ignore all logfiles and tempfiles #
-/log/*
-/tmp/*
-
-# Other Files #
-Gemfile.lock
-*.gem
+# Jekyll #
+_site
 
 # Yard #
 .yardoc/*
 
-# Jekyll Stuff #
-_site
+# Gem #
+/log/*
+/tmp/*
+Gemfile.lock
+*.gem
