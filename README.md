@@ -66,6 +66,6 @@ they want as long as they provide attribution and waive liability.
 [6]: https://github.com/itsmrwave/pesapal-gem/releases/
 [7]: http://kingori.co/
 [8]: https://raw.githubusercontent.com/itsmrwave/pesapal-gem/master/LICENSE.md
-[9]: http://rubydoc.info/gems/pesapal/
+[9]: http://rubydoc.info/gems/pesapal/frames/file/README.md
 [10]: http://mogetutu.com/
 [11]: https://github.com/mogetutu
