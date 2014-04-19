@@ -89,6 +89,19 @@ describe Pesapal::Merchant do
       end
     end
 
+    describe '#query_payment_details' do
+
+      it 'gets pending payment details' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentDetails\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=transaction_tracking_id,payment_method,payment_status,merchant_reference')
+        expect(@pesapal.query_payment_details('merchant_reference', 'transaction_tracking_id')).to eq({ :method => 'payment_method',
+                                                                                                        :status => 'payment_status',
+                                                                                                        :merchant_reference => 'merchant_reference',
+                                                                                                        :transaction_tracking_id => 'transaction_tracking_id'
+                                                                                                      })
+      end
+    end
+
     describe '#ipn_listener' do
 
       it 'gets ipn response for pending status' do
@@ -204,6 +217,19 @@ describe Pesapal::Merchant do
       end
     end
 
+    describe '#query_payment_details' do
+
+      it 'gets pending payment details' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentDetails\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=transaction_tracking_id,payment_method,payment_status,merchant_reference')
+        expect(@pesapal.query_payment_details('merchant_reference', 'transaction_tracking_id')).to eq({ :method => 'payment_method',
+                                                                                                        :status => 'payment_status',
+                                                                                                        :merchant_reference => 'merchant_reference',
+                                                                                                        :transaction_tracking_id => 'transaction_tracking_id'
+                                                                                                      })
+      end
+    end
+
     describe '#ipn_listener' do
 
       it 'gets ipn response for pending status' do
@@ -316,6 +342,19 @@ describe Pesapal::Merchant do
         stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
           to_return(:status => 200, :body => 'pesapal_response_data=INVALID')
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('INVALID')
+      end
+    end
+
+    describe '#query_payment_details' do
+
+      it 'gets pending payment details' do
+        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentDetails\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=transaction_tracking_id,payment_method,payment_status,merchant_reference')
+        expect(@pesapal.query_payment_details('merchant_reference', 'transaction_tracking_id')).to eq({ :method => 'payment_method',
+                                                                                                        :status => 'payment_status',
+                                                                                                        :merchant_reference => 'merchant_reference',
+                                                                                                        :transaction_tracking_id => 'transaction_tracking_id'
+                                                                                                      })
       end
     end
 
