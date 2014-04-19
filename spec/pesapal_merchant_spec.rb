@@ -58,7 +58,7 @@ describe Pesapal::Merchant do
                                    :phonenumber => '+254711000333',
                                    :currency => 'KES'
                                 }
-        expect(@pesapal.generate_order_url).to include('http://demo.pesapal.com/API/PostPesapalDirectOrderV4')
+        expect(@pesapal.generate_order_url).to match /http:\/\/demo.pesapal.com\/API\/PostPesapalDirectOrderV4\?oauth_callback=.*oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_request_data=.*/
       end
     end
 
@@ -146,7 +146,7 @@ describe Pesapal::Merchant do
                                    :phonenumber => '+254711000333',
                                    :currency => 'KES'
                                 }
-        expect(@pesapal.generate_order_url).to include('http://demo.pesapal.com/API/PostPesapalDirectOrderV4')
+        expect(@pesapal.generate_order_url).to match /http:\/\/demo.pesapal.com\/API\/PostPesapalDirectOrderV4\?oauth_callback=.*oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_request_data=.*/
       end
     end
 
@@ -234,7 +234,7 @@ describe Pesapal::Merchant do
                                    :phonenumber => '+254711000333',
                                    :currency => 'KES'
                                 }
-        expect(@pesapal.generate_order_url).to include('https://www.pesapal.com/API/PostPesapalDirectOrderV4')
+        expect(@pesapal.generate_order_url).to match /https:\/\/www.pesapal.com\/API\/PostPesapalDirectOrderV4\?oauth_callback=.*oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_request_data=.*/
       end
     end
 
