@@ -245,7 +245,7 @@ module Pesapal
       query_string = Pesapal::Oauth.generate_encoded_params_query_string @params
 
       # get status response
-      uri = URI.parse "#{@api_endpoints[:querypaymentstatus]}?#{query_string}"
+      uri = URI.parse "#{@api_endpoints[:querypaymentdetails]}?#{query_string}"
       http = Net::HTTP.new(uri.host, uri.port)
       if @env == 'production'
         http.use_ssl = true
