@@ -88,6 +88,33 @@ describe Pesapal::Merchant do
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('INVALID')
       end
     end
+
+    describe '#ipn_listener' do
+
+      it 'gets ipn response for pending status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=PENDING')
+        expect(@pesapal.ipn_listener('CHANGE', 'merchant_reference', 'transaction_tracking_id')).to eq({:status => 'PENDING', :response => nil})
+      end
+
+      it 'gets ipn response for completed status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=COMPLETED')
+        expect(@pesapal.ipn_listener('CHANGE', 'merchant_reference', 'transaction_tracking_id')).to eq({:status => 'COMPLETED', :response => 'pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=transaction_tracking_id&pesapal_merchant_reference=merchant_reference'})
+      end
+
+      it 'gets ipn response for failed status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=FAILED')
+        expect(@pesapal.ipn_listener('CHANGE', 'merchant_reference', 'transaction_tracking_id')).to eq({:status => 'FAILED', :response => 'pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=transaction_tracking_id&pesapal_merchant_reference=merchant_reference'})
+      end
+
+      it 'gets ipn response for invalid status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=INVALID')
+        expect(@pesapal.ipn_listener('CHANGE', 'merchant_reference', 'transaction_tracking_id')).to eq({:status => 'INVALID', :response => nil})
+      end
+    end
   end
 
   context 'when mode is specified as development' do
@@ -176,6 +203,33 @@ describe Pesapal::Merchant do
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('INVALID')
       end
     end
+
+    describe '#ipn_listener' do
+
+      it 'gets ipn response for pending status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=PENDING')
+        expect(@pesapal.ipn_listener('CHANGE', 'merchant_reference', 'transaction_tracking_id')).to eq({:status => 'PENDING', :response => nil})
+      end
+
+      it 'gets ipn response for completed status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=COMPLETED')
+        expect(@pesapal.ipn_listener('CHANGE', 'merchant_reference', 'transaction_tracking_id')).to eq({:status => 'COMPLETED', :response => 'pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=transaction_tracking_id&pesapal_merchant_reference=merchant_reference'})
+      end
+
+      it 'gets ipn response for failed status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=FAILED')
+        expect(@pesapal.ipn_listener('CHANGE', 'merchant_reference', 'transaction_tracking_id')).to eq({:status => 'FAILED', :response => 'pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=transaction_tracking_id&pesapal_merchant_reference=merchant_reference'})
+      end
+
+      it 'gets ipn response for invalid status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=INVALID')
+        expect(@pesapal.ipn_listener('CHANGE', 'merchant_reference', 'transaction_tracking_id')).to eq({:status => 'INVALID', :response => nil})
+      end
+    end
   end
 
   context 'when mode is specified as production' do
@@ -262,6 +316,33 @@ describe Pesapal::Merchant do
         stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
           to_return(:status => 200, :body => 'pesapal_response_data=INVALID')
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('INVALID')
+      end
+    end
+
+    describe '#ipn_listener' do
+
+      it 'gets ipn response for pending status' do
+        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=PENDING')
+        expect(@pesapal.ipn_listener('CHANGE', 'merchant_reference', 'transaction_tracking_id')).to eq({:status => 'PENDING', :response => nil})
+      end
+
+      it 'gets ipn response for completed status' do
+        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=COMPLETED')
+        expect(@pesapal.ipn_listener('CHANGE', 'merchant_reference', 'transaction_tracking_id')).to eq({:status => 'COMPLETED', :response => 'pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=transaction_tracking_id&pesapal_merchant_reference=merchant_reference'})
+      end
+
+      it 'gets ipn response for failed status' do
+        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=FAILED')
+        expect(@pesapal.ipn_listener('CHANGE', 'merchant_reference', 'transaction_tracking_id')).to eq({:status => 'FAILED', :response => 'pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=transaction_tracking_id&pesapal_merchant_reference=merchant_reference'})
+      end
+
+      it 'gets ipn response for invalid status' do
+        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=INVALID')
+        expect(@pesapal.ipn_listener('CHANGE', 'merchant_reference', 'transaction_tracking_id')).to eq({:status => 'INVALID', :response => nil})
       end
     end
   end
