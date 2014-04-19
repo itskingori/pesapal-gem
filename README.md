@@ -43,6 +43,14 @@ For Rails, you need to run the generator to create sample pesapal.yml file:
     rails generate pesapal:install
 
 
+Contributors
+------------
+
+Special thanks to:
+
+* [Isaac Mogetutu][10] ([@mogetutu][11])
+
+
 License
 -------
 
@@ -59,3 +67,5 @@ they want as long as they provide attribution and waive liability.
 [7]: http://kingori.co/
 [8]: https://raw.githubusercontent.com/itsmrwave/pesapal-gem/master/LICENSE.md
 [9]: http://rubydoc.info/gems/pesapal/
+[10]: http://mogetutu.com/
+[11]: https://github.com/mogetutu
