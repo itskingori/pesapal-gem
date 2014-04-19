@@ -1,9 +1,10 @@
+# The Coveralls.wear! must occur before any of your application code is required
+# https://coveralls.io/docs/ruby
 require 'coveralls'
-require 'webmock/rspec'
-
-require_relative '../lib/pesapal'
-
 Coveralls.wear!
+
+require 'webmock/rspec'
+require_relative '../lib/pesapal'
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
