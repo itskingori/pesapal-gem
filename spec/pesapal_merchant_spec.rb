@@ -61,6 +61,33 @@ describe Pesapal::Merchant do
         expect(@pesapal.generate_order_url).to include('http://demo.pesapal.com/API/PostPesapalDirectOrderV4')
       end
     end
+
+    describe '#query_payment_status' do
+
+      it 'gets pending payment status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=PENDING')
+        expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('PENDING')
+      end
+
+      it 'gets completed payment status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=COMPLETED')
+        expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('COMPLETED')
+      end
+
+      it 'gets failed payment status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=FAILED')
+        expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('FAILED')
+      end
+
+      it 'gets invalid payment status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=INVALID')
+        expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('INVALID')
+      end
+    end
   end
 
   context 'when mode is specified as development' do
@@ -122,6 +149,33 @@ describe Pesapal::Merchant do
         expect(@pesapal.generate_order_url).to include('http://demo.pesapal.com/API/PostPesapalDirectOrderV4')
       end
     end
+
+    describe '#query_payment_status' do
+
+      it 'gets pending payment status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=PENDING')
+        expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('PENDING')
+      end
+
+      it 'gets completed payment status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=COMPLETED')
+        expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('COMPLETED')
+      end
+
+      it 'gets failed payment status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=FAILED')
+        expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('FAILED')
+      end
+
+      it 'gets invalid payment status' do
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=INVALID')
+        expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('INVALID')
+      end
+    end
   end
 
   context 'when mode is specified as production' do
@@ -181,6 +235,33 @@ describe Pesapal::Merchant do
                                    :currency => 'KES'
                                 }
         expect(@pesapal.generate_order_url).to include('https://www.pesapal.com/API/PostPesapalDirectOrderV4')
+      end
+    end
+
+    describe '#query_payment_status' do
+
+      it 'gets pending payment status' do
+        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=PENDING')
+        expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('PENDING')
+      end
+
+      it 'gets completed payment status' do
+        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=COMPLETED')
+        expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('COMPLETED')
+      end
+
+      it 'gets failed payment status' do
+        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=FAILED')
+        expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('FAILED')
+      end
+
+      it 'gets invalid payment status' do
+        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus.*/).
+          to_return(:status => 200, :body => 'pesapal_response_data=INVALID')
+        expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('INVALID')
       end
     end
   end
