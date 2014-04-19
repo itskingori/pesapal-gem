@@ -65,25 +65,25 @@ describe Pesapal::Merchant do
     describe '#query_payment_status' do
 
       it 'gets pending payment status' do
-        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
           to_return(:status => 200, :body => 'pesapal_response_data=PENDING')
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('PENDING')
       end
 
       it 'gets completed payment status' do
-        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
           to_return(:status => 200, :body => 'pesapal_response_data=COMPLETED')
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('COMPLETED')
       end
 
       it 'gets failed payment status' do
-        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
           to_return(:status => 200, :body => 'pesapal_response_data=FAILED')
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('FAILED')
       end
 
       it 'gets invalid payment status' do
-        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
           to_return(:status => 200, :body => 'pesapal_response_data=INVALID')
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('INVALID')
       end
@@ -153,25 +153,25 @@ describe Pesapal::Merchant do
     describe '#query_payment_status' do
 
       it 'gets pending payment status' do
-        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
           to_return(:status => 200, :body => 'pesapal_response_data=PENDING')
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('PENDING')
       end
 
       it 'gets completed payment status' do
-        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
           to_return(:status => 200, :body => 'pesapal_response_data=COMPLETED')
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('COMPLETED')
       end
 
       it 'gets failed payment status' do
-        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
           to_return(:status => 200, :body => 'pesapal_response_data=FAILED')
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('FAILED')
       end
 
       it 'gets invalid payment status' do
-        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus.*/).
+        stub_request(:get, /http:\/\/demo.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
           to_return(:status => 200, :body => 'pesapal_response_data=INVALID')
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('INVALID')
       end
@@ -241,25 +241,25 @@ describe Pesapal::Merchant do
     describe '#query_payment_status' do
 
       it 'gets pending payment status' do
-        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus.*/).
+        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
           to_return(:status => 200, :body => 'pesapal_response_data=PENDING')
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('PENDING')
       end
 
       it 'gets completed payment status' do
-        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus.*/).
+        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
           to_return(:status => 200, :body => 'pesapal_response_data=COMPLETED')
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('COMPLETED')
       end
 
       it 'gets failed payment status' do
-        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus.*/).
+        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
           to_return(:status => 200, :body => 'pesapal_response_data=FAILED')
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('FAILED')
       end
 
       it 'gets invalid payment status' do
-        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus.*/).
+        stub_request(:get, /https:\/\/www.pesapal.com\/API\/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*/).
           to_return(:status => 200, :body => 'pesapal_response_data=INVALID')
         expect(@pesapal.query_payment_status('merchant_reference', 'transaction_tracking_id')).to eq('INVALID')
       end
