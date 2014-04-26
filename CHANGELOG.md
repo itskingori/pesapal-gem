@@ -1,6 +1,13 @@
 Changelog
 =========
 
+v1.5.6
+------
+
+* Stop using deprecated OpenSSL::Digest::Digest
+* Enforce minimum required Ruby version, gem is test for Ruby '>= 1.9.2' afterall
+* Refactor tests
+
 v1.5.5
 ------
 
