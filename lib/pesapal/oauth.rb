@@ -74,7 +74,7 @@ module Pesapal
     #
     # @return [String] valid oAuth signature.
     def self.generate_oauth_signature(http_method, absolute_url, params, consumer_secret, token_secret = nil)
-      digest = OpenSSL::Digest::Digest.new('sha1')
+      digest = OpenSSL::Digest.new('sha1')
       signature_base_string = generate_signature_base_string(http_method, absolute_url, params)
       signing_key = generate_signing_key(consumer_secret, token_secret)
       hmac = OpenSSL::HMAC.digest(digest, signing_key, signature_base_string)
