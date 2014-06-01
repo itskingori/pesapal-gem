@@ -2,6 +2,29 @@ require 'spec_helper'
 
 describe Pesapal::Merchant do
 
+  let(:order_details) { { :amount => 1000,
+                          :description => Faker::Lorem.sentence,
+                          :type => 'MERCHANT',
+                          :reference => '111-222-333',
+                          :first_name => Faker::Name.first_name,
+                          :last_name => Faker::Name.last_name,
+                          :email => Faker::Internet.email,
+                          :phonenumber => Faker::PhoneNumber.phone_number,
+                          :currency => 'KES' #['USD', 'KES', 'UGX', 'TZA'].sample
+                        } }
+  let(:default_credentials) { { :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
+                                :consumer_key => '<YOUR_CONSUMER_KEY>',
+                                :consumer_secret => '<YOUR_CONSUMER_SECRET>'
+                              } }
+  let(:demo_endpoints) { { :postpesapaldirectorderv4 => 'http://demo.pesapal.com/API/PostPesapalDirectOrderV4',
+                           :querypaymentstatus=>'http://demo.pesapal.com/API/QueryPaymentStatus',
+                           :querypaymentdetails=>'http://demo.pesapal.com/API/QueryPaymentDetails'
+                        } }
+  let(:production_endpoints) { { :postpesapaldirectorderv4 => 'https://www.pesapal.com/API/PostPesapalDirectOrderV4',
+                                 :querypaymentstatus=>'https://www.pesapal.com/API/QueryPaymentStatus',
+                                 :querypaymentdetails=>'https://www.pesapal.com/API/QueryPaymentDetails'
+                              } }
+
   context 'when mode not specified' do
 
     let(:pesapal) { Pesapal::Merchant.new }
@@ -40,16 +63,7 @@ describe Pesapal::Merchant do
     describe '#generate_order_url' do
 
       it 'generates iframe url string' do
-        pesapal.order_details = { :amount => 1000,
-                                  :description => 'This is the description for the test transaction.',
-                                  :type => 'MERCHANT',
-                                  :reference => '111-222-333',
-                                  :first_name => 'Swaleh',
-                                  :last_name => 'Mdoe',
-                                  :email => 'test@example.com',
-                                  :phonenumber => '+254711000333',
-                                  :currency => 'KES'
-                                }
+        pesapal.order_details = order_details
         expect(pesapal.generate_order_url).to match /http:\/\/demo.pesapal.com\/API\/PostPesapalDirectOrderV4\?oauth_callback=.*oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_request_data=.*/
       end
     end
@@ -157,16 +171,7 @@ describe Pesapal::Merchant do
     describe '#generate_order_url' do
 
       it 'generates iframe url string' do
-        pesapal.order_details = { :amount => 1000,
-                                  :description => 'This is the description for the test transaction.',
-                                  :type => 'MERCHANT',
-                                  :reference => '111-222-333',
-                                  :first_name => 'Swaleh',
-                                  :last_name => 'Mdoe',
-                                  :email => 'test@example.com',
-                                  :phonenumber => '+254711000333',
-                                  :currency => 'KES'
-                                }
+        pesapal.order_details = order_details
         expect(pesapal.generate_order_url).to match /http:\/\/demo.pesapal.com\/API\/PostPesapalDirectOrderV4\?oauth_callback=.*oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_request_data=.*/
       end
     end
@@ -274,16 +279,7 @@ describe Pesapal::Merchant do
     describe '#generate_order_url' do
 
       it 'generates iframe url string' do
-        pesapal.order_details = { :amount => 1000,
-                                  :description => 'This is the description for the test transaction.',
-                                  :type => 'MERCHANT',
-                                  :reference => '111-222-333',
-                                  :first_name => 'Swaleh',
-                                  :last_name => 'Mdoe',
-                                  :email => 'test@example.com',
-                                  :phonenumber => '+254711000333',
-                                  :currency => 'KES'
-                                }
+        pesapal.order_details = order_details
         expect(pesapal.generate_order_url).to match /https:\/\/www.pesapal.com\/API\/PostPesapalDirectOrderV4\?oauth_callback=.*oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_request_data=.*/
       end
     end
@@ -351,28 +347,5 @@ describe Pesapal::Merchant do
         expect(pesapal.ipn_listener('CHANGE', 'merchant_reference', 'transaction_tracking_id')).to eq({:status => 'INVALID', :response => nil})
       end
     end
-  end
-
-  private
-
-  def default_credentials
-    { :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
-      :consumer_key => '<YOUR_CONSUMER_KEY>',
-      :consumer_secret => '<YOUR_CONSUMER_SECRET>'
-    }
-  end
-
-  def demo_endpoints
-    { :postpesapaldirectorderv4 => 'http://demo.pesapal.com/API/PostPesapalDirectOrderV4',
-      :querypaymentstatus=>'http://demo.pesapal.com/API/QueryPaymentStatus',
-      :querypaymentdetails=>'http://demo.pesapal.com/API/QueryPaymentDetails'
-    }
-  end
-
-  def production_endpoints
-    { :postpesapaldirectorderv4 => 'https://www.pesapal.com/API/PostPesapalDirectOrderV4',
-      :querypaymentstatus=>'https://www.pesapal.com/API/QueryPaymentStatus',
-      :querypaymentdetails=>'https://www.pesapal.com/API/QueryPaymentDetails'
-    }
   end
 end
