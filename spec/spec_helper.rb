@@ -3,6 +3,7 @@
 require 'coveralls'
 Coveralls.wear!
 
+require 'faker'
 require 'webmock/rspec'
 require_relative '../lib/pesapal'
 
