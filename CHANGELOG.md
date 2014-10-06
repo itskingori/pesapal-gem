@@ -1,6 +1,14 @@
 Changelog
 =========
 
+v1.5.7
+------
+
+* Enforce minimum required Ruby version, gem is tested for Ruby '>= 1.9.3'
+* Add Rubocop as a development dependency and Hound to the workflow since we will use them to detect style guide violations
+* Code cleanup here and there
+
+
 v1.5.6
 ------
 
