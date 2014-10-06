@@ -1,0 +1,15 @@
+AllCops:
+  Include:
+    - '**/*.gemspec'
+    - '**/Gemfile'
+    - '**/Rakefile'
+  Exclude:
+    - 'vendor/**/*'
+Metrics/LineLength:
+  Enabled: false
+Metrics/ClassLength:
+  CountComments: false
+  Max: 150
+Metrics/MethodLength:
+  CountComments: false
+  Max: 20
