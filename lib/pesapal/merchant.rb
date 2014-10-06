@@ -190,7 +190,7 @@ module Pesapal
       @params = Pesapal::Helper::Post.set_parameters(@config[:callback_url], @config[:consumer_key], @post_xml)
 
       # generate oauth signature and add signature to the request parameters
-      @params[:oauth_signature] = Pesapal::Oauth::generate_oauth_signature('GET', @api_endpoints[:postpesapaldirectorderv4], @params, @config[:consumer_secret], @token_secret)
+      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', @api_endpoints[:postpesapaldirectorderv4], @params, @config[:consumer_secret], @token_secret)
 
       # change params (with signature) to a query string
       query_string = Pesapal::Oauth.generate_encoded_params_query_string @params
@@ -393,12 +393,13 @@ module Pesapal
     # @return [Hash] contains the status and IPN response that should be sent
     #   back to Pesapal
     def ipn_listener(notification_type, merchant_reference, transaction_tracking_id)
+      notification_type = 'CHANGE'
       status = query_payment_status(merchant_reference, transaction_tracking_id)
       output = { status: status, response: nil }
 
       case status
-      when 'COMPLETED' then output[:response] = "pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=#{transaction_tracking_id}&pesapal_merchant_reference=#{merchant_reference}"
-      when 'FAILED'    then output[:response] = "pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=#{transaction_tracking_id}&pesapal_merchant_reference=#{merchant_reference}"
+      when 'COMPLETED' then output[:response] = "pesapal_notification_type=#{notification_type}&pesapal_transaction_tracking_id=#{transaction_tracking_id}&pesapal_merchant_reference=#{merchant_reference}"
+      when 'FAILED'    then output[:response] = "pesapal_notification_type=#{notification_type}&pesapal_transaction_tracking_id=#{transaction_tracking_id}&pesapal_merchant_reference=#{merchant_reference}"
       end
 
       output
