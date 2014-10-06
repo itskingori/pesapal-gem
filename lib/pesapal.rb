@@ -9,4 +9,3 @@ require 'pesapal/oauth'
 require 'pesapal/version'
 
 require 'pesapal/railtie' if defined?(Rails)
-

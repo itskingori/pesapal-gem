@@ -114,7 +114,6 @@ module Pesapal
     #
     # @return [String] valid signature base string.
     def self.generate_signature_base_string(http_method, absolute_url, params)
-
       # step 1: convert the http method to uppercase
       http_method = http_method.upcase
 
@@ -156,11 +155,11 @@ module Pesapal
     # > String MUST include the scheme, authority, and path, and MUST exclude
     # > the query and fragment as defined by [RFC3986] section 3._
     #
-    # > _If the absolute request URL is not available to the Service Provider (it
-    # > is always available to the Consumer), it can be constructed by combining
-    # > the scheme being used, the HTTP Host header, and the relative HTTP
-    # > request URL. If the Host header is not available, the Service Provider
-    # > SHOULD use the host name communicated to the Consumer in the
+    # > _If the absolute request URL is not available to the Service Provider
+    # > (it is always available to the Consumer), it can be constructed by
+    # > combining the scheme being used, the HTTP Host header, and the relative
+    # > HTTP request URL. If the Host header is not available, the Service
+    # > Provider SHOULD use the host name communicated to the Consumer in the
     # > documentation or other means._
     #
     # > _The Service Provider SHOULD document the form of URL used in the
@@ -184,7 +183,7 @@ module Pesapal
       path = u.path
       port = u.port
 
-      port = (scheme == 'http' && port != 80) || (scheme == 'https' && port != 443) ? ":#{port}" : ""
+      port = (scheme == 'http' && port != 80) || (scheme == 'https' && port != 443) ? ":#{port}" : ''
       path = (path && path != '') ? path : '/'
 
       "#{scheme}://#{host}#{port}#{path}"
@@ -209,8 +208,8 @@ module Pesapal
     def self.parameter_encode(str)
       # reserved character regexp, per section 5.1
       reserved_characters = /[^a-zA-Z0-9\-\.\_\~]/
-      # Apparently we can't force_encoding on a frozen string since that would modify it.
-      # What we can do is work with a copy
+      # Apparently we can't force_encoding on a frozen string since that would
+      # modify it. What we can do is work with a copy
       URI.escape(str.dup.to_s.force_encoding(Encoding::UTF_8), reserved_characters)
     end
   end

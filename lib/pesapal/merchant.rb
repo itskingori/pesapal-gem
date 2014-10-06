@@ -159,7 +159,7 @@ module Pesapal
     # PesaPal will present the user with a page which contains the available
     # payment options and will redirect to your site to the _callback url_ once
     # the user has completed the payment process. A tracking id will be returned
-    # as a query parameter – this can be used subsequently to track the payment
+    # as a query parameter - this can be used subsequently to track the payment
     # status on Pesapal for the transaction later on.
     #
     # Generating the URL is a 3-step process:
@@ -190,7 +190,7 @@ module Pesapal
       @params = Pesapal::Helper::Post.set_parameters(@config[:callback_url], @config[:consumer_key], @post_xml)
 
       # generate oauth signature and add signature to the request parameters
-      @params[:oauth_signature] = Pesapal::Oauth::generate_oauth_signature("GET", @api_endpoints[:postpesapaldirectorderv4], @params, @config[:consumer_secret], @token_secret)
+      @params[:oauth_signature] = Pesapal::Oauth::generate_oauth_signature('GET', @api_endpoints[:postpesapaldirectorderv4], @params, @config[:consumer_secret], @token_secret)
 
       # change params (with signature) to a query string
       query_string = Pesapal::Oauth.generate_encoded_params_query_string @params
@@ -239,7 +239,7 @@ module Pesapal
       @params = Pesapal::Helper::Details.set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
 
       # generate oauth signature and add signature to the request parameters
-      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature("GET", @api_endpoints[:querypaymentdetails], @params, @config[:consumer_secret], @token_secret)
+      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', @api_endpoints[:querypaymentdetails], @params, @config[:consumer_secret], @token_secret)
 
       # change params (with signature) to a query string
       query_string = Pesapal::Oauth.generate_encoded_params_query_string @params
@@ -255,10 +255,10 @@ module Pesapal
       response = CGI.parse response.body
       response = response['pesapal_response_data'][0].split(',')
 
-      { :method => response[1],
-        :status => response[2],
-        :merchant_reference => response[3],
-        :transaction_tracking_id => response[0]
+      { method: response[1],
+        status: response[2],
+        merchant_reference: response[3],
+        transaction_tracking_id: response[0]
       }
     end
 
@@ -294,7 +294,7 @@ module Pesapal
       @params = Pesapal::Helper::Status.set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
 
       # generate oauth signature and add signature to the request parameters
-      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature("GET", @api_endpoints[:querypaymentstatus], @params, @config[:consumer_secret], @token_secret)
+      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', @api_endpoints[:querypaymentstatus], @params, @config[:consumer_secret], @token_secret)
 
       # change params (with signature) to a query string
       query_string = Pesapal::Oauth.generate_encoded_params_query_string @params
@@ -394,7 +394,7 @@ module Pesapal
     #   back to Pesapal
     def ipn_listener(notification_type, merchant_reference, transaction_tracking_id)
       status = query_payment_status(merchant_reference, transaction_tracking_id)
-      output = { :status => status, :response => nil }
+      output = { status: status, response: nil }
 
       case status
       when 'COMPLETED' then output[:response] = "pesapal_notification_type=CHANGE&pesapal_transaction_tracking_id=#{transaction_tracking_id}&pesapal_merchant_reference=#{merchant_reference}"
@@ -426,9 +426,9 @@ module Pesapal
     # remove unwanted data & uses default if nothing is input).
     def set_configuration(consumer_details = {})
       # set the configuration
-      @config = { :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
-                  :consumer_key => '<YOUR_CONSUMER_KEY>',
-                  :consumer_secret => '<YOUR_CONSUMER_SECRET>'
+      @config = { callback_url: 'http://0.0.0.0:3000/pesapal/callback',
+                  consumer_key: '<YOUR_CONSUMER_KEY>',
+                  consumer_secret: '<YOUR_CONSUMER_SECRET>'
                 }
 
       valid_config_keys = @config.keys
