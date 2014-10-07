@@ -59,15 +59,15 @@ describe Pesapal::Merchant do
       end
     end
 
-    describe '#set_env' do
+    describe '#change_env' do
 
       it 'sets default environment variable' do
-        pesapal.set_env
+        pesapal.change_env
         expect(pesapal.send(:env)).to eq 'development'
       end
 
       it 'sets endpoints for default environment' do
-        expect(pesapal.set_env).to eq(demo_endpoints)
+        expect(pesapal.change_env).to eq(demo_endpoints)
       end
     end
 
@@ -167,15 +167,15 @@ describe Pesapal::Merchant do
       end
     end
 
-    describe '#set_env(:development)' do
+    describe '#change_env(:development)' do
 
       it 'sets environment variable' do
-        pesapal.set_env :development
+        pesapal.change_env :development
         expect(pesapal.send(:env)).to eq 'development'
       end
 
       it 'sets endpoints for environment' do
-        expect(pesapal.set_env :development).to eq(demo_endpoints)
+        expect(pesapal.change_env :development).to eq(demo_endpoints)
       end
     end
 
@@ -275,15 +275,15 @@ describe Pesapal::Merchant do
       end
     end
 
-    describe '#set_env(:production)' do
+    describe '#change_env(:production)' do
 
       it 'sets environment variable' do
-        pesapal.set_env :production
+        pesapal.change_env :production
         expect(pesapal.send(:env)).to eq 'production'
       end
 
       it 'sets endpoints for environment' do
-        expect(pesapal.set_env :production).to eq(production_endpoints)
+        expect(pesapal.change_env :production).to eq(production_endpoints)
       end
     end
 

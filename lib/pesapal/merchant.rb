@@ -140,17 +140,17 @@ module Pesapal
     # }
     # ```
     #
-    # @note You can change the environment at runtime using {#set_env}
+    # @note You can change the environment at runtime using {#change_env}
     #
     # @param env [Symbol] the environment we want to use i.e. `:development` or
     #   `:production`. Leaving it blank sets environment intelligently to
     #   `Rails.env` (if Rails) or `:development` (if non-Rails).
     def initialize(env = false)
-      set_env env
+      change_env env
       if defined?(Rails)
-        set_configuration Rails.application.config.pesapal_credentials
+        configure Rails.application.config.pesapal_credentials
       else
-        set_configuration
+        configure
       end
     end
 
@@ -344,7 +344,7 @@ module Pesapal
     #
     # @return [Hash] contains Pesapal endpoints appropriate for the set
     #   environment
-    def set_env(env = false)
+    def change_env(env = false)
       env = env.to_s.downcase
       if env == 'production'
         @env = 'production'
@@ -352,7 +352,7 @@ module Pesapal
         @env = 'development'
         @env = Rails.env if defined?(Rails)
       end
-      set_endpoints
+      assign_endpoints
     end
 
     # Generates the appropriate IPN response depending on the status of the
@@ -381,8 +381,8 @@ module Pesapal
     # @note It's up to you to send the response back to Pesapal by providing the
     #   `:response` back to the IPN. The hard part is done.
     #
-    # @param notification_type [String] the IPN notification type, should be set
-    #   to CHANGE always
+    # @param notification_type [String] the IPN notification type, overridden
+    #   and set to CHANGE internally. Left here for extensibility.
     #
     # @param merchant_reference [String] the unique id generated for the
     #   transaction by your application before posting the order
@@ -407,8 +407,8 @@ module Pesapal
 
     private
 
-    # Set API endpoints depending on the environment.
-    def set_endpoints
+    # Assign API endpoints depending on the environment.
+    def assign_endpoints
       if @env == 'production'
         @api_domain = 'https://www.pesapal.com'
       else
@@ -423,10 +423,9 @@ module Pesapal
       @api_endpoints
     end
 
-    # Set credentials through hash that passed in (does a little processing to
-    # remove unwanted data & uses default if nothing is input).
-    def set_configuration(consumer_details = {})
-      # set the configuration
+    # Configure credentials through hash that passed in (does a little
+    # processing to remove unwanted data & uses default if nothing is input).
+    def configure(consumer_details = {})
       @config = { callback_url: 'http://0.0.0.0:3000/pesapal/callback',
                   consumer_key: '<YOUR_CONSUMER_KEY>',
                   consumer_secret: '<YOUR_CONSUMER_SECRET>'
