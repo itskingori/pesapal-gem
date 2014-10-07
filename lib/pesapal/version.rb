@@ -4,5 +4,5 @@ module Pesapal
   # This gem's version (learn about [Semantic Versioning][1]).
   #
   # [1]: http://semver.org/
-  VERSION = '1.5.6'
+  VERSION = '1.6.0'
 end
