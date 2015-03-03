@@ -13,7 +13,7 @@ Basically it's a gem that makes it easy to integrate your app with
 any direct interaction with the API endpoints so that you can focus on what
 matters. _Building awesome_.
 
-The gem should be [up on RubyGems.org][4], it's [accompanying RubyDoc reference
+The gem should be [up on RubyGems.org][4], it's [accompanying API reference
 here][9], the [CHANGELOG here][5] and [all the releases here][6].
 
 [Check out the homepage for details][2] i.e. on usage, support, issues,
