@@ -247,10 +247,8 @@ module Pesapal
       # get status response
       uri = URI.parse "#{@api_endpoints[:querypaymentdetails]}?#{query_string}"
       http = Net::HTTP.new(uri.host, uri.port)
-      if @env == 'production'
-        http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      end
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       response = http.request(Net::HTTP::Get.new(uri.request_uri))
       response = CGI.parse response.body
       response = response['pesapal_response_data'][0].split(',')
@@ -302,10 +300,8 @@ module Pesapal
       # get status response
       uri = URI.parse "#{@api_endpoints[:querypaymentstatus]}?#{query_string}"
       http = Net::HTTP.new(uri.host, uri.port)
-      if @env == 'production'
-        http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      end
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       response = http.request(Net::HTTP::Get.new(uri.request_uri))
       response = CGI.parse response.body
       response['pesapal_response_data'][0]
@@ -412,7 +408,7 @@ module Pesapal
       if @env == 'production'
         @api_domain = 'https://www.pesapal.com'
       else
-        @api_domain = 'http://demo.pesapal.com'
+        @api_domain = 'https://demo.pesapal.com'
       end
 
       @api_endpoints = {}
