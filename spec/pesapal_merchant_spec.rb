@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Pesapal::Merchant do
-
   let(:order_details) do
     {
       amount: 1000,
@@ -41,11 +40,9 @@ describe Pesapal::Merchant do
   end
 
   context 'when mode not specified' do
-
     let(:pesapal) { Pesapal::Merchant.new }
 
     describe '#new' do
-
       it 'is valid object' do
         expect(pesapal).to be_an_instance_of(Pesapal::Merchant)
       end
@@ -64,7 +61,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#change_env' do
-
       it 'sets default environment variable' do
         pesapal.change_env
         expect(pesapal.send(:env)).to eq 'development'
@@ -76,7 +72,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#generate_order_url' do
-
       it 'generates iframe url string' do
         pesapal.order_details = order_details
         expect(pesapal.generate_order_url).to match %r{https://demo.pesapal.com/API/PostPesapalDirectOrderV4\?oauth_callback=.*oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_request_data=.*}
@@ -84,7 +79,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#query_payment_status' do
-
       let(:request) { stub_request(:get, %r{https://demo.pesapal.com/API/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets pending payment status' do
@@ -109,7 +103,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#query_payment_details' do
-
       let(:request) { stub_request(:get, %r{https://demo.pesapal.com/API/QueryPaymentDetails\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets pending payment details' do
@@ -125,7 +118,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#ipn_listener' do
-
       let(:request) { stub_request(:get, %r{https://demo.pesapal.com/API/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets ipn response for pending status' do
@@ -151,11 +143,9 @@ describe Pesapal::Merchant do
   end
 
   context 'when mode is specified as development' do
-
     let(:pesapal) { Pesapal::Merchant.new(:development) }
 
     describe '#new(:development)' do
-
       it 'is valid object' do
         expect(pesapal).to be_an_instance_of(Pesapal::Merchant)
       end
@@ -174,7 +164,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#change_env(:development)' do
-
       it 'sets environment variable' do
         pesapal.change_env :development
         expect(pesapal.send(:env)).to eq 'development'
@@ -186,7 +175,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#generate_order_url' do
-
       it 'generates iframe url string' do
         pesapal.order_details = order_details
         expect(pesapal.generate_order_url).to match %r{https://demo.pesapal.com/API/PostPesapalDirectOrderV4\?oauth_callback=.*oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_request_data=.*}
@@ -194,7 +182,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#query_payment_status' do
-
       let(:request) { stub_request(:get, %r{https://demo.pesapal.com/API/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets pending payment status' do
@@ -219,7 +206,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#query_payment_details' do
-
       let(:request) { stub_request(:get, %r{https://demo.pesapal.com/API/QueryPaymentDetails\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets pending payment details' do
@@ -235,7 +221,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#ipn_listener' do
-
       let(:request) { stub_request(:get, %r{https://demo.pesapal.com/API/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets ipn response for pending status' do
@@ -261,11 +246,9 @@ describe Pesapal::Merchant do
   end
 
   context 'when mode is specified as production' do
-
     let(:pesapal) { Pesapal::Merchant.new(:production) }
 
     describe '#new(:production)' do
-
       it 'is valid object' do
         expect(pesapal).to be_an_instance_of(Pesapal::Merchant)
       end
@@ -284,7 +267,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#change_env(:production)' do
-
       it 'sets environment variable' do
         pesapal.change_env :production
         expect(pesapal.send(:env)).to eq 'production'
@@ -296,7 +278,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#generate_order_url' do
-
       it 'generates iframe url string' do
         pesapal.order_details = order_details
         expect(pesapal.generate_order_url).to match %r{https://www.pesapal.com/API/PostPesapalDirectOrderV4\?oauth_callback=.*oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_request_data=.*}
@@ -304,7 +285,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#query_payment_status' do
-
       let(:request) { stub_request(:get, %r{https://www.pesapal.com/API/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets pending payment status' do
@@ -329,7 +309,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#query_payment_details' do
-
       let(:request) { stub_request(:get, %r{https://www.pesapal.com/API/QueryPaymentDetails\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets pending payment details' do
@@ -345,7 +324,6 @@ describe Pesapal::Merchant do
     end
 
     describe '#ipn_listener' do
-
       let(:request) { stub_request(:get, %r{https://www.pesapal.com/API/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets ipn response for pending status' do
