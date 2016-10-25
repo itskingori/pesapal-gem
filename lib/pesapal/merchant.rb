@@ -248,7 +248,7 @@ module Pesapal
       uri = URI.parse "#{@api_endpoints[:querypaymentdetails]}?#{query_string}"
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      http.verify_mode = OpenSSL::SSL::VERIFY_PEER
       response = http.request(Net::HTTP::Get.new(uri.request_uri))
       response = CGI.parse response.body
       response = response['pesapal_response_data'][0].split(',')
@@ -301,7 +301,7 @@ module Pesapal
       uri = URI.parse "#{@api_endpoints[:querypaymentstatus]}?#{query_string}"
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      http.verify_mode = OpenSSL::SSL::VERIFY_PEER
       response = http.request(Net::HTTP::Get.new(uri.request_uri))
       response = CGI.parse response.body
       response['pesapal_response_data'][0]
