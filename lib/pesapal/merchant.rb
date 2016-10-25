@@ -406,11 +406,7 @@ module Pesapal
 
     # Assign API endpoints depending on the environment.
     def assign_endpoints
-      if @env == 'production'
-        @api_domain = 'https://www.pesapal.com'
-      else
-        @api_domain = 'https://demo.pesapal.com'
-      end
+      @api_domain =  @env == 'production' ? 'https://www.pesapal.com' : 'https://demo.pesapal.com'
 
       @api_endpoints = {}
       @api_endpoints[:postpesapaldirectorderv4] = "#{@api_domain}/API/PostPesapalDirectOrderV4"
