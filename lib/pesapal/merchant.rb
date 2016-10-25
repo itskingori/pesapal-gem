@@ -426,7 +426,6 @@ module Pesapal
       }
 
       valid_config_keys = @config.keys
-
       consumer_details.each { |k, v| @config[k.to_sym] = v if valid_config_keys.include? k.to_sym }
     end
   end

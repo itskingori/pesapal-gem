@@ -116,10 +116,8 @@ module Pesapal
     def self.generate_signature_base_string(http_method, absolute_url, params)
       # step 1: convert the http method to uppercase
       http_method = http_method.upcase
-
       # step 2: percent encode the url
       url_encoded = parameter_encode(normalized_request_uri(absolute_url))
-
       # step 3: percent encode the parameter string
       parameter_string_encoded = parameter_encode(generate_signable_encoded_params_query_string(params))
 
