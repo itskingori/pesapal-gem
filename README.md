@@ -43,13 +43,6 @@ For Rails, you need to run the generator to create sample pesapal.yml file:
     rails generate pesapal:install
 
 
-Contributors
-------------
-
-Special thanks to:
-
-* [Isaac Mogetutu][10] ([@mogetutu][11])
-
 
 License
 -------
