@@ -1,14 +1,5 @@
 AllCops:
-  Include:
-    - '**/Gemfile'
-    - '**/Rakefile'
-  Exclude:
-    - 'vendor/**/*'
-Metrics/LineLength:
+  TargetRubyVersion: 2.3
+
+Style/FrozenStringLiteralComment:
   Enabled: false
-Metrics/ClassLength:
-  CountComments: false
-  Max: 150
-Metrics/MethodLength:
-  CountComments: false
-  Max: 20
