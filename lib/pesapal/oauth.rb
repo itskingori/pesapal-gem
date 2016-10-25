@@ -184,7 +184,7 @@ module Pesapal
       port = u.port
 
       port = (scheme == 'http' && port != 80) || (scheme == 'https' && port != 443) ? ":#{port}" : ''
-      path = (path && path != '') ? path : '/'
+      path = path && (path != '') ? path : '/'
 
       "#{scheme}://#{host}#{port}#{path}"
     end
