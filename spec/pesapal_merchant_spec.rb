@@ -170,7 +170,7 @@ describe Pesapal::Merchant do
       end
 
       it 'sets endpoints for environment' do
-        expect(pesapal.change_env :development).to eq(demo_endpoints)
+        expect(pesapal.change_env(:development)).to eq(demo_endpoints)
       end
     end
 
@@ -273,7 +273,7 @@ describe Pesapal::Merchant do
       end
 
       it 'sets endpoints for environment' do
-        expect(pesapal.change_env :production).to eq(production_endpoints)
+        expect(pesapal.change_env(:production)).to eq(production_endpoints)
       end
     end
 

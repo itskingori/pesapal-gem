@@ -46,13 +46,6 @@ Style/MultilineMethodCallBraceLayout:
   Exclude:
     - 'spec/pesapal_merchant_spec.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/NestedParenthesizedCalls:
-  Exclude:
-    - 'lib/pesapal/oauth.rb'
-    - 'spec/pesapal_merchant_spec.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.

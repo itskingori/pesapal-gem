@@ -121,7 +121,7 @@ module Pesapal
       url_encoded = parameter_encode(normalized_request_uri(absolute_url))
 
       # step 3: percent encode the parameter string
-      parameter_string_encoded = parameter_encode(generate_signable_encoded_params_query_string params)
+      parameter_string_encoded = parameter_encode(generate_signable_encoded_params_query_string(params))
 
       "#{http_method}&#{url_encoded}&#{parameter_string_encoded}"
     end
