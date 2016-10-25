@@ -1,11 +1,11 @@
 [Pesapal RubyGem][2]
 ===============
 
-<a href="http://badge.fury.io/rb/pesapal"><img src="https://badge.fury.io/rb/pesapal@2x.png" alt="Gem Version" height="18"></a>
-[![Build Status](https://travis-ci.org/itsmrwave/pesapal-gem.png?branch=master)](https://travis-ci.org/itsmrwave/pesapal-gem)
-[![Code Climate](https://codeclimate.com/github/itsmrwave/pesapal-gem.png)](https://codeclimate.com/github/itsmrwave/pesapal-gem)
-[![Coverage Status](https://coveralls.io/repos/itsmrwave/pesapal-gem/badge.png)](https://coveralls.io/r/itsmrwave/pesapal-gem)
-[![Dependency Status](https://gemnasium.com/itsmrwave/pesapal-gem.png)](https://gemnasium.com/itsmrwave/pesapal-gem)
+[![Gem Version](https://badge.fury.io/rb/pesapal.svg)](https://badge.fury.io/rb/pesapal)
+[![Build Status](https://travis-ci.org/itsmrwave/pesapal-gem.svg?branch=master)](https://travis-ci.org/itsmrwave/pesapal-gem)
+[![Code Climate](https://codeclimate.com/github/itsmrwave/pesapal-gem/badges/gpa.svg)](https://codeclimate.com/github/itsmrwave/pesapal-gem)
+[![Coverage Status](https://coveralls.io/repos/github/itsmrwave/pesapal-gem/badge.svg?branch=master)](https://coveralls.io/github/itsmrwave/pesapal-gem?branch=master)
+[![Dependency Status](https://gemnasium.com/badges/github.com/itsmrwave/pesapal-gem.svg)](https://gemnasium.com/github.com/itsmrwave/pesapal-gem)
 
 
 Basically it's a gem that makes it easy to integrate your app with
