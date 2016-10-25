@@ -1,6 +1,12 @@
 Changelog
 =========
 
+v1.9.0
+------
+
+* Remove Pesapal::Merchant#change_env method.
+* Change how environment is set (remove automativ `Rails.env` detection).
+
 v1.8.0
 ------
 
@@ -21,7 +27,6 @@ v1.6.0
 * Add Rubocop as a development dependency and Hound to the workflow since we will use them to detect style guide violations
 * Code cleanup here and there
 * Avoid using set_ on method name, this changes the API slightly since we can't use set_env which was public
-
 
 v1.5.6
 ------
