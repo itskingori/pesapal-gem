@@ -48,7 +48,7 @@ module Pesapal
       chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ0123456789'
       nonce = ''
       length.times { nonce << chars[rand(chars.size)] }
-      "#{nonce}"
+      nonce
     end
 
     # Generate the oAuth signature using HMAC-SHA1 algorithm.

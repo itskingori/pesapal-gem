@@ -89,12 +89,3 @@ Style/SpecialGlobalVars:
 Style/TernaryParentheses:
   Exclude:
     - 'lib/pesapal/oauth.rb'
-
-# Offense count: 7
-# Cop supports --auto-correct.
-Style/UnneededInterpolation:
-  Exclude:
-    - 'lib/pesapal/helper/details.rb'
-    - 'lib/pesapal/helper/post.rb'
-    - 'lib/pesapal/helper/status.rb'
-    - 'lib/pesapal/oauth.rb'

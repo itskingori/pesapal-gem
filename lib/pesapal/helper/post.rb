@@ -165,9 +165,9 @@ module Pesapal
         timestamp = Time.now.to_i.to_s
         { oauth_callback: callback_url,
           oauth_consumer_key: consumer_key,
-          oauth_nonce: "#{timestamp}" + Pesapal::Oauth.generate_nonce(12),
+          oauth_nonce: timestamp + Pesapal::Oauth.generate_nonce(12),
           oauth_signature_method: 'HMAC-SHA1',
-          oauth_timestamp: "#{timestamp}",
+          oauth_timestamp: timestamp,
           oauth_version: '1.0',
           pesapal_request_data: post_xml
         }
