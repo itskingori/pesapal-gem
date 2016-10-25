@@ -48,14 +48,6 @@ Style/MultilineMethodCallBraceLayout:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: use_perl_names, use_english_names
-Style/SpecialGlobalVars:
-  Exclude:
-    - 'pesapal.gemspec'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, AllowSafeAssignment.
 # SupportedStyles: require_parentheses, require_no_parentheses
 Style/TernaryParentheses:
