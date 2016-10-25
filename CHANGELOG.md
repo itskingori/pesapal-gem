@@ -1,10 +1,13 @@
 Changelog
 =========
 
-v1.6.1
+v1.7.0
 ------
 
 * Change QueryPaymentDetails endpoint request to use https in development.
+* Drop Ruby 1.9.3 support.
+* Fix 2.1.x specs.
+* Confirm support for new Ruby versions i.e. 2.2 & 2.3.
 
 v1.6.0
 ------
