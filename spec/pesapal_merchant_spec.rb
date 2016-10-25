@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Pesapal::Merchant do
 
   let(:order_details) do
-    { amount: 1000,
+    {
+      amount: 1000,
       description: Faker::Lorem.sentence,
       type: 'MERCHANT',
       reference: '111-222-333',
@@ -16,21 +17,24 @@ describe Pesapal::Merchant do
   end
 
   let(:default_credentials) do
-    { callback_url: 'http://0.0.0.0:3000/pesapal/callback',
+    {
+      callback_url: 'http://0.0.0.0:3000/pesapal/callback',
       consumer_key: '<YOUR_CONSUMER_KEY>',
       consumer_secret: '<YOUR_CONSUMER_SECRET>'
     }
   end
 
   let(:demo_endpoints) do
-    { postpesapaldirectorderv4: 'https://demo.pesapal.com/API/PostPesapalDirectOrderV4',
+    {
+      postpesapaldirectorderv4: 'https://demo.pesapal.com/API/PostPesapalDirectOrderV4',
       querypaymentstatus: 'https://demo.pesapal.com/API/QueryPaymentStatus',
       querypaymentdetails: 'https://demo.pesapal.com/API/QueryPaymentDetails'
     }
   end
 
   let(:production_endpoints) do
-    { postpesapaldirectorderv4: 'https://www.pesapal.com/API/PostPesapalDirectOrderV4',
+    {
+      postpesapaldirectorderv4: 'https://www.pesapal.com/API/PostPesapalDirectOrderV4',
       querypaymentstatus: 'https://www.pesapal.com/API/QueryPaymentStatus',
       querypaymentdetails: 'https://www.pesapal.com/API/QueryPaymentDetails'
     }
@@ -110,11 +114,13 @@ describe Pesapal::Merchant do
 
       it 'gets pending payment details' do
         request.to_return(status: 200, body: 'pesapal_response_data=transaction_tracking_id,payment_method,payment_status,merchant_reference')
-        expect(pesapal.query_payment_details('merchant_reference', 'transaction_tracking_id')).to eq(method: 'payment_method',
-                                                                                                     status: 'payment_status',
-                                                                                                     merchant_reference: 'merchant_reference',
-                                                                                                     transaction_tracking_id: 'transaction_tracking_id'
-                                                                                                    )
+        expected_result = {
+          method: 'payment_method',
+          status: 'payment_status',
+          merchant_reference: 'merchant_reference',
+          transaction_tracking_id: 'transaction_tracking_id'
+        }
+        expect(pesapal.query_payment_details('merchant_reference', 'transaction_tracking_id')).to eq(expected_result)
       end
     end
 
@@ -218,11 +224,13 @@ describe Pesapal::Merchant do
 
       it 'gets pending payment details' do
         request.to_return(status: 200, body: 'pesapal_response_data=transaction_tracking_id,payment_method,payment_status,merchant_reference')
-        expect(pesapal.query_payment_details('merchant_reference', 'transaction_tracking_id')).to eq(method: 'payment_method',
-                                                                                                     status: 'payment_status',
-                                                                                                     merchant_reference: 'merchant_reference',
-                                                                                                     transaction_tracking_id: 'transaction_tracking_id'
-                                                                                                    )
+        expected_result = {
+          method: 'payment_method',
+          status: 'payment_status',
+          merchant_reference: 'merchant_reference',
+          transaction_tracking_id: 'transaction_tracking_id'
+        }
+        expect(pesapal.query_payment_details('merchant_reference', 'transaction_tracking_id')).to eq(expected_result)
       end
     end
 
@@ -326,11 +334,13 @@ describe Pesapal::Merchant do
 
       it 'gets pending payment details' do
         request.to_return(status: 200, body: 'pesapal_response_data=transaction_tracking_id,payment_method,payment_status,merchant_reference')
-        expect(pesapal.query_payment_details('merchant_reference', 'transaction_tracking_id')).to eq(method: 'payment_method',
-                                                                                                     status: 'payment_status',
-                                                                                                     merchant_reference: 'merchant_reference',
-                                                                                                     transaction_tracking_id: 'transaction_tracking_id'
-                                                                                                    )
+        expected_result = {
+          method: 'payment_method',
+          status: 'payment_status',
+          merchant_reference: 'merchant_reference',
+          transaction_tracking_id: 'transaction_tracking_id'
+        }
+        expect(pesapal.query_payment_details('merchant_reference', 'transaction_tracking_id')).to eq(expected_result)
       end
     end
 

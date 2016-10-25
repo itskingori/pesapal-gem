@@ -46,19 +46,6 @@ Style/EmptyLinesAroundBlockBody:
   Exclude:
     - 'spec/pesapal_merchant_spec.rb'
 
-# Offense count: 10
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: symmetrical, new_line, same_line
-Style/MultilineHashBraceLayout:
-  Exclude:
-    - 'lib/pesapal/helper/details.rb'
-    - 'lib/pesapal/helper/post.rb'
-    - 'lib/pesapal/helper/status.rb'
-    - 'lib/pesapal/merchant.rb'
-    - 'lib/pesapal/railtie.rb'
-    - 'spec/pesapal_merchant_spec.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.

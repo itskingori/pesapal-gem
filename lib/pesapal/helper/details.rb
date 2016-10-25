@@ -43,7 +43,9 @@ module Pesapal
       #   query parameters and the `oauth_signature` itself.
       def self.set_parameters(consumer_key, merchant_reference, transaction_tracking_id)
         timestamp = Time.now.to_i.to_s
-        { oauth_consumer_key: consumer_key,
+
+        {
+          oauth_consumer_key: consumer_key,
           oauth_nonce: timestamp + Pesapal::Oauth.generate_nonce(12),
           oauth_signature_method: 'HMAC-SHA1',
           oauth_timestamp: timestamp,

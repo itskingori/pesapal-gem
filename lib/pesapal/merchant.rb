@@ -253,7 +253,8 @@ module Pesapal
       response = CGI.parse response.body
       response = response['pesapal_response_data'][0].split(',')
 
-      { method: response[1],
+      {
+        method: response[1],
         status: response[2],
         merchant_reference: response[3],
         transaction_tracking_id: response[0]
@@ -422,10 +423,11 @@ module Pesapal
     # Configure credentials through hash that passed in (does a little
     # processing to remove unwanted data & uses default if nothing is input).
     def configure(consumer_details = {})
-      @config = { callback_url: 'http://0.0.0.0:3000/pesapal/callback',
-                  consumer_key: '<YOUR_CONSUMER_KEY>',
-                  consumer_secret: '<YOUR_CONSUMER_SECRET>'
-                }
+      @config = {
+        callback_url: 'http://0.0.0.0:3000/pesapal/callback',
+        consumer_key: '<YOUR_CONSUMER_KEY>',
+        consumer_secret: '<YOUR_CONSUMER_SECRET>'
+      }
 
       valid_config_keys = @config.keys
 
