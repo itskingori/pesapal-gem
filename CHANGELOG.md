@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v1.6.1
+------
+
+* Change QueryPaymentDetails endpoint request to use https in development.
+
 v1.6.0
 ------
 
