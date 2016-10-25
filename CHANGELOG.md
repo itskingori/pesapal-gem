@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v1.8.0
+------
+
+* Always verify client certificate.
+
 v1.7.0
 ------
 
