@@ -184,13 +184,10 @@ module Pesapal
       # build xml with input data, the format is standard so no editing is
       # required
       @post_xml = Pesapal::Helper::Post.generate_post_xml @order_details
-
       # initialize setting of @params (oauth_signature left empty)
       @params = Pesapal::Helper::Post.set_parameters(@config[:callback_url], @config[:consumer_key], @post_xml)
-
       # generate oauth signature and add signature to the request parameters
       @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', postpesapaldirectorderv4_url, @params, @config[:consumer_secret], @token_secret)
-
       # change params (with signature) to a query string
       query_string = Pesapal::Oauth.generate_encoded_params_query_string @params
 
@@ -236,10 +233,8 @@ module Pesapal
     def query_payment_details(merchant_reference, transaction_tracking_id)
       # initialize setting of @params (oauth_signature left empty)
       @params = Pesapal::Helper::Details.set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
-
       # generate oauth signature and add signature to the request parameters
       @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', querypaymentdetails_url, @params, @config[:consumer_secret], @token_secret)
-
       # change params (with signature) to a query string
       query_string = Pesapal::Oauth.generate_encoded_params_query_string @params
 
@@ -290,10 +285,8 @@ module Pesapal
     def query_payment_status(merchant_reference, transaction_tracking_id = nil)
       # initialize setting of @params (oauth_signature left empty)
       @params = Pesapal::Helper::Status.set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
-
       # generate oauth signature and add signature to the request parameters
       @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', querypaymentstatus_url, @params, @config[:consumer_secret], @token_secret)
-
       # change params (with signature) to a query string
       query_string = Pesapal::Oauth.generate_encoded_params_query_string @params
 
