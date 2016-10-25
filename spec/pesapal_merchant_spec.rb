@@ -23,22 +23,6 @@ describe Pesapal::Merchant do
     }
   end
 
-  let(:demo_endpoints) do
-    {
-      postpesapaldirectorderv4: 'https://demo.pesapal.com/API/PostPesapalDirectOrderV4',
-      querypaymentstatus: 'https://demo.pesapal.com/API/QueryPaymentStatus',
-      querypaymentdetails: 'https://demo.pesapal.com/API/QueryPaymentDetails'
-    }
-  end
-
-  let(:production_endpoints) do
-    {
-      postpesapaldirectorderv4: 'https://www.pesapal.com/API/PostPesapalDirectOrderV4',
-      querypaymentstatus: 'https://www.pesapal.com/API/QueryPaymentStatus',
-      querypaymentdetails: 'https://www.pesapal.com/API/QueryPaymentDetails'
-    }
-  end
-
   context 'when mode not specified' do
     let(:pesapal) { Pesapal::Merchant.new }
 
@@ -64,10 +48,6 @@ describe Pesapal::Merchant do
       it 'sets default environment variable' do
         pesapal.change_env
         expect(pesapal.send(:env)).to eq 'development'
-      end
-
-      it 'sets endpoints for default environment' do
-        expect(pesapal.change_env).to eq(demo_endpoints)
       end
     end
 
@@ -168,10 +148,6 @@ describe Pesapal::Merchant do
         pesapal.change_env :development
         expect(pesapal.send(:env)).to eq 'development'
       end
-
-      it 'sets endpoints for environment' do
-        expect(pesapal.change_env(:development)).to eq(demo_endpoints)
-      end
     end
 
     describe '#generate_order_url' do
@@ -270,10 +246,6 @@ describe Pesapal::Merchant do
       it 'sets environment variable' do
         pesapal.change_env :production
         expect(pesapal.send(:env)).to eq 'production'
-      end
-
-      it 'sets endpoints for environment' do
-        expect(pesapal.change_env(:production)).to eq(production_endpoints)
       end
     end
 

@@ -64,7 +64,7 @@ module Pesapal
 
     private
 
-    attr_reader :api_domain, :api_endpoints, :env
+    attr_reader :env
 
     def params
       @params ||= nil
@@ -190,12 +190,12 @@ module Pesapal
       @params = Pesapal::Helper::Post.set_parameters(@config[:callback_url], @config[:consumer_key], @post_xml)
 
       # generate oauth signature and add signature to the request parameters
-      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', @api_endpoints[:postpesapaldirectorderv4], @params, @config[:consumer_secret], @token_secret)
+      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', postpesapaldirectorderv4_url, @params, @config[:consumer_secret], @token_secret)
 
       # change params (with signature) to a query string
       query_string = Pesapal::Oauth.generate_encoded_params_query_string @params
 
-      "#{@api_endpoints[:postpesapaldirectorderv4]}?#{query_string}"
+      "#{postpesapaldirectorderv4_url}?#{query_string}"
     end
 
     # Same as {#query_payment_status}, but additional information is returned in
@@ -239,13 +239,13 @@ module Pesapal
       @params = Pesapal::Helper::Details.set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
 
       # generate oauth signature and add signature to the request parameters
-      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', @api_endpoints[:querypaymentdetails], @params, @config[:consumer_secret], @token_secret)
+      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', querypaymentdetails_url, @params, @config[:consumer_secret], @token_secret)
 
       # change params (with signature) to a query string
       query_string = Pesapal::Oauth.generate_encoded_params_query_string @params
 
       # get status response
-      uri = URI.parse "#{@api_endpoints[:querypaymentdetails]}?#{query_string}"
+      uri = URI.parse "#{querypaymentdetails_url}?#{query_string}"
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -293,13 +293,13 @@ module Pesapal
       @params = Pesapal::Helper::Status.set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
 
       # generate oauth signature and add signature to the request parameters
-      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', @api_endpoints[:querypaymentstatus], @params, @config[:consumer_secret], @token_secret)
+      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', querypaymentstatus_url, @params, @config[:consumer_secret], @token_secret)
 
       # change params (with signature) to a query string
       query_string = Pesapal::Oauth.generate_encoded_params_query_string @params
 
       # get status response
-      uri = URI.parse "#{@api_endpoints[:querypaymentstatus]}?#{query_string}"
+      uri = URI.parse "#{querypaymentstatus_url}?#{query_string}"
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -339,8 +339,7 @@ module Pesapal
     # @param env [Symbol] the environment we want to use i.e. :development or
     #   :production
     #
-    # @return [Hash] contains Pesapal endpoints appropriate for the set
-    #   environment
+    # @return [NilClass]
     def change_env(env = false)
       env = env.to_s.downcase
       if env == 'production'
@@ -349,7 +348,7 @@ module Pesapal
         @env = 'development'
         @env = Rails.env if defined?(Rails)
       end
-      assign_endpoints
+      nil
     end
 
     # Generates the appropriate IPN response depending on the status of the
@@ -404,16 +403,12 @@ module Pesapal
 
     private
 
-    # Assign API endpoints depending on the environment.
-    def assign_endpoints
-      @api_domain =  @env == 'production' ? 'https://www.pesapal.com' : 'https://demo.pesapal.com'
+    def api_domain
+      @env == 'production' ? 'www.pesapal.com' : 'demo.pesapal.com'
+    end
 
-      @api_endpoints = {}
-      @api_endpoints[:postpesapaldirectorderv4] = "#{@api_domain}/API/PostPesapalDirectOrderV4"
-      @api_endpoints[:querypaymentstatus] = "#{@api_domain}/API/QueryPaymentStatus"
-      @api_endpoints[:querypaymentdetails] = "#{@api_domain}/API/QueryPaymentDetails"
-
-      @api_endpoints
+    def api_endpoint
+      'https://' + api_domain
     end
 
     # Configure credentials through hash that passed in (does a little
@@ -427,6 +422,18 @@ module Pesapal
 
       valid_config_keys = @config.keys
       consumer_details.each { |k, v| @config[k.to_sym] = v if valid_config_keys.include? k.to_sym }
+    end
+
+    def postpesapaldirectorderv4_url
+      api_endpoint + '/API/PostPesapalDirectOrderV4'
+    end
+
+    def querypaymentstatus_url
+      api_endpoint + '/API/QueryPaymentStatus'
+    end
+
+    def querypaymentdetails_url
+      api_endpoint + '/API/QueryPaymentDetails'
     end
   end
 end
