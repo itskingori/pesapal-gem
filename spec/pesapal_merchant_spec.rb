@@ -23,9 +23,9 @@ describe Pesapal::Merchant do
   end
 
   let(:demo_endpoints) do
-    { postpesapaldirectorderv4: 'http://demo.pesapal.com/API/PostPesapalDirectOrderV4',
-      querypaymentstatus: 'http://demo.pesapal.com/API/QueryPaymentStatus',
-      querypaymentdetails: 'http://demo.pesapal.com/API/QueryPaymentDetails'
+    { postpesapaldirectorderv4: 'https://demo.pesapal.com/API/PostPesapalDirectOrderV4',
+      querypaymentstatus: 'https://demo.pesapal.com/API/QueryPaymentStatus',
+      querypaymentdetails: 'https://demo.pesapal.com/API/QueryPaymentDetails'
     }
   end
 
@@ -75,13 +75,13 @@ describe Pesapal::Merchant do
 
       it 'generates iframe url string' do
         pesapal.order_details = order_details
-        expect(pesapal.generate_order_url).to match %r{http://demo.pesapal.com/API/PostPesapalDirectOrderV4\?oauth_callback=.*oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_request_data=.*}
+        expect(pesapal.generate_order_url).to match %r{https://demo.pesapal.com/API/PostPesapalDirectOrderV4\?oauth_callback=.*oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_request_data=.*}
       end
     end
 
     describe '#query_payment_status' do
 
-      let(:request) { stub_request(:get, %r{http://demo.pesapal.com/API/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
+      let(:request) { stub_request(:get, %r{https://demo.pesapal.com/API/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets pending payment status' do
         request.to_return(status: 200, body: 'pesapal_response_data=PENDING')
@@ -106,7 +106,7 @@ describe Pesapal::Merchant do
 
     describe '#query_payment_details' do
 
-      let(:request) { stub_request(:get, %r{http://demo.pesapal.com/API/QueryPaymentDetails\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
+      let(:request) { stub_request(:get, %r{https://demo.pesapal.com/API/QueryPaymentDetails\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets pending payment details' do
         request.to_return(status: 200, body: 'pesapal_response_data=transaction_tracking_id,payment_method,payment_status,merchant_reference')
@@ -120,7 +120,7 @@ describe Pesapal::Merchant do
 
     describe '#ipn_listener' do
 
-      let(:request) { stub_request(:get, %r{http://demo.pesapal.com/API/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
+      let(:request) { stub_request(:get, %r{https://demo.pesapal.com/API/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets ipn response for pending status' do
         request.to_return(status: 200, body: 'pesapal_response_data=PENDING')
@@ -183,13 +183,13 @@ describe Pesapal::Merchant do
 
       it 'generates iframe url string' do
         pesapal.order_details = order_details
-        expect(pesapal.generate_order_url).to match %r{http://demo.pesapal.com/API/PostPesapalDirectOrderV4\?oauth_callback=.*oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_request_data=.*}
+        expect(pesapal.generate_order_url).to match %r{https://demo.pesapal.com/API/PostPesapalDirectOrderV4\?oauth_callback=.*oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_request_data=.*}
       end
     end
 
     describe '#query_payment_status' do
 
-      let(:request) { stub_request(:get, %r{http://demo.pesapal.com/API/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
+      let(:request) { stub_request(:get, %r{https://demo.pesapal.com/API/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets pending payment status' do
         request.to_return(status: 200, body: 'pesapal_response_data=PENDING')
@@ -214,7 +214,7 @@ describe Pesapal::Merchant do
 
     describe '#query_payment_details' do
 
-      let(:request) { stub_request(:get, %r{http://demo.pesapal.com/API/QueryPaymentDetails\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
+      let(:request) { stub_request(:get, %r{https://demo.pesapal.com/API/QueryPaymentDetails\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets pending payment details' do
         request.to_return(status: 200, body: 'pesapal_response_data=transaction_tracking_id,payment_method,payment_status,merchant_reference')
@@ -228,7 +228,7 @@ describe Pesapal::Merchant do
 
     describe '#ipn_listener' do
 
-      let(:request) { stub_request(:get, %r{http://demo.pesapal.com/API/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
+      let(:request) { stub_request(:get, %r{https://demo.pesapal.com/API/QueryPaymentStatus\?oauth_consumer_key=.*oauth_nonce=.*oauth_signature=.*oauth_signature_method=HMAC-SHA1&oauth_timestamp.*oauth_version=1.0&pesapal_merchant_reference=.*&pesapal_transaction_tracking_id=.*}) }
 
       it 'gets ipn response for pending status' do
         request.to_return(status: 200, body: 'pesapal_response_data=PENDING')
