@@ -3,5 +3,11 @@ inherit_from: .rubocop_todo.yml
 AllCops:
   TargetRubyVersion: 2.3
 
+Metrics/ClassLength:
+  CountComments: false
+
+Metrics/MethodLength:
+  CountComments: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
