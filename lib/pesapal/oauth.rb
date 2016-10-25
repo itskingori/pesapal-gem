@@ -174,15 +174,19 @@ module Pesapal
     #
     # @return [String] valid constructed URL as per the spec.
     def self.normalized_request_uri(absolute_url)
-      u = URI.parse(absolute_url)
+      uri = URI.parse(absolute_url)
 
-      scheme = u.scheme.downcase
-      host = u.host.downcase
-      path = u.path
-      port = u.port
+      scheme = uri.scheme.downcase
+      host = uri.host.downcase
+      path = uri.path
+      port = uri.port
 
-      port = (scheme == 'http' && port != 80) || (scheme == 'https' && port != 443) ? ":#{port}" : ''
-      path = path && (path != '') ? path : '/'
+      non_standard_http = scheme == 'http' && port != 80
+      non_standard_https = scheme == 'https' && port != 443
+      uri_with_path = path && (path != '')
+
+      port = non_standard_http || non_standard_https ? ":#{port}" : ''
+      path = uri_with_path ? path : '/'
 
       "#{scheme}://#{host}#{port}#{path}"
     end
