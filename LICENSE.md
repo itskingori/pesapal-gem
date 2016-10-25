@@ -1,7 +1,7 @@
 License
 =======
 
-Copyright (c) 2013-2014 King'ori Maina
+Copyright (c) 2013-2016 King'ori Maina
 
 MIT License
 
