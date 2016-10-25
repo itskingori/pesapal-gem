@@ -87,10 +87,10 @@ module Pesapal
     # will interact with the testing or the live Pesapal API. Like so ...
     #
     # ```ruby
-    # # Sets environment intelligently to 'Rails.env' (if Rails) or :development (if non-Rails)
+    # # Defaults environment to :development
     # pesapal = Pesapal::Merchant.new
     #
-    # # Sets environment to :development
+    # # Sets environment to :development explicitly
     # pesapal = Pesapal::Merchant.new(:development)
     #
     # # Sets environment to :production
@@ -140,13 +140,12 @@ module Pesapal
     # }
     # ```
     #
-    # @note You can change the environment at runtime using {#change_env}
-    #
     # @param env [Symbol] the environment we want to use i.e. `:development` or
     #   `:production`. Leaving it blank sets environment intelligently to
     #   `Rails.env` (if Rails) or `:development` (if non-Rails).
-    def initialize(env = false)
-      change_env env
+    def initialize(env = :development)
+      @env = env.to_s.downcase
+
       if defined?(Rails)
         configure Rails.application.config.pesapal_credentials
       else
@@ -306,49 +305,6 @@ module Pesapal
       response = http.request(Net::HTTP::Get.new(uri.request_uri))
       response = CGI.parse response.body
       response['pesapal_response_data'][0]
-    end
-
-    # Set the environment in use.
-    #
-    # Useful especially if you want to change the environment at runtime from
-    # what was set during initialization in the constructor. It also makes sure
-    # that we use the appropriate endpoints when making calls to Pesapal. See
-    # below:
-    #
-    # ```
-    # # endpoint values set if :development
-    # {
-    #  :postpesapaldirectorderv4 => "http://demo.pesapal.com/API/PostPesapalDirectOrderV4",
-    #  :querypaymentstatus => "http://demo.pesapal.com/API/QueryPaymentStatus",
-    #  :querypaymentdetails => "http://demo.pesapal.com/API/QueryPaymentDetails"
-    # }
-    #
-    # # endpoint values set if :production
-    # {
-    #  :postpesapaldirectorderv4 => "https://www.pesapal.com/API/PostPesapalDirectOrderV4",
-    #  :querypaymentstatus => "https://www.pesapal.com/API/QueryPaymentStatus",
-    #  :querypaymentdetails => "https://www.pesapal.com/API/QueryPaymentDetails"
-    # }
-    # ```
-    #
-    # @note For a Rails app, you'd expect that calling this would also flip the
-    #   credentials if there was a YAML file containing both environment
-    #   credentials but that's not the case. It could be something that we can
-    #   add later.
-    #
-    # @param env [Symbol] the environment we want to use i.e. :development or
-    #   :production
-    #
-    # @return [NilClass]
-    def change_env(env = false)
-      env = env.to_s.downcase
-      if env == 'production'
-        @env = 'production'
-      else
-        @env = 'development'
-        @env = Rails.env if defined?(Rails)
-      end
-      nil
     end
 
     # Generates the appropriate IPN response depending on the status of the

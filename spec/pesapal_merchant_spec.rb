@@ -44,13 +44,6 @@ describe Pesapal::Merchant do
       end
     end
 
-    describe '#change_env' do
-      it 'sets default environment variable' do
-        pesapal.change_env
-        expect(pesapal.send(:env)).to eq 'development'
-      end
-    end
-
     describe '#generate_order_url' do
       it 'generates iframe url string' do
         pesapal.order_details = order_details
@@ -143,13 +136,6 @@ describe Pesapal::Merchant do
       end
     end
 
-    describe '#change_env(:development)' do
-      it 'sets environment variable' do
-        pesapal.change_env :development
-        expect(pesapal.send(:env)).to eq 'development'
-      end
-    end
-
     describe '#generate_order_url' do
       it 'generates iframe url string' do
         pesapal.order_details = order_details
@@ -239,13 +225,6 @@ describe Pesapal::Merchant do
 
       it 'sets order details' do
         expect(pesapal.order_details).to eq({})
-      end
-    end
-
-    describe '#change_env(:production)' do
-      it 'sets environment variable' do
-        pesapal.change_env :production
-        expect(pesapal.send(:env)).to eq 'production'
       end
     end
 
