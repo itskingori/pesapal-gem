@@ -1,19 +1,8 @@
-# Bundler #
-/.bundle
-/vendor/bundle
-
-# Coveralls #
+/.bundle/
+/.yardoc/
 /coverage/
-
-# Jekyll #
-_site
-
-# Yard #
-.yardoc/*
-
-# Gem #
-/log/*
-/tmp/*
+/docs/_site/
 Gemfile.lock
 *.gem
 .ruby-version
+!docs/.ruby-version
