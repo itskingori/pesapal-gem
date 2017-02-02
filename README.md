@@ -2,10 +2,10 @@
 ===============
 
 [![Gem Version](https://badge.fury.io/rb/pesapal.svg)](https://badge.fury.io/rb/pesapal)
-[![Build Status](https://travis-ci.org/itsmrwave/pesapal-gem.svg?branch=master)](https://travis-ci.org/itsmrwave/pesapal-gem)
-[![Code Climate](https://codeclimate.com/github/itsmrwave/pesapal-gem/badges/gpa.svg)](https://codeclimate.com/github/itsmrwave/pesapal-gem)
-[![Coverage Status](https://coveralls.io/repos/github/itsmrwave/pesapal-gem/badge.svg?branch=master)](https://coveralls.io/github/itsmrwave/pesapal-gem?branch=master)
-[![Dependency Status](https://gemnasium.com/badges/github.com/itsmrwave/pesapal-gem.svg)](https://gemnasium.com/github.com/itsmrwave/pesapal-gem)
+[![Build Status](https://travis-ci.org/itskingori/pesapal-gem.svg?branch=master)](https://travis-ci.org/itskingori/pesapal-gem)
+[![Code Climate](https://codeclimate.com/github/itskingori/pesapal-gem/badges/gpa.svg)](https://codeclimate.com/github/itskingori/pesapal-gem)
+[![Coverage Status](https://coveralls.io/repos/github/itskingori/pesapal-gem/badge.svg?branch=master)](https://coveralls.io/github/itskingori/pesapal-gem?branch=master)
+[![Dependency Status](https://gemnasium.com/badges/github.com/itskingori/pesapal-gem.svg)](https://gemnasium.com/github.com/itskingori/pesapal-gem)
 
 
 Basically it's a gem that makes it easy to integrate your app with
@@ -32,32 +32,28 @@ Add this line to your application's Gemfile:
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
     $ gem install pesapal
 
-For Rails, you need to run the generator to create sample pesapal.yml file:
-
-    rails generate pesapal:install
-
 
 License
 -------
 
-[King'ori J. Maina][7] © 2013-2016. The [MIT License bundled therein][8] is a
+[King'ori J. Maina][7] © 2013-2017. The [MIT License bundled therein][8] is a
 permissive license that is short and to the point. It lets people do anything
 they want as long as they provide attribution and waive liability.
 
 [1]: https://www.pesapal.com/
-[2]: http://itsmrwave.github.io/pesapal-gem
+[2]: http://itskingori.github.io/pesapal-gem
 [3]: http://oauth.net/core/1.0/
 [4]: http://rubygems.org/gems/pesapal
-[5]: https://raw.githubusercontent.com/itsmrwave/pesapal-gem/master/CHANGELOG.md
-[6]: https://github.com/itsmrwave/pesapal-gem/releases/
+[5]: https://raw.githubusercontent.com/itskingori/pesapal-gem/master/CHANGELOG.md
+[6]: https://github.com/itskingori/pesapal-gem/releases/
 [7]: http://kingori.co/
-[8]: https://raw.githubusercontent.com/itsmrwave/pesapal-gem/master/LICENSE.md
+[8]: https://raw.githubusercontent.com/itskingori/pesapal-gem/master/LICENSE.md
 [9]: http://rubydoc.info/gems/pesapal/frames/file/README.md
 [10]: http://mogetutu.com/
 [11]: https://github.com/mogetutu

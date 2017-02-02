@@ -7,5 +7,3 @@ require 'pesapal/helper/status'
 require 'pesapal/merchant'
 require 'pesapal/oauth'
 require 'pesapal/version'
-
-require 'pesapal/railtie' if defined?(Rails)
