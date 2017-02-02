@@ -145,12 +145,6 @@ module Pesapal
     #   `Rails.env` (if Rails) or `:development` (if non-Rails).
     def initialize(env = :development)
       @env = env.to_s.downcase
-
-      if defined?(Rails)
-        configure Rails.application.config.pesapal_credentials
-      else
-        configure
-      end
     end
 
     # Generate URL that's used to post a transaction to PesaPal.
