@@ -48,7 +48,7 @@ module Pesapal
       chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ0123456789'
       nonce = ''
       length.times { nonce << chars[rand(chars.size)] }
-      "#{nonce}"
+      nonce
     end
 
     # Generate the oAuth signature using HMAC-SHA1 algorithm.
@@ -116,12 +116,10 @@ module Pesapal
     def self.generate_signature_base_string(http_method, absolute_url, params)
       # step 1: convert the http method to uppercase
       http_method = http_method.upcase
-
       # step 2: percent encode the url
       url_encoded = parameter_encode(normalized_request_uri(absolute_url))
-
       # step 3: percent encode the parameter string
-      parameter_string_encoded = parameter_encode(generate_signable_encoded_params_query_string params)
+      parameter_string_encoded = parameter_encode(generate_signable_encoded_params_query_string(params))
 
       "#{http_method}&#{url_encoded}&#{parameter_string_encoded}"
     end
@@ -176,15 +174,19 @@ module Pesapal
     #
     # @return [String] valid constructed URL as per the spec.
     def self.normalized_request_uri(absolute_url)
-      u = URI.parse(absolute_url)
+      uri = URI.parse(absolute_url)
 
-      scheme = u.scheme.downcase
-      host = u.host.downcase
-      path = u.path
-      port = u.port
+      scheme = uri.scheme.downcase
+      host = uri.host.downcase
+      path = uri.path
+      port = uri.port
 
-      port = (scheme == 'http' && port != 80) || (scheme == 'https' && port != 443) ? ":#{port}" : ''
-      path = (path && path != '') ? path : '/'
+      non_standard_http = scheme == 'http' && port != 80
+      non_standard_https = scheme == 'https' && port != 443
+      uri_with_path = path && (path != '')
+
+      port = non_standard_http || non_standard_https ? ":#{port}" : ''
+      path = uri_with_path ? path : '/'
 
       "#{scheme}://#{host}#{port}#{path}"
     end

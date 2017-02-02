@@ -16,10 +16,11 @@ module Pesapal
           return
         end
       else
-        config.pesapal_credentials = { callback_url: 'http://0.0.0.0:3000/pesapal/callback',
-                                       consumer_key: '<YOUR_CONSUMER_KEY>',
-                                       consumer_secret: '<YOUR_CONSUMER_SECRET>'
-                                      }
+        config.pesapal_credentials = {
+          callback_url: 'http://0.0.0.0:3000/pesapal/callback',
+          consumer_key: '<YOUR_CONSUMER_KEY>',
+          consumer_secret: '<YOUR_CONSUMER_SECRET>'
+        }
       end
     end
   end

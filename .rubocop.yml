@@ -1,14 +1,22 @@
 AllCops:
-  Include:
-    - '**/Gemfile'
-    - '**/Rakefile'
-  Exclude:
-    - 'vendor/**/*'
-Metrics/LineLength:
-  Enabled: false
+  TargetRubyVersion: 2.3
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
 Metrics/ClassLength:
-  CountComments: false
   Max: 150
+
+Metrics/LineLength:
+  Max: 150
+  Exclude:
+    - 'spec/pesapal_merchant_spec.rb'
+
 Metrics/MethodLength:
-  CountComments: false
-  Max: 20
+  Max: 30
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

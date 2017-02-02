@@ -16,3 +16,4 @@ _site
 /tmp/*
 Gemfile.lock
 *.gem
+.ruby-version

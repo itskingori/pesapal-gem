@@ -8,12 +8,15 @@ Gem::Specification.new do |spec|
   spec.date          = Time.new.getutc.strftime('%Y-%m-%d')
   spec.authors       = ['Job King\'ori Maina']
   spec.email         = ['j@kingori.co']
-  spec.description   = 'Make authenticated Pesapal API calls without the fuss!'
-  spec.summary       = 'Make authenticated Pesapal API calls without the fuss! Handles all the oAuth stuff abstracting any direct interaction with the API endpoints so that you can focus on what matters. Building awesome.'
-  spec.homepage      = 'http://itsmrwave.github.io/pesapal-gem'
+  spec.homepage      = 'http://itskingori.github.io/pesapal-gem'
   spec.license       = 'MIT'
+  spec.description   = 'Make authenticated Pesapal API calls without the fuss!'
+  spec.summary       = 'Make authenticated Pesapal API calls without the fuss! '\
+                       'Handles all the oAuth stuff abstracting any direct ' \
+                       'interaction with the API endpoints so that you can ' \
+                       'focus on what matters. Building awesome.'
 
-  spec.files         = `git ls-files`.split($/)
+  spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
