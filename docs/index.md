@@ -11,16 +11,14 @@ Basically it's a gem that makes it easy to integrate your app with
 any direct interaction with the API endpoints so that you can focus on what
 matters. _Building awesome_.
 
+All this with no 3rd party oAuth library dependencies, it handles all the oAuth
+flows on its own so your app is one dependency less.
+
 The gem should be [up on RubyGems.org][7], it's [accompanying API reference
 here][13], the [CHANGELOG here][21] and [all the releases here][12].
 
-_Ps: No 3rd party oAuth library dependencies, it handles all the oAuth flows on
-its own so your app is one dependency less._
-
-_Ps 2: This documentation is **based off the latest version**. For older versions,
-rely on the version specific documentation. You can find this on
-[RubyGems.org][7]. Each version has a link to it's own page which contains a
-link to the documentation at the time it was published._
+Ps: This documentation is based off `v2.0.0`. For older versions, rely on the
+version specific documentation. You can find the link on [RubyGems.org][7].
 
 Installation
 ------------
