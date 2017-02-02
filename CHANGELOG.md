@@ -10,6 +10,8 @@ v2.0.0
 * Remove all Rails specific stuff.
 * Add `bin/` folder and some executables.
 * Improve gemspec.
+* Move docs from `gh-pages` branch to `docs/`.
+* Update documentation (tutorial and API reference).
 
 v1.8.0
 ------
