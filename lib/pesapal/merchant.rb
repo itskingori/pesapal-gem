@@ -187,7 +187,13 @@ module Pesapal
       # initialize setting of @params (oauth_signature left empty)
       @params = Pesapal::Helper::Post.set_parameters(@config[:callback_url], @config[:consumer_key], @post_xml)
       # generate oauth signature and add signature to the request parameters
-      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', postpesapaldirectorderv4_url, @params, @config[:consumer_secret], @token_secret)
+      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature(
+        'GET',
+        postpesapaldirectorderv4_url,
+        @params,
+        @config[:consumer_secret],
+        @token_secret
+      )
       # change params (with signature) to a query string
       query_string = Pesapal::Oauth.generate_encoded_params_query_string @params
 
@@ -234,7 +240,13 @@ module Pesapal
       # initialize setting of @params (oauth_signature left empty)
       @params = Pesapal::Helper::Details.set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
       # generate oauth signature and add signature to the request parameters
-      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', querypaymentdetails_url, @params, @config[:consumer_secret], @token_secret)
+      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature(
+        'GET',
+        querypaymentdetails_url,
+        @params,
+        @config[:consumer_secret],
+        @token_secret
+      )
       # change params (with signature) to a query string
       query_string = Pesapal::Oauth.generate_encoded_params_query_string @params
 
@@ -286,7 +298,13 @@ module Pesapal
       # initialize setting of @params (oauth_signature left empty)
       @params = Pesapal::Helper::Status.set_parameters(@config[:consumer_key], merchant_reference, transaction_tracking_id)
       # generate oauth signature and add signature to the request parameters
-      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature('GET', querypaymentstatus_url, @params, @config[:consumer_secret], @token_secret)
+      @params[:oauth_signature] = Pesapal::Oauth.generate_oauth_signature(
+        'GET',
+        querypaymentstatus_url,
+        @params,
+        @config[:consumer_secret],
+        @token_secret
+      )
       # change params (with signature) to a query string
       query_string = Pesapal::Oauth.generate_encoded_params_query_string @params
 
@@ -342,9 +360,13 @@ module Pesapal
       status = query_payment_status(merchant_reference, transaction_tracking_id)
       output = { status: status, response: nil }
 
+      response = "pesapal_notification_type=#{notification_type}"
+      response += "&pesapal_transaction_tracking_id=#{transaction_tracking_id}"
+      response += "&pesapal_merchant_reference=#{merchant_reference}"
+
       case status
-      when 'COMPLETED' then output[:response] = "pesapal_notification_type=#{notification_type}&pesapal_transaction_tracking_id=#{transaction_tracking_id}&pesapal_merchant_reference=#{merchant_reference}"
-      when 'FAILED'    then output[:response] = "pesapal_notification_type=#{notification_type}&pesapal_transaction_tracking_id=#{transaction_tracking_id}&pesapal_merchant_reference=#{merchant_reference}"
+      when 'COMPLETED' then output[:response] = response
+      when 'FAILED'    then output[:response] = response
       end
 
       output

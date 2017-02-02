@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 AllCops:
   TargetRubyVersion: 2.3
 
@@ -8,6 +6,12 @@ Metrics/AbcSize:
 
 Metrics/CyclomaticComplexity:
   Max: 10
+
+
+Metrics/LineLength:
+  Max: 150
+  Exclude:
+    - 'spec/pesapal_merchant_spec.rb'
 
 Metrics/MethodLength:
   Max: 20
