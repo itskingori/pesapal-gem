@@ -4,7 +4,7 @@
 [![Gem Version](https://badge.fury.io/rb/pesapal.svg)](https://badge.fury.io/rb/pesapal)
 [![Build Status](https://travis-ci.org/itskingori/pesapal-gem.svg?branch=master)](https://travis-ci.org/itskingori/pesapal-gem)
 [![Code Climate](https://codeclimate.com/github/itskingori/pesapal-gem/badges/gpa.svg)](https://codeclimate.com/github/itskingori/pesapal-gem)
-[![Coverage Status](https://coveralls.io/repos/github/itskingori/pesapal-gem/badge.svg?branch=master)](https://coveralls.io/github/itskingori/pesapal-gem?branch=master)
+[[![Coverage Status](https://coveralls.io/repos/github/itskingori/pesapal-gem/badge.svg?branch=master)](https://coveralls.io/github/itskingori/pesapal-gem?branch=master)
 [![Dependency Status](https://gemnasium.com/badges/github.com/itskingori/pesapal-gem.svg)](https://gemnasium.com/github.com/itskingori/pesapal-gem)
 
 
