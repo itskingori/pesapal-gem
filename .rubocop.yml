@@ -7,6 +7,8 @@ Metrics/AbcSize:
 Metrics/CyclomaticComplexity:
   Max: 10
 
+Metrics/ClassLength:
+  Max: 150
 
 Metrics/LineLength:
   Max: 150
@@ -14,7 +16,7 @@ Metrics/LineLength:
     - 'spec/pesapal_merchant_spec.rb'
 
 Metrics/MethodLength:
-  Max: 20
+  Max: 30
 
 Style/FrozenStringLiteralComment:
   Enabled: false
