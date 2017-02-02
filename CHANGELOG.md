@@ -1,11 +1,15 @@
 Changelog
 =========
 
-v1.9.0
+v2.0.0
 ------
 
+* Update RuboCop configuration and fix failures.
 * Remove Pesapal::Merchant#change_env method.
-* Change how environment is set (remove automativ `Rails.env` detection).
+* Change how environment is set (remove automatic `Rails.env` detection).
+* Remove all Rails specific stuff.
+* Add `bin/` folder and some executables.
+* Improve gemspec.
 
 v1.8.0
 ------
