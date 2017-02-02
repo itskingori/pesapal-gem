@@ -38,10 +38,6 @@ Or install it yourself as:
 
     $ gem install pesapal
 
-For Rails, you need to run the generator to create sample pesapal.yml file:
-
-    rails generate pesapal:install
-
 
 License
 -------

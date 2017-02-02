@@ -87,9 +87,6 @@ module Pesapal
     # will interact with the testing or the live Pesapal API. Like so ...
     #
     # ```ruby
-    # # Defaults environment to :development
-    # pesapal = Pesapal::Merchant.new
-    #
     # # Sets environment to :development explicitly
     # pesapal = Pesapal::Merchant.new(:development)
     #
@@ -97,54 +94,15 @@ module Pesapal
     # pesapal = Pesapal::Merchant.new(:production)
     # ```
     #
-    # A few things to note about the constructor as it behaves differently
-    # depending on the context within which it is called i.e. _Rails_ app vs
-    # _non-Rails_ app ...
-    #
-    # ### Case 1: Rails app
-    #
-    # The constructor attempts to set configuration details that should be
-    # available at runtime from `Rails.application.config.pesapal_credentials`.
-    # This contains values loaded at application start from a YAML file located
-    # at `config/pesapal.yml` which typically looks like this:
-    #
-    #  ```yaml
-    # development:
-    #   callback_url: 'http://0.0.0.0:3000/pesapal/callback'
-    #   consumer_key: '<YOUR_DEV_CONSUMER_KEY>'
-    #   consumer_secret: '<YOUR_DEV_CONSUMER_SECRET>'
-    #
-    # production:
-    #   callback_url: 'http://1.2.3.4:3000/pesapal/callback'
-    #   consumer_key: '<YOUR_PROD_CONSUMER_KEY>'
-    #   consumer_secret: '<YOUR_PROD_CONSUMER_SECRET>'
-    # ```
-    #
-    # The appropriate credentials are picked and set to {#config} instance
-    # attribute depending on set environment. The setting of environment is
-    # explained above. It's worth nothing that if for some reason the YAML file
-    # could not be read, then it fallbacks to setting {#config} instance
-    # attribute with default values. The exact definition of default values is
-    # shown below.
-    #
-    # ### Case 2: Non-Rails app
-    #
-    # Since (and if) no predefined configuration files are available, the
-    # constructor sets the {#config} instance attribute up with default values
-    # as shown below:
-    #
-    # ```
-    # {  :callback_url => 'http://0.0.0.0:3000/pesapal/callback',
-    #    :consumer_key => '<YOUR_CONSUMER_KEY>',
-    #    :consumer_secret => '<YOUR_CONSUMER_SECRET>'
-    # }
-    # ```
-    #
     # @param env [Symbol] the environment we want to use i.e. `:development` or
-    #   `:production`. Leaving it blank sets environment intelligently to
-    #   `Rails.env` (if Rails) or `:development` (if non-Rails).
+    #   `:production`.
     def initialize(env = :development)
       @env = env.to_s.downcase
+      @config = {
+        callback_url: 'http://0.0.0.0:3000/pesapal/callback',
+        consumer_key: '<YOUR_CONSUMER_KEY>',
+        consumer_secret: '<YOUR_CONSUMER_SECRET>'
+      }
     end
 
     # Generate URL that's used to post a transaction to PesaPal.
@@ -374,19 +332,6 @@ module Pesapal
 
     def api_endpoint
       'https://' + api_domain
-    end
-
-    # Configure credentials through hash that passed in (does a little
-    # processing to remove unwanted data & uses default if nothing is input).
-    def configure(consumer_details = {})
-      @config = {
-        callback_url: 'http://0.0.0.0:3000/pesapal/callback',
-        consumer_key: '<YOUR_CONSUMER_KEY>',
-        consumer_secret: '<YOUR_CONSUMER_SECRET>'
-      }
-
-      valid_config_keys = @config.keys
-      consumer_details.each { |k, v| @config[k.to_sym] = v if valid_config_keys.include? k.to_sym }
     end
 
     def postpesapaldirectorderv4_url
