@@ -279,7 +279,7 @@ they want as long as they provide attribution and waive liability.
 [10]: http://kingori.co/
 [11]: https://raw.githubusercontent.com/itskingori/pesapal-gem/master/LICENSE.txt
 [12]: https://github.com/itskingori/pesapal-gem/releases/
-[13]: http://rubydoc.info/gems/pesapal/frames/file/README.md
+[13]: http://rubydoc.info/gems/pesapal
 [14]: https://github.com/itskingori/mo
 [15]: https://github.com/itskingori/mo/tree/master/convention#-convention
 [16]: http://kingori.co/articles/2013/09/modus-operandi/
