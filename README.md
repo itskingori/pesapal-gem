@@ -5,8 +5,6 @@
 [![Build Status](https://travis-ci.org/itskingori/pesapal-gem.svg?branch=master)](https://travis-ci.org/itskingori/pesapal-gem)
 [![Code Climate](https://codeclimate.com/github/itskingori/pesapal-gem/badges/gpa.svg)](https://codeclimate.com/github/itskingori/pesapal-gem)
 [![Coverage Status](https://coveralls.io/repos/github/itskingori/pesapal-gem/badge.svg)](https://coveralls.io/github/itskingori/pesapal-gem)
-[![Dependency Status](https://gemnasium.com/badges/github.com/itskingori/pesapal-gem.svg)](https://gemnasium.com/github.com/itskingori/pesapal-gem)
-
 
 Basically it's a gem that makes it easy to integrate your app with
 [Pesapal][1]'s payment gateway. It Handles all the [oAuth stuff][3] abstracting
